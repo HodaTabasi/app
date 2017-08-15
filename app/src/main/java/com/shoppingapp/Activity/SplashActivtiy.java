@@ -10,10 +10,12 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.facebook.accountkit.AccessToken;
 import com.facebook.accountkit.Account;
 import com.facebook.accountkit.AccountKit;
 import com.facebook.accountkit.AccountKitCallback;
 import com.facebook.accountkit.AccountKitError;
+import com.facebook.accountkit.AccountKitLoginResult;
 import com.facebook.accountkit.ui.AccountKitActivity;
 import com.facebook.accountkit.ui.AccountKitConfiguration;
 import com.facebook.accountkit.ui.LoginType;
@@ -110,5 +112,48 @@ private Thread mSplashThread;
     public void onAnimationRepeat(Animation animation) {
 
     }
+
+
+
+
+
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == APP_REQUEST_CODE) { // confirm that this response matches your request
+            final AccountKitLoginResult loginResult = AccountKit.loginResultWithIntent(data);
+            if (loginResult == null || loginResult.wasCancelled()) {
+                Toast.makeText(getApplicationContext(), "Login Cancelled", Toast.LENGTH_SHORT).show();
+            } else if (loginResult.getError() != null) {
+                Toast.makeText(getApplicationContext(), loginResult.getError().getErrorType().getMessage(), Toast.LENGTH_SHORT).show();
+            } else {
+                final AccessToken accessToken = loginResult.getAccessToken();
+
+                if (accessToken != null) {
+                    Log.e("Error", "Success:" + accessToken.getAccountId());
+                    AccountKit.getCurrentAccount(new AccountKitCallback<Account>() {
+                        @Override
+                        public void onSuccess(final Account account) {
+                            Log.e("Error", "User Info Successfully");
+
+                            finish();
+                            Intent i = new Intent(SplashActivtiy.this,MainActivity.class);
+                            startActivity(i);
+
+                        }
+
+                        @Override
+                        public void onError(final AccountKitError error) {
+                            Log.e("Error", error.getUserFacingMessage());
+                            Toast.makeText(getApplicationContext(), error.getUserFacingMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } else {
+                    Toast.makeText(getApplicationContext(), "Unknown response type", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
+
 
 }
