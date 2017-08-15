@@ -59,15 +59,16 @@ private Thread mSplashThread;
                         public void onSuccess(final Account account) {
                             Log.e("Error", "User Info Successfully");
 
-                            finish();
                             Intent i = new Intent(SplashActivtiy.this,MainActivity.class);
                             startActivity(i);
+                            finish();
+
 
                         }
 
                         @Override
                         public void onError(final AccountKitError error) {
-                            Log.e("Error", error.getUserFacingMessage());
+//                            Log.e("Error", error.getUserFacingMessage());
                             Toast.makeText(getApplicationContext(), error.getUserFacingMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -135,16 +136,16 @@ private Thread mSplashThread;
                         @Override
                         public void onSuccess(final Account account) {
                             Log.e("Error", "User Info Successfully");
-
-                            finish();
                             Intent i = new Intent(SplashActivtiy.this,MainActivity.class);
                             startActivity(i);
+                            finish();
+
 
                         }
 
                         @Override
                         public void onError(final AccountKitError error) {
-                            Log.e("Error", error.getUserFacingMessage());
+//                            Log.e("Error", error.getUserFacingMessage());
                             Toast.makeText(getApplicationContext(), error.getUserFacingMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
