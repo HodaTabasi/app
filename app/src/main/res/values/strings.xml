@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">ShoppingApp</string>
+    <string name="FACEBOOK_APP_ID">496409494045319</string>
+    <string name="ACCOUNT_KIT_CLIENT_TOKEN">c09a24367b64ffa02e9be3dcc7897490</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
