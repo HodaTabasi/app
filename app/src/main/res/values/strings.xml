@@ -15,4 +15,11 @@
     <string name="whishList">WhishList</string>
     <string name="explor">Explor</string>
     <string name="search">Search</string>
+
+
+    <string name="FACEBOOK_APP_ID">139938646593627</string>
+    <string name="ACCOUNT_KIT_CLIENT_TOKEN">7e92a1c53d4a264ade61a076d7a452c0</string>
+    <string name="title_activity_login">LoginActivity</string>
+
+
 </resources>
