@@ -68,10 +68,8 @@ private Thread mSplashThread;
 
                         @Override
                         public void onError(final AccountKitError error) {
-//                            Log.e("Error", error.getUserFacingMessage());
-                            Intent i = new Intent(SplashActivtiy.this,MainActivity.class);
-                            startActivity(i);
-                            Toast.makeText(getApplicationContext(), error.getUserFacingMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, "للاسف حدثت مشكلة في الخادم .. حاول مره اخري", Toast.LENGTH_SHORT).show();
+
                         }
                     });
                 } else {
