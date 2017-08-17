@@ -1,6 +1,7 @@
 package com.shoppingapp.Activity;
 
 
+import android.app.Dialog;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
@@ -11,9 +12,13 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.shoppingapp.Dialog.filterDialog;
 import com.shoppingapp.Fragment.ExploreFragment;
 import com.shoppingapp.Fragment.OrdersFragment;
 import com.shoppingapp.Fragment.SearchFragment;
@@ -28,18 +33,28 @@ Toolbar toolbar;
     private CharSequence mTitle ;
 
     TextView actionTitle ;
-
+    ImageView filter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
          toolbar = (Toolbar) findViewById(R.id.toolbar);
         actionTitle = (TextView)findViewById(R.id.title);
+        filter = (ImageView) findViewById(R.id.filter);
        setSupportActionBar(toolbar);
 
 //       FragmentManager mFragmentManager = getSupportFragmentManager();
 //      FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
 //        mFragmentTransaction.replace(R.id.container,new AllCategoriesFragment()).commit();
+
+        filter.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                filterDialog filterDialog = new filterDialog(MainActivity.this);
+                filterDialog.show();
+            }
+        });
 
         ExploreFragment fragment = new ExploreFragment();
       FragmentsUtil.addFragment(this,R.id.container,fragment,false);
@@ -97,29 +112,34 @@ Toolbar toolbar;
 
         if (id == R.id.nav_shop) {
             mTitle = getString(R.string.shop);
+            filter.setVisibility(View.VISIBLE);
             transaction.replace(R.id.container, new ShopeFragment());
             transaction.commit();
 
         }
         else if (id == R.id.nav_order) {
             mTitle = getString(R.string.orders);
+            filter.setVisibility(View.GONE);
             transaction.replace(R.id.container, new OrdersFragment());
              transaction.commit();
 
         }
         else if (id == R.id.nav_whishlist) {
             mTitle = getString(R.string.whishList);
+            filter.setVisibility(View.GONE);
             transaction.replace(R.id.container, new WhishlistFragment());
             transaction.commit();
 
         }
         else if (id == R.id.nav_explore) {
             mTitle = getString(R.string.explor);
+            filter.setVisibility(View.GONE);
             transaction.replace(R.id.container, new ExploreFragment());
             transaction.commit();
         }
         else if (id == R.id.nav_search) {
             mTitle = getString(R.string.search);
+            filter.setVisibility(View.GONE);
             transaction.replace(R.id.container, new SearchFragment());
             transaction.commit();
         }
