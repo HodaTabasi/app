@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="350dp"
+    android:layout_width="360dp"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
@@ -192,48 +192,56 @@
                         android:orientation="horizontal">
 
                         <Button
+                            android:layout_margin="2dp"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:background="@drawable/circle_border"
                             android:backgroundTint="#000"/>
 
                         <Button
+                            android:layout_margin="2dp"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:background="@drawable/circle_border"
                             android:backgroundTint="#fc7114"/>
 
                         <Button
+                            android:layout_margin="2dp"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:background="@drawable/circle_border"
                             android:backgroundTint="#1ee6fa"/>
 
                         <Button
+                            android:layout_margin="2dp"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:background="@drawable/circle_border"
                             android:backgroundTint="#ff3399"/>
 
                         <Button
+                            android:layout_margin="2dp"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:background="@drawable/circle_border"
                             android:backgroundTint="#7178fd"/>
 
                         <Button
+                            android:layout_margin="2dp"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:background="@drawable/circle_border"
                             android:backgroundTint="#669c06"/>
 
                         <Button
+                            android:layout_margin="2dp"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:background="@drawable/circle_border"
                             android:backgroundTint="#9a06cf"/>
 
                         <Button
+                            android:layout_margin="2dp"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:background="@drawable/circle_border"
