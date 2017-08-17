@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.shoppingapp.Fragment.ExploreFragment;
@@ -26,11 +27,14 @@ public class MainActivity extends AppCompatActivity
 Toolbar toolbar;
     private CharSequence mTitle ;
 
+    TextView actionTitle ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
          toolbar = (Toolbar) findViewById(R.id.toolbar);
+        actionTitle = (TextView)findViewById(R.id.title);
        setSupportActionBar(toolbar);
 
 //       FragmentManager mFragmentManager = getSupportFragmentManager();
@@ -95,12 +99,12 @@ Toolbar toolbar;
             mTitle = getString(R.string.shop);
             transaction.replace(R.id.container, new ShopeFragment());
             transaction.commit();
+
         }
         else if (id == R.id.nav_order) {
             mTitle = getString(R.string.orders);
             transaction.replace(R.id.container, new OrdersFragment());
-            toolbar.setTitle(R.string.orders);
-            transaction.commit();
+             transaction.commit();
 
         }
         else if (id == R.id.nav_whishlist) {
@@ -119,6 +123,8 @@ Toolbar toolbar;
             transaction.replace(R.id.container, new SearchFragment());
             transaction.commit();
         }
+
+        actionTitle.setText(mTitle);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
