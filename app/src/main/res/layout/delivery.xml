@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="Delivery"
+        android:textColor="#fff"
+        android:textSize="20sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="15dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Address"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:paddingStart="20dp"
+                android:paddingRight="10dp"
+                android:paddingLeft="20dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="10dp"/>
+
+            <EditText
+                android:hint=""
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rect_shape" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Phone"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:paddingStart="20dp"
+                android:paddingRight="10dp"
+                android:paddingLeft="20dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="10dp"/>
+
+            <EditText
+                android:hint=""
+                android:id="@+id/editText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_weight="2"
+                android:background="@drawable/rect_shape"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Price"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:paddingStart="20dp"
+                android:paddingRight="10dp"
+                android:paddingLeft="20dp"
+                android:paddingEnd="10dp"
+                android:paddingBottom="5dp"
+                android:paddingTop="10dp"/>
+
+            <EditText
+                android:hint=""
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:layout_marginStart="47dp"
+                android:layout_marginLeft="47dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rect_shape" />
+
+            <EditText
+                android:hint=""
+                android:layout_width="0dp"
+                android:text="+20"
+                android:layout_weight="1"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rect_shape" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Total phone"
+                android:layout_weight="1"
+                android:textSize="16sp"
+                android:paddingStart="20dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="5dp"
+                android:paddingEnd="5dp"
+                android:paddingTop="10dp"/>
+
+            <EditText
+                android:hint=""
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginStart="10dp"
+                android:layout_weight="2"
+                android:background="@drawable/rect_shape" />
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:paddingRight="20dp"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="end"
+            android:background="@drawable/circle_border"
+            android:backgroundTint="@color/colorPrimary"
+            android:textSize="16sp"
+            android:text="pay now"
+            android:textColor="#fff"/>
+
+    </LinearLayout>
+
+
+
+    <ImageView
+        android:contentDescription=""
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:src="@drawable/delivery"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:padding="8dp"
+        android:scaleType="fitXY"/>
+
+
+</LinearLayout>
