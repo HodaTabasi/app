@@ -4,6 +4,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
+import android.widget.TextView;
 
 /**
  * Created by Yasmeen on 03/08/2017.
@@ -35,5 +39,12 @@ public class FragmentsUtil {
         transaction.remove(fragment);
         transaction.commit();
 
+    }
+
+    public  static void setSpannableString(String text , int color1 , int color2, TextView tv){
+        SpannableString spannableString = new SpannableString(text);
+        spannableString.setSpan(new ForegroundColorSpan(color1) , 0 , text.indexOf(" "), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new ForegroundColorSpan(color2) , text.indexOf(" ") , text.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        tv.setText(spannableString);
     }
 }

@@ -21,5 +21,14 @@
     <string name="ACCOUNT_KIT_CLIENT_TOKEN">7e92a1c53d4a264ade61a076d7a452c0</string>
     <string name="title_activity_login">LoginActivity</string>
 
-
+    <string name="active">Active</string>
+    <string name="history">History</string>
+    <string name="order_no">Order NO</string>
+    <string name="track">Track</string>
+    <string name="estimated_delivered_date">Estimated delivered date</string>
+    <string name="order_delivered">Order delivered</string>
+    <string name="order_on_delivery">Order on delivery</string>
+    <string name="processed">Processed</string>
+    <string name="sub_total">SUBTOTAL</string>
+    <string name="continue_order">Continue Order</string>
 </resources>
