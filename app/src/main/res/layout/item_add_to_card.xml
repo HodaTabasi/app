@@ -75,7 +75,7 @@
               <CheckBox
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:button="@android:drawable/ic_input_add"
+                  android:button="@drawable/ic_negative"
                   android:layout_weight="1"
                   android:id="@+id/count_down"
                  />
@@ -93,7 +93,7 @@
               <CheckBox
                   android:layout_width="match_parent"
                   android:layout_height="wrap_content"
-                  android:button="@android:drawable/ic_input_add"
+                  android:button="@drawable/ic_add_plus"
                   android:layout_weight="1"
                   android:id="@+id/count_up"
                   />

@@ -9,11 +9,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.shoppingapp.Adapter.OrderAdapter;
+import com.shoppingapp.Model.Order;
+import com.shoppingapp.R;
+
 import java.util.ArrayList;
 
-import na.com.rawnaq.R;
-import na.com.rawnaq.adapter.OrderAdapter;
-import na.com.rawnaq.model.Order;
 
 /**
   Created by DevAmar on 8/10/17.

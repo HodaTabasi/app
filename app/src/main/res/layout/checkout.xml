@@ -53,7 +53,7 @@
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:background="@drawable/edittext_shape"
-        android:drawableEnd="@drawable/master_card"
+        android:drawableEnd="@drawable/ic_credit_card"
         android:paddingEnd="7dp" />
 
     <TextView
@@ -62,7 +62,8 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         android:text="CARD NUMBER"
-        android:textSize="14sp" />
+        android:textSize="14sp"
+        android:id="@+id/textView" />
 
     <EditText
         android:layout_width="match_parent"
@@ -125,11 +126,10 @@
         android:layout_marginStart="25dp"
         android:layout_marginTop="25dp"
         android:background="@drawable/button_shape"
-        android:drawableStart="@drawable/lock"
-        android:gravity="start"
-        android:padding="15dp"
-        android:paddingStart="140dp"
+        android:gravity="center"
+        android:padding="25dp"
         android:text="PAY$2204"
+        android:textSize="16sp"
         android:textColor="@color/white" />
 
 </LinearLayout>

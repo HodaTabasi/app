@@ -13,7 +13,7 @@
             android:title="ORDER" />
         <item
             android:id="@+id/nav_whishlist"
-            android:icon="@drawable/ic_star"
+            android:icon="@drawable/ic_like"
             android:title="WHISHLIST" />
         <item
             android:id="@+id/nav_explore"

@@ -9,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import na.com.rawnaq.R;
-import na.com.rawnaq.adapter.OrderViewPagerAdapter;
+import com.shoppingapp.Adapter.OrderViewPagerAdapter;
+import com.shoppingapp.R;
 
 /**
   Created by DevAmar on 8/15/17.
