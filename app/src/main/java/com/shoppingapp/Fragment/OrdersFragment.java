@@ -25,8 +25,8 @@ public class OrdersFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tabs, container, false);
-        ordersTabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
-        ordersViewPager = (ViewPager) view.findViewById(R.id.pager);
+        ordersTabLayout =  view.findViewById(R.id.tab_layout);
+        ordersViewPager =  view.findViewById(R.id.pager);
 //       tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.ternds)));
 //        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.feeds)));
 

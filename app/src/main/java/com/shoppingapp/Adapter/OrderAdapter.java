@@ -13,42 +13,49 @@ import com.shoppingapp.Model.Order;
 import com.shoppingapp.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  Created by DevAmar on 8/14/17.
  */
 
 public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderHolder> {
-    private ArrayList<Order> orders;
-    private LayoutInflater layoutInflater;
+    private List<Order> orders;
     private Context context;
 
-    public OrderAdapter(ArrayList<Order> orders, Context context) {
+    public OrderAdapter(List<Order> orders, Context context) {
         this.orders = orders;
-        layoutInflater = LayoutInflater.from(context);
         this.context = context;
     }
 
 
     @Override
     public OrderHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = layoutInflater.inflate(R.layout.recycler_active_content , parent, false);
-        return new OrderHolder(itemView);
+        View layoutView = LayoutInflater.from(parent.getContext()).inflate(R.layout.order_details, null,false);
+       OrderHolder rcv = new OrderHolder(layoutView);
+        RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        layoutView.setLayoutParams(lp);
+        return rcv;
     }
 
     @Override
     public void onBindViewHolder(OrderHolder holder, int position) {
-        Order order = orders.get(position);
-        FragmentsUtil.setSpannableString(context.getString(R.string.order_no) +": "+order.getOrderNumber() , R.color.gray_blue,R.color.black_light
-                ,holder.orderNumber);
-        FragmentsUtil.setSpannableString(context.getString(R.string.track) +": "+order.getTrack() , R.color.gray_blue,R.color.black_light
-                ,holder.track);
-        FragmentsUtil.setSpannableString(context.getString(R.string.estimated_delivered_date) +": "+order.getDeliveredDate() , R.color.gray_blue,R.color.black_light
-                ,holder.deliveredDate);
-        holder.status.setText(order.getStatus());
-        holder.date.setText(order.getOrderDate());
-        setStatusColor(order.getStatus() , holder.status);
-        setVisibility(order.getStatus() , holder);
+        holder.orderNumber.setText(orders.get(position).getOrderNumber());
+        holder.track.setText(orders.get(position).getTrack());
+        holder.deliveredDate.setText(orders.get(position).getDeliveredDate());
+        holder.status.setText(orders.get(position).getStatus());
+        holder.date.setText(orders.get(position).getOrderDate());
+//        Order order = orders.get(position);
+//        FragmentsUtil.setSpannableString(context.getString(R.string.order_no) +": "+order.getOrderNumber() , R.color.gray_blue,R.color.black_light
+//                ,holder.orderNumber);
+//        FragmentsUtil.setSpannableString(context.getString(R.string.track) +": "+order.getTrack() , R.color.gray_blue,R.color.black_light
+//                ,holder.track);
+//        FragmentsUtil.setSpannableString(context.getString(R.string.estimated_delivered_date) +": "+order.getDeliveredDate() , R.color.gray_blue,R.color.black_light
+//                ,holder.deliveredDate);
+//        holder.status.setText(order.getStatus());
+//        holder.date.setText(order.getOrderDate());
+//        setStatusColor(order.getStatus() , holder.status);
+//        setVisibility(order.getStatus() , holder);
     }
 
     private void setStatusColor(String statusVal, TextView status){
@@ -90,10 +97,10 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderHolder>
          OrderHolder(View itemView) {
             super(itemView);
              orderNumber = itemView.findViewById(R.id.order_num);
-             track =  itemView.findViewById(R.id.track);
-             status = itemView.findViewById(R.id.status);
+             track =  itemView.findViewById(R.id.order_track);
+             status = itemView.findViewById(R.id.order_status);
              date =  itemView.findViewById(R.id.order_date);
-             deliveredDate = itemView.findViewById(R.id.delivered_date);
+             deliveredDate = itemView.findViewById(R.id.order_delivered_date);
 
         }
     }

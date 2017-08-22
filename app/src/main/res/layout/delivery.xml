@@ -180,7 +180,6 @@
     </LinearLayout>
 
 
-
     <ImageView
         android:contentDescription=""
         android:layout_width="200dp"
@@ -189,7 +188,8 @@
         android:layout_gravity="center"
         android:layout_marginBottom="20dp"
         android:padding="8dp"
-        android:scaleType="fitXY"/>
+        android:scaleType="fitXY"
+        android:id="@+id/imageView" />
 
 
 </LinearLayout>

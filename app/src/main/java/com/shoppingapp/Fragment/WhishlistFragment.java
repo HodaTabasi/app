@@ -31,7 +31,8 @@ public class WhishlistFragment extends Fragment {
 //       tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.ternds)));
 //        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.feeds)));
 
-        whishlistTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+       // whishlistTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        whishlistTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         ShopPagerAdapter adapter = new ShopPagerAdapter(getActivity().getSupportFragmentManager());
         whishlistViewPager.setAdapter(adapter);
         whishlistTabLayout.setupWithViewPager(whishlistViewPager);

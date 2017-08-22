@@ -70,6 +70,8 @@ private Thread mSplashThread;
                         public void onError(final AccountKitError error) {
                             Toast.makeText(mContext, "للاسف حدثت مشكلة في الخادم .. حاول مره اخري", Toast.LENGTH_SHORT).show();
 
+
+
                         }
                     });
                 } else {

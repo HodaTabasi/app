@@ -30,7 +30,8 @@ public class ShopeFragment extends Fragment {
 //       tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.ternds)));
 //        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.feeds)));
 
-        shopTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+      //  shopTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        shopTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         ShopPagerAdapter adapter = new ShopPagerAdapter(getActivity().getSupportFragmentManager());
         shopViewPager.setAdapter(adapter);
         shopTabLayout.setupWithViewPager(shopViewPager);

@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     app:cardUseCompatPadding="true"
     android:clipToPadding="true"
+    android:layout_margin="10dp"
     android:background="@android:color/white">
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,9 +24,9 @@
                 android:layout_weight="0.1"
                 android:textSize="16dp"
                 android:text="Order No :"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:paddingStart="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:paddingStart="8dp"
                 />
 
             <TextView
@@ -35,9 +36,9 @@
                 android:id="@+id/order_num"
                 android:text="7065656"
                 android:textSize="14sp"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:paddingEnd="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:paddingStart="8dp"
 
                 />
             <TextView
@@ -62,9 +63,9 @@
                 android:layout_weight="0.1"
                 android:textSize="16dp"
                 android:text="Track :"
-                android:paddingTop="16dp"
-                android:paddingBottom="16dp"
-                android:paddingStart="16dp" />
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:paddingStart="8dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -72,7 +73,7 @@
                 android:layout_weight="0.8"
                 android:text="SDFDGFHGj"
                 android:textSize="14sp"
-                android:padding="16dp"
+                android:padding="8dp"
                 android:id="@+id/order_track"
 
                 />
@@ -81,7 +82,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:padding="8dp"
             android:text="Order Delivered"
             android:textSize="16sp"
             android:textColor="@android:color/holo_green_dark"
@@ -99,7 +100,7 @@
                 android:text="Estimated delivery date :"
                 android:paddingTop="16dp"
                 android:paddingBottom="16dp"
-                android:paddingStart="16dp"                />
+                android:paddingStart="8dp"                />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -107,8 +108,8 @@
                 android:layout_weight="0.8"
                 android:text="30/8/2017"
                 android:textSize="14sp"
-                android:padding="16dp"
-                android:id="@+id/order_delivery_date"
+                android:padding="8dp"
+                android:id="@+id/order_delivered_date"
 
                 />
         </LinearLayout>

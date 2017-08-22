@@ -31,16 +31,16 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 Toolbar toolbar;
     private CharSequence mTitle ;
-
+ImageView filter;
     TextView actionTitle ;
-    ImageView filter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
          toolbar = (Toolbar) findViewById(R.id.toolbar);
+        filter = toolbar.findViewById(R.id.filter);
         actionTitle = (TextView)findViewById(R.id.title);
-        filter = (ImageView) findViewById(R.id.filter);
+
        setSupportActionBar(toolbar);
 
 //       FragmentManager mFragmentManager = getSupportFragmentManager();

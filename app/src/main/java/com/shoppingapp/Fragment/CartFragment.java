@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.shoppingapp.FragmentsUtil;
 import com.shoppingapp.R;
 
 
@@ -28,6 +29,13 @@ public class CartFragment extends Fragment {
         // Inflate the layout for this fragment
          View view = inflater.inflate(R.layout.fragment_cart, container, false);
         checkout = view.findViewById(R.id.chechout);
+        checkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                CheckoutFragment fragment = new CheckoutFragment();
+                FragmentsUtil.replaceFragment(getActivity(),R.id.container,fragment,true);
+            }
+        });
 
         return view;
     }
