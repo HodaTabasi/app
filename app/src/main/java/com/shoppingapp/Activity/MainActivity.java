@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -64,7 +65,7 @@ ImageView filter;
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
+        drawer.setDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -78,9 +79,6 @@ ImageView filter;
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
-            actionTitle.setText(mTitle);
-            if(mTitle.equals( getString(R.string.shop)) || mTitle.equals("HOME"))
-               filter.setVisibility(View.VISIBLE);
         }
     }
 
@@ -141,14 +139,11 @@ ImageView filter;
             transaction.replace(R.id.container, new ExploreFragment());
             transaction.commit();
         }
-        else if (id == R.id.nav_shopping_cart) {
-            mTitle = getString(R.string.cart);
+        else if (id == R.id.nav_search) {
+            mTitle = getString(R.string.search);
             filter.setVisibility(View.GONE);
-            transaction.replace(R.id.container, new CartFragment());
+            transaction.replace(R.id.container, new SearchFragment());
             transaction.commit();
-//            mTitle = getString(R.string.search);
-//            transaction.replace(R.id.container, new SearchFragment());
-//            transaction.commit();
         }
 
         actionTitle.setText(mTitle);
@@ -156,11 +151,6 @@ ImageView filter;
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    public void setChange(String title){
-        actionTitle.setText(title);
-        filter.setVisibility(View.GONE);
     }
 
 

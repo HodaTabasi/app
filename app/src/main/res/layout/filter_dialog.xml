@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="360dp"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
@@ -91,7 +91,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:orientation="vertical"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    >
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -103,14 +104,18 @@
                             android:layout_height="40dp"
                             android:layout_margin="5dp"
                             android:background="@drawable/circle_border"
-                            android:text="XS" />
+                            android:text="XS"
+                            android:gravity="center"
+                            />
 
                         <Button
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_margin="5dp"
                             android:background="@drawable/circle_border"
-                            android:text="S" />
+                            android:text="S"
+                            android:gravity="center"
+                            />
 
                         <Button
                             android:layout_width="40dp"
@@ -119,7 +124,9 @@
                             android:text="M"
                             android:layout_margin="5dp"
                             android:backgroundTint="@color/colorPrimary"
-                            android:textColor="#fff"/>
+                            android:textColor="#fff"
+                            android:gravity="center"
+                            />
 
 
                     </LinearLayout>
@@ -134,21 +141,27 @@
                             android:layout_height="40dp"
                             android:layout_margin="5dp"
                             android:background="@drawable/circle_border"
-                            android:text="L" />
+                            android:text="L"
+                            android:gravity="center"
+                            />
 
                         <Button
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_margin="5dp"
                             android:background="@drawable/circle_border"
-                            android:text="XL" />
+                            android:text="XL"
+                            android:gravity="center"
+                            />
 
                         <Button
                             android:layout_width="40dp"
                             android:layout_height="40dp"
                             android:layout_margin="5dp"
                             android:background="@drawable/circle_border"
-                            android:text="XXL" />
+                            android:text="XXL"
+                            android:gravity="center"
+                            />
 
 
                     </LinearLayout>
@@ -309,6 +322,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/circle_border"
                 android:backgroundTint="@color/colorPrimary"
+                android:padding="20dp"
                 android:textColor="#fff"/>
 
         </LinearLayout>
