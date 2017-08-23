@@ -44,7 +44,7 @@ public class HistoryOrdersFragment extends Fragment {
         historyOrders.add(new Order(123 , "123457","11.4.2017",getString(R.string.order_on_delivery),"11.3.2019"));
         LinearLayoutManager linearLayoutManger = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         historyOrdersRecycler.setLayoutManager(linearLayoutManger);
-        orderAdapter = new OrderAdapter(historyOrders , getActivity());
+        orderAdapter = new OrderAdapter(  getActivity(),historyOrders);
         historyOrdersRecycler.setAdapter(orderAdapter);
 
 

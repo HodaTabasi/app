@@ -23,7 +23,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderHolder>
     private List<Order> orders;
     private Context context;
 
-    public OrderAdapter(List<Order> orders, Context context) {
+    public OrderAdapter( Context context ,List<Order> orders) {
         this.orders = orders;
         this.context = context;
     }

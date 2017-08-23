@@ -127,7 +127,7 @@
         android:background="@drawable/button_shape"
         android:gravity="center"
         android:padding="25dp"
-        android:text="PAY$2204"
+        android:text="PAY"
         android:textSize="16sp"
         android:textColor="@color/white"
         android:id="@+id/pay"/>

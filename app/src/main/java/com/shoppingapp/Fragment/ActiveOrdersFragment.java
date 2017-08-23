@@ -40,7 +40,7 @@ public class ActiveOrdersFragment  extends Fragment {
         activeOrders.add(new Order(123 , "123457","11.4.2017",getString(R.string.processed),"11.3.2019"));
         activeOrders.add(new Order(123 , "123457","11.4.2017",getString(R.string.order_delivered),"11.3.2019"));
         activeOrders.add(new Order(123 , "123457","11.4.2017",getString(R.string.order_on_delivery),"11.3.2019"));
-        orderAdapter = new OrderAdapter(activeOrders , getActivity());
+        orderAdapter = new OrderAdapter( getActivity(),activeOrders);
         LinearLayoutManager linearLayoutManger = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         activeOrdersRecycler.setLayoutManager(linearLayoutManger);
         activeOrdersRecycler.setAdapter(orderAdapter);
