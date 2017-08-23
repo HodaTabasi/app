@@ -15,10 +15,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.shoppingapp.Dialog.filterDialog;
+import com.shoppingapp.Fragment.EditProfileFragment;
 import com.shoppingapp.Fragment.ExploreFragment;
 import com.shoppingapp.Fragment.OrdersFragment;
 import com.shoppingapp.Fragment.SearchFragment;
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 Toolbar toolbar;
     private CharSequence mTitle ;
+    TextView editProfile;
 ImageView filter;
     TextView actionTitle ;
     @Override
@@ -39,13 +42,26 @@ ImageView filter;
         setContentView(R.layout.activity_main);
          toolbar = (Toolbar) findViewById(R.id.toolbar);
         filter = toolbar.findViewById(R.id.filter);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+//        LinearLayout header = navigationView.findViewById(R.id.header);
+//        editProfile = header.findViewById(R.id.user_edit_prof);
+
+
         actionTitle = (TextView)findViewById(R.id.title);
 
        setSupportActionBar(toolbar);
 
-//       FragmentManager mFragmentManager = getSupportFragmentManager();
-//      FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
-//        mFragmentTransaction.replace(R.id.container,new AllCategoriesFragment()).commit();
+//        editProfile.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                EditProfileFragment editProfileFragment = new EditProfileFragment();
+//              //  FragmentsUtil.replaceFragment(MainActivity.this,R.id.container,editProfileFragment,true);
+//
+//
+//            }
+//        });
 
         filter.setOnClickListener(new View.OnClickListener() {
 
@@ -66,8 +82,6 @@ ImageView filter;
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override

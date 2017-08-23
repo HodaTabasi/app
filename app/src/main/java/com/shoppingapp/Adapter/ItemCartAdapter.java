@@ -39,8 +39,8 @@ public RecyclerViewHolders onCreateViewHolder(ViewGroup parent, int viewType) {
 @Override
 public void onBindViewHolder(RecyclerViewHolders holder, int position) {
        holder.itemName.setText(itemCartList.get(position).getName());
-       holder.itemPrice.setText((int) itemCartList.get(position).getPrice());
-       holder.itemColor.setText(itemCartList.get(position).getColor());
+       holder.itemPrice.setText( itemCartList.get(position).getPrice());
+    //   holder.itemColor.setBackgroundColor(itemCartList.get(position).getColor());
        holder.itemQuantity.setText(itemCartList.get(position).getQuantity());
        holder.itemImg.setImageResource(itemCartList.get(position).getImag());
         }
@@ -53,7 +53,8 @@ public int getItemCount() {
 public class RecyclerViewHolders extends RecyclerView.ViewHolder{
 
 
-    public TextView itemName ,itemPrice ,itemColor,itemQuantity;
+    public TextView itemName ,itemPrice ,itemQuantity;
+    View itemColor;
     public ImageView itemImg ;
 
 

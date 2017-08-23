@@ -7,28 +7,21 @@ package com.shoppingapp.Model;
 public class ItemCart {
     String id ;
     String name;
-    double price ;
-    String color;
-    int quantity;
+    String price ;
+    int color;
+    String quantity;
     int imag;
 
 
-
-    public ItemCart(String id, String name, double price, String color, int quantity) {
+    public ItemCart(String id, String name, String price, String quantity, int imag) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.color = color;
         this.quantity = quantity;
-    }
-
-    public int getImag() {
-        return imag;
-    }
-
-    public void setImag(int imag) {
         this.imag = imag;
     }
+
     public String getId() {
         return id;
     }
@@ -45,27 +38,35 @@ public class ItemCart {
         this.name = name;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    public String getColor() {
+    public int getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(int color) {
         this.color = color;
     }
 
-    public int getQuantity() {
+    public String getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(String quantity) {
         this.quantity = quantity;
+    }
+
+    public int getImag() {
+        return imag;
+    }
+
+    public void setImag(int imag) {
+        this.imag = imag;
     }
 }
