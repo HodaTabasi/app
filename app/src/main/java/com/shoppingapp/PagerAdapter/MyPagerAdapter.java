@@ -6,6 +6,7 @@ package com.shoppingapp.PagerAdapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.shoppingapp.Fragment.FeedsFragment;
 import com.shoppingapp.Fragment.TrendsFragment;
@@ -14,7 +15,7 @@ import com.shoppingapp.Fragment.TrendsFragment;
  * Created by Yasmeen on 08/08/2017.
  */
 
-public class MyPagerAdapter extends FragmentPagerAdapter {
+public class MyPagerAdapter extends FragmentStatePagerAdapter {
   final  int FRAGMENT_ONE =0;
    final  int FRAGMENT_TWO =1;
    final  int COUNT =2;

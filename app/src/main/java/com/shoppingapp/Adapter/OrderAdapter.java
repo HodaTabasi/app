@@ -3,6 +3,7 @@ package com.shoppingapp.Adapter;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,22 +41,13 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderHolder>
 
     @Override
     public void onBindViewHolder(OrderHolder holder, int position) {
-        holder.orderNumber.setText(orders.get(position).getOrderNumber());
+        holder.orderNumber.setText(orders.get(position).getOrderNumber()+"");
         holder.track.setText(orders.get(position).getTrack());
         holder.deliveredDate.setText(orders.get(position).getDeliveredDate());
         holder.status.setText(orders.get(position).getStatus());
+//        Log.e("Status",orders.get(position).getStatus()+" ");
         holder.date.setText(orders.get(position).getOrderDate());
-//        Order order = orders.get(position);
-//        FragmentsUtil.setSpannableString(context.getString(R.string.order_no) +": "+order.getOrderNumber() , R.color.gray_blue,R.color.black_light
-//                ,holder.orderNumber);
-//        FragmentsUtil.setSpannableString(context.getString(R.string.track) +": "+order.getTrack() , R.color.gray_blue,R.color.black_light
-//                ,holder.track);
-//        FragmentsUtil.setSpannableString(context.getString(R.string.estimated_delivered_date) +": "+order.getDeliveredDate() , R.color.gray_blue,R.color.black_light
-//                ,holder.deliveredDate);
-//        holder.status.setText(order.getStatus());
-//        holder.date.setText(order.getOrderDate());
-//        setStatusColor(order.getStatus() , holder.status);
-//        setVisibility(order.getStatus() , holder);
+
     }
 
     private void setStatusColor(String statusVal, TextView status){
@@ -105,3 +97,15 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderHolder>
         }
     }
 }
+
+//        Order order = orders.get(position);
+//        FragmentsUtil.setSpannableString(context.getString(R.string.order_no) +": "+order.getOrderNumber() , R.color.gray_blue,R.color.black_light
+//                ,holder.orderNumber);
+//        FragmentsUtil.setSpannableString(context.getString(R.string.track) +": "+order.getTrack() , R.color.gray_blue,R.color.black_light
+//                ,holder.track);
+//        FragmentsUtil.setSpannableString(context.getString(R.string.estimated_delivered_date) +": "+order.getDeliveredDate() , R.color.gray_blue,R.color.black_light
+//                ,holder.deliveredDate);
+//        holder.status.setText(order.getStatus());
+//        holder.date.setText(order.getOrderDate());
+//        setStatusColor(order.getStatus() , holder.status);
+//        setVisibility(order.getStatus() , holder);

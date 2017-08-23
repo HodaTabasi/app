@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import java.util.List;
 
 public class HistoryOrdersFragment extends Fragment {
 
+    private static final String TAG =HistoryOrdersFragment.class.getSimpleName() ;
     RecyclerView historyOrdersRecycler;
     OrderAdapter orderAdapter;
     List<Order> historyOrders;
@@ -42,6 +44,7 @@ public class HistoryOrdersFragment extends Fragment {
         historyOrders.add(new Order(123 , "123457","11.4.2017",getString(R.string.processed),"11.3.2019"));
         historyOrders.add(new Order(123 , "123457","11.4.2017",getString(R.string.order_delivered),"11.3.2019"));
         historyOrders.add(new Order(123 , "123457","11.4.2017",getString(R.string.order_on_delivery),"11.3.2019"));
+                Log.e(TAG,"status "+historyOrders.get(0).getStatus());
         LinearLayoutManager linearLayoutManger = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         historyOrdersRecycler.setLayoutManager(linearLayoutManger);
         orderAdapter = new OrderAdapter(historyOrders , getActivity());

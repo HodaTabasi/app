@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.shoppingapp.Dialog.filterDialog;
+import com.shoppingapp.Fragment.CartFragment;
 import com.shoppingapp.Fragment.ExploreFragment;
 import com.shoppingapp.Fragment.OrdersFragment;
 import com.shoppingapp.Fragment.SearchFragment;
@@ -30,7 +31,7 @@ import com.shoppingapp.R;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 Toolbar toolbar;
-    private CharSequence mTitle ;
+    private CharSequence mTitle ="HOME" ;
 ImageView filter;
     TextView actionTitle ;
     @Override
@@ -63,7 +64,7 @@ ImageView filter;
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
@@ -77,6 +78,9 @@ ImageView filter;
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+            actionTitle.setText(mTitle);
+            if(mTitle.equals( getString(R.string.shop)) || mTitle.equals("HOME"))
+               filter.setVisibility(View.VISIBLE);
         }
     }
 
@@ -137,11 +141,14 @@ ImageView filter;
             transaction.replace(R.id.container, new ExploreFragment());
             transaction.commit();
         }
-        else if (id == R.id.nav_search) {
-            mTitle = getString(R.string.search);
+        else if (id == R.id.nav_shopping_cart) {
+            mTitle = getString(R.string.cart);
             filter.setVisibility(View.GONE);
-            transaction.replace(R.id.container, new SearchFragment());
+            transaction.replace(R.id.container, new CartFragment());
             transaction.commit();
+//            mTitle = getString(R.string.search);
+//            transaction.replace(R.id.container, new SearchFragment());
+//            transaction.commit();
         }
 
         actionTitle.setText(mTitle);
@@ -149,6 +156,11 @@ ImageView filter;
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void setChange(String title){
+        actionTitle.setText(title);
+        filter.setVisibility(View.GONE);
     }
 
 

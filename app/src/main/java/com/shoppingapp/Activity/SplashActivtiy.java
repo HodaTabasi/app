@@ -69,8 +69,8 @@ private Thread mSplashThread;
                         @Override
                         public void onError(final AccountKitError error) {
                             Toast.makeText(mContext, "للاسف حدثت مشكلة في الخادم .. حاول مره اخري", Toast.LENGTH_SHORT).show();
-
-
+                            Intent i = new Intent(SplashActivtiy.this,MainActivity.class);
+                            startActivity(i);
 
                         }
                     });

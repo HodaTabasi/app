@@ -31,4 +31,5 @@
     <string name="processed">Processed</string>
     <string name="sub_total">SUBTOTAL</string>
     <string name="continue_order">Continue Order</string>
+    <string name="cart">Shopping Cart</string>
 </resources>

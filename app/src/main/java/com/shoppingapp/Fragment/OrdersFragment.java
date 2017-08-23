@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,7 @@ public class OrdersFragment extends Fragment {
         ordersViewPager =  view.findViewById(R.id.pager);
 //       tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.ternds)));
 //        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.feeds)));
-
+        Log.e("orderFragment","hello");
         ordersTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         OrdersPagerAdapter adapter = new OrdersPagerAdapter(getActivity().getSupportFragmentManager());
         ordersViewPager.setAdapter(adapter);
@@ -37,10 +38,10 @@ public class OrdersFragment extends Fragment {
         //  viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
 
-        ordersTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        ordersTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-
+                Log.e("postion",tab.getPosition()+"");
                 ordersViewPager.setCurrentItem(tab.getPosition());
 
             }
@@ -55,6 +56,23 @@ public class OrdersFragment extends Fragment {
 
             }
         });
+
+//        ordersTabLayout.removeOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+//            @Override
+//            public void onTabSelected(TabLayout.Tab tab) {
+//
+//            }
+//
+//            @Override
+//            public void onTabUnselected(TabLayout.Tab tab) {
+//
+//            }
+//
+//            @Override
+//            public void onTabReselected(TabLayout.Tab tab) {
+//
+//            }
+//        });
 
         return view ;
     }
