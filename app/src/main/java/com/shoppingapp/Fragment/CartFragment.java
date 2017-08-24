@@ -56,6 +56,28 @@ public class CartFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
          View view = inflater.inflate(R.layout.fragment_cart, container, false);
+
+
+        if (AccountKit.getCurrentAccessToken() != null) {
+            AccountKit.getCurrentAccount(new AccountKitCallback<Account>() {
+                @Override
+                public void onSuccess(final Account account) {
+                    Log.e("Error", "User Info Successfully");
+
+
+                }
+
+                @Override
+                public void onError(final AccountKitError error) {
+                    Toast.makeText(getActivity(), "للاسف حدثت مشكلة في الخادم .. حاول مره اخري", Toast.LENGTH_SHORT).show();
+
+
+
+                }
+            });
+        } else {
+            verifyMobileNumber();
+        }
         checkout = view.findViewById(R.id.chechout);
         cartView = view.findViewById(R.id.cart_recycler);
         itemCartList = new ArrayList<>();
@@ -70,33 +92,9 @@ public class CartFragment extends Fragment {
             public void onClick(View view) {
 
 
-                if (AccountKit.getCurrentAccessToken() != null) {
-                    AccountKit.getCurrentAccount(new AccountKitCallback<Account>() {
-                        @Override
-                        public void onSuccess(final Account account) {
-                            Log.e("Error", "User Info Successfully");
+                CheckoutFragment fragment = new CheckoutFragment();
+                FragmentsUtil.replaceFragment(getActivity(),R.id.container,fragment,true);
 
-
-                            CheckoutFragment fragment = new CheckoutFragment();
-                            FragmentsUtil.replaceFragment(getActivity(),R.id.container,fragment,true);
-//                            Intent i = new Intent(SplashActivtiy.this,MainActivity.class);
-//                            startActivity(i);
-//                            finish();
-
-
-                        }
-
-                        @Override
-                        public void onError(final AccountKitError error) {
-                            Toast.makeText(getActivity(), "للاسف حدثت مشكلة في الخادم .. حاول مره اخري", Toast.LENGTH_SHORT).show();
-
-
-
-                        }
-                    });
-                } else {
-                    verifyMobileNumber();
-                }
 
 
 
@@ -136,11 +134,6 @@ public class CartFragment extends Fragment {
                         @Override
                         public void onSuccess(final Account account) {
                             Log.e("Error", "User Info Successfully");
-//                            Intent i = new Intent(SplashActivtiy.this,MainActivity.class);
-//                            startActivity(i);
-//                            finish();
-                            CheckoutFragment fragment = new CheckoutFragment();
-                            FragmentsUtil.replaceFragment(getActivity(),R.id.container,fragment,true);
 
 
 
