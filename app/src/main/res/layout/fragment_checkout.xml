@@ -8,7 +8,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="140dp"
         android:background="@color/black"
         android:orientation="vertical">
 
@@ -42,15 +42,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="25dp"
         android:text="NAME ON CARD"
         android:textSize="14sp" />
 
     <EditText
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_marginLeft="25dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
         android:layout_marginRight="25dp"
+        android:layout_marginEnd="25dp"
         android:background="@drawable/edittext_shape"
         android:drawableEnd="@drawable/ic_credit_card"
         android:paddingEnd="7dp" />
@@ -59,7 +62,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="25dp"
         android:text="CARD NUMBER"
         android:textSize="14sp"
         android:id="@+id/textView" />
@@ -68,7 +72,9 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginEnd="25dp"
-        android:layout_marginStart="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
         android:background="@drawable/edittext_shape" />
 
     <LinearLayout
@@ -76,18 +82,31 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="25dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="35dp"
+            android:layout_marginRight="35dp"
             android:layout_weight="1"
-            android:text="EXPIRY DATE"
+            android:text="MONTH"
             android:textSize="14sp" />
 
         <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="35dp"
+            android:layout_marginRight="35dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="YEAR"
+            android:textSize="14sp" />
+
+        <TextView
+            android:gravity="end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -99,18 +118,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="25dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginStart="16dp"
         android:orientation="horizontal">
 
         <EditText
+            android:id="@+id/month"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:background="@drawable/edittext_shape" />
 
         <EditText
+            android:id="@+id/year"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:background="@drawable/edittext_shape" />
+
+        <EditText
+            android:id="@+id/security_code"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_weight="1"
@@ -118,11 +148,33 @@
 
     </LinearLayout>
 
+    <TextView
+        android:gravity="center"
+        android:layout_marginTop="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="25dp"
+        android:text="CARD HOLDER NAME"
+        android:textSize="14sp" />
+
+    <EditText
+        android:id="@+id/owner_name"
+        android:layout_width="match_parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_height="40dp"
+        android:background="@drawable/edittext_shape" />
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
         android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
         android:layout_marginTop="25dp"
         android:background="@drawable/button_shape"
         android:gravity="center"
