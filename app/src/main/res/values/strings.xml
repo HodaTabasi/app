@@ -32,4 +32,5 @@
     <string name="sub_total">SUBTOTAL</string>
     <string name="continue_order">Continue Order</string>
     <string name="cart">Shopping Cart</string>
+    <string name="shoppingcart">Shopping Cart</string>
 </resources>

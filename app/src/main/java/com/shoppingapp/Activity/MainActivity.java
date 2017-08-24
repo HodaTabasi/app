@@ -143,7 +143,7 @@ ImageView filter;
             transaction.commit();
         }
         else if (id == R.id.nav_shopping_cart) {
-            mTitle = getString(R.string.search);
+            mTitle = getString(R.string.shoppingcart);
             filter.setVisibility(View.GONE);
             transaction.replace(R.id.container, new CartFragment());
             transaction.commit();
