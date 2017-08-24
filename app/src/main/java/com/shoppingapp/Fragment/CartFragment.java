@@ -26,6 +26,7 @@ import com.facebook.accountkit.ui.LoginType;
 import com.shoppingapp.Activity.MainActivity;
 import com.shoppingapp.Activity.SplashActivtiy;
 import com.shoppingapp.Adapter.ItemCartAdapter;
+import com.shoppingapp.Dialog.DeliveryDialog;
 import com.shoppingapp.FragmentsUtil;
 import com.shoppingapp.Model.ItemCart;
 import com.shoppingapp.R;
@@ -92,8 +93,8 @@ public class CartFragment extends Fragment {
             public void onClick(View view) {
 
 
-                CheckoutFragment fragment = new CheckoutFragment();
-                FragmentsUtil.replaceFragment(getActivity(),R.id.container,fragment,true);
+                DeliveryDialog deliveryDialog = new DeliveryDialog(getActivity());
+               deliveryDialog.show();
 
 
 

@@ -32,8 +32,8 @@ public class CheckoutFragment extends Fragment {
         pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DeliveryDialog deliveryDialog = new DeliveryDialog(getContext());
-                deliveryDialog.show();
+//                DeliveryDialog deliveryDialog = new DeliveryDialog(getContext());
+//                deliveryDialog.show();
             }
         });
 
