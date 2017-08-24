@@ -39,7 +39,7 @@ public class WhishlistFragment extends Fragment {
         //  viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
 
-        whishlistTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        whishlistTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
 

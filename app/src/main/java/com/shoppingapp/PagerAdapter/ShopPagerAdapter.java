@@ -3,6 +3,7 @@ package com.shoppingapp.PagerAdapter;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.shoppingapp.Fragment.AccessoriesFragment;
 import com.shoppingapp.Fragment.BagsFragment;
@@ -16,7 +17,7 @@ import com.shoppingapp.Fragment.WatchesFragment;
  * Created by Yasmeen on 11/08/2017.
  */
 
-public class ShopPagerAdapter extends FragmentPagerAdapter {
+public class ShopPagerAdapter extends FragmentStatePagerAdapter {
     final  int FRAGMENT_ONE =0;
     final  int FRAGMENT_TWO =1;
     final  int FRAGMENT_THREE =2;

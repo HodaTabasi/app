@@ -38,7 +38,7 @@ public class ShopeFragment extends Fragment {
         //  viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
 
-        shopTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        shopTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
 

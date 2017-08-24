@@ -37,7 +37,7 @@ public class SearchFragment extends Fragment {
         //  viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
 
-        searchTabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        searchTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
 

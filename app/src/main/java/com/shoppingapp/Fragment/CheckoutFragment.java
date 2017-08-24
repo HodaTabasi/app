@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.shoppingapp.Dialog.DeliveryDialog;
 import com.shoppingapp.R;
 
 /**
@@ -27,6 +28,16 @@ public class CheckoutFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_checkout, container, false);
         pay = view.findViewById(R.id.pay);
+
+        pay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DeliveryDialog deliveryDialog = new DeliveryDialog(getContext());
+                deliveryDialog.show();
+            }
+        });
+
+
 
         return view;
     }

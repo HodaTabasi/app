@@ -20,7 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.shoppingapp.Dialog.filterDialog;
-import com.shoppingapp.Fragment.EditProfileFragment;
+import com.shoppingapp.Fragment.CartFragment;
 import com.shoppingapp.Fragment.ExploreFragment;
 import com.shoppingapp.Fragment.OrdersFragment;
 import com.shoppingapp.Fragment.SearchFragment;
@@ -32,8 +32,7 @@ import com.shoppingapp.R;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 Toolbar toolbar;
-    private CharSequence mTitle ;
-    TextView editProfile;
+    private CharSequence mTitle ="HOME" ;
 ImageView filter;
     TextView actionTitle ;
     @Override
@@ -42,26 +41,13 @@ ImageView filter;
         setContentView(R.layout.activity_main);
          toolbar = (Toolbar) findViewById(R.id.toolbar);
         filter = toolbar.findViewById(R.id.filter);
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-//        LinearLayout header = navigationView.findViewById(R.id.header);
-//        editProfile = header.findViewById(R.id.user_edit_prof);
-
-
         actionTitle = (TextView)findViewById(R.id.title);
 
        setSupportActionBar(toolbar);
 
-//        editProfile.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                EditProfileFragment editProfileFragment = new EditProfileFragment();
-//              //  FragmentsUtil.replaceFragment(MainActivity.this,R.id.container,editProfileFragment,true);
-//
-//
-//            }
-//        });
+//       FragmentManager mFragmentManager = getSupportFragmentManager();
+//      FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
+//        mFragmentTransaction.replace(R.id.container,new AllCategoriesFragment()).commit();
 
         filter.setOnClickListener(new View.OnClickListener() {
 
@@ -79,9 +65,11 @@ ImageView filter;
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
+        drawer.addDrawerListener(toggle);
         toggle.syncState();
 
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -91,6 +79,9 @@ ImageView filter;
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
+            actionTitle.setText(mTitle);
+            if(mTitle.equals(getString(R.string.shop)) || mTitle.equals("HOME"))
+                filter.setVisibility(View.VISIBLE);
         }
     }
 
@@ -151,10 +142,10 @@ ImageView filter;
             transaction.replace(R.id.container, new ExploreFragment());
             transaction.commit();
         }
-        else if (id == R.id.nav_search) {
+        else if (id == R.id.nav_shopping_cart) {
             mTitle = getString(R.string.search);
             filter.setVisibility(View.GONE);
-            transaction.replace(R.id.container, new SearchFragment());
+            transaction.replace(R.id.container, new CartFragment());
             transaction.commit();
         }
 
@@ -166,4 +157,8 @@ ImageView filter;
     }
 
 
+    public void setChange(String s) {
+         actionTitle.setText(s);
+         filter.setVisibility(View.GONE);
+    }
 }
