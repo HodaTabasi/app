@@ -175,7 +175,8 @@
             android:textSize="16sp"
             android:text="pay now"
             android:gravity="center"
-            android:textColor="#fff"/>
+            android:textColor="#fff"
+            android:id="@+id/pay_item"/>
 
     </LinearLayout>
 
