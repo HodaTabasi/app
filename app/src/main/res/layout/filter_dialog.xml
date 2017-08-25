@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:padding="10dp"
                 android:text="Sort"
-                android:textSize="22sp"
+                android:textSize="20sp"
                  />
 
             <RadioGroup
@@ -85,7 +85,7 @@
                     android:layout_marginRight="20dp"
                     android:padding="10dp"
                     android:text="Size"
-                    android:textSize="22sp"
+                    android:textSize="20sp"
                      />
 
                 <LinearLayout
@@ -191,7 +191,7 @@
                     android:layout_marginRight="20dp"
                     android:padding="15dp"
                     android:text="Color"
-                    android:textSize="22sp"
+                    android:textSize="20sp"
                    />
 
                 <HorizontalScrollView
@@ -284,7 +284,7 @@
                     android:layout_marginRight="20dp"
                     android:padding="10dp"
                     android:text="Price"
-                    android:textSize="22sp"
+                    android:textSize="20sp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"/>
 
@@ -296,7 +296,7 @@
                     android:layout_marginRight="20dp"
                     android:padding="10dp"
                     android:text="0$"
-                    android:textSize="22sp"
+                    android:textSize="20sp"
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"/>
 

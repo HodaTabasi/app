@@ -13,7 +13,7 @@
         app:tabIndicatorColor="@android:color/white"
         app:tabIndicatorHeight="5dp"
         app:tabSelectedTextColor="@color/white"
-        app:tabTextColor="@color/White">
+        app:tabTextColor="@android:color/white">
 
         <android.support.design.widget.TabItem
             android:id="@+id/active"

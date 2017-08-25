@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -44,14 +45,17 @@ import static com.facebook.accountkit.internal.AccountKitController.getApplicati
 public class ItemDetailsActivity extends AppCompatActivity {
 Button addCardBtn;
     private  final int APP_REQUEST_CODE = 100;
-
+Toolbar d_toolbar;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_details);
-        getSupportActionBar().setTitle(R.string.item_detalis);
+        d_toolbar = (Toolbar) findViewById(R.id.d_toolbar);
+        d_toolbar.setTitle(R.string.item_detalis);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+        setSupportActionBar(d_toolbar);
+
 
         addCardBtn = (Button) findViewById(R.id.add_cart_btn);
         addCardBtn.setOnClickListener(new View.OnClickListener() {
