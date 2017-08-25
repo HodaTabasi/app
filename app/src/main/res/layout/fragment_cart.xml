@@ -38,15 +38,15 @@
             android:padding="8dp"/>
 
         <Button
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
+            android:ems="10"
+            android:layout_gravity="center"
             android:background="@drawable/ripple_blue_btn"
             android:text="@string/continue_order"
             android:textAllCaps="false"
             android:textColor="@color/white"
-            android:padding="16dp"
+            android:padding="10dp"
             android:gravity="center"
             android:textSize="17sp"
             android:id="@+id/chechout"

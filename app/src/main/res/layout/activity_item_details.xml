@@ -128,16 +128,16 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="30dp">
         <Button
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_rounded_rectangle"
             android:text="ADD TO CART"
             android:textColor="@color/white"
             android:gravity="center"
             android:textSize="18sp"
-            android:padding="20dp"
+            android:padding="10dp"
             android:id="@+id/add_cart_btn"
-            android:layout_weight="0.4"
+            android:ems="15"
             />
         <ImageView
             android:layout_width="match_parent"
@@ -146,12 +146,11 @@
             android:textColor="@color/white"
             android:gravity="center"
             android:textSize="18sp"
-            android:padding="20dp"
+            android:padding="10dp"
             android:layout_gravity="center"
             android:src="@drawable/ic_unlike"
             android:id="@+id/add_whishlist_btn"
             android:backgroundTint="@color/gray"
-            android:layout_weight="0.6"
             />
     </LinearLayout>
 
