@@ -51,10 +51,11 @@ Toolbar d_toolbar;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_details);
         d_toolbar = (Toolbar) findViewById(R.id.d_toolbar);
-        d_toolbar.setTitle(R.string.item_detalis);
+        setSupportActionBar(d_toolbar);
+
+       getSupportActionBar().setTitle(R.string.item_detalis);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        setSupportActionBar(d_toolbar);
 
 
         addCardBtn = (Button) findViewById(R.id.add_cart_btn);

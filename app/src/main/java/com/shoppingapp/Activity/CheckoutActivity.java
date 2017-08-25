@@ -26,10 +26,10 @@ Toolbar d_toolbar;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
         d_toolbar = (Toolbar) findViewById(R.id.d_toolbar);
-        d_toolbar.setTitle(R.string.chechout);
+        setSupportActionBar(d_toolbar);
+        getSupportActionBar().setTitle(R.string.chechout);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        setSupportActionBar(d_toolbar);
         pay = (Button) findViewById(R.id.pay);
 
         pay.setOnClickListener(new View.OnClickListener() {
