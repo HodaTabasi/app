@@ -33,4 +33,6 @@
     <string name="continue_order">Continue Order</string>
     <string name="cart">Shopping Cart</string>
     <string name="shoppingcart">Shopping Cart</string>
+    <string name="item_detalis">Details</string>
+    <string name="chechout">Checkout</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.shoppingapp.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.shoppingapp.Activity.ItemDetailsActivity;
 import com.shoppingapp.Adapter.ItemAdapter;
 import com.shoppingapp.FragmentsUtil;
 import com.shoppingapp.Model.ItemDetails;
@@ -52,8 +54,8 @@ public class JeansFragment extends Fragment {
         jeansView.addOnItemTouchListener(new MyRecyclerItemClickListener(getContext(), new MyRecyclerItemClickListener.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                ItemDetailsFragment fragment = new ItemDetailsFragment();
-                FragmentsUtil.replaceFragment(getActivity(),R.id.container,fragment,true);
+                Intent intent = new Intent(getActivity(),ItemDetailsActivity.class);
+                startActivity(intent);
             }
         }));
 

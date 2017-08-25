@@ -8,12 +8,12 @@
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/black"
+        android:background="@color/colorPrimary"
         app:tabGravity="fill"
-        app:tabIndicatorColor="@color/colorPrimary"
+        app:tabIndicatorColor="@android:color/white"
         app:tabIndicatorHeight="5dp"
         app:tabSelectedTextColor="@color/white"
-        app:tabTextColor="@color/gray">
+        app:tabTextColor="@color/White">
 
         <android.support.design.widget.TabItem
             android:id="@+id/active"

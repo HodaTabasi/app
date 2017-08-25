@@ -1,7 +1,9 @@
-package com.shoppingapp.Fragment;
+package com.shoppingapp.Activity;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,20 +16,18 @@ import com.shoppingapp.R;
  * Created by Yasmeen on 21/08/2017.
  */
 
-public class CheckoutFragment extends Fragment {
+public class CheckoutActivity extends AppCompatActivity {
     Button pay ;
-
-    public CheckoutFragment() {
-        // Required empty public constructor
-    }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_checkout, container, false);
-        pay = view.findViewById(R.id.pay);
+    protected void onCreate( Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_checkout);
+        getSupportActionBar().setTitle(R.string.chechout);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        pay = (Button) findViewById(R.id.pay);
 
         pay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,9 +36,7 @@ public class CheckoutFragment extends Fragment {
 //                deliveryDialog.show();
             }
         });
-
-
-
-        return view;
     }
+
+
 }

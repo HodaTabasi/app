@@ -25,16 +25,14 @@ public class ExploreFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_tabs, container, false);
-        tabLayout = (TabLayout) view.findViewById(R.id.tab_layout);
-        viewPager = (ViewPager) view.findViewById(R.id.pager);
-//       tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.ternds)));
-//        tabLayout.addTab(tabLayout.newTab().setText(getString(R.string.feeds)));
+        tabLayout =  view.findViewById(R.id.tab_layout);
+        viewPager =  view.findViewById(R.id.pager);
+;
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         MyPagerAdapter adapter = new MyPagerAdapter(getActivity().getSupportFragmentManager());
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
-        //  viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {

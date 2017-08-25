@@ -1,8 +1,8 @@
 package com.shoppingapp.Dialog;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 
-import com.shoppingapp.Fragment.CheckoutFragment;
+import com.shoppingapp.Activity.CheckoutActivity;
 import com.shoppingapp.FragmentsUtil;
 import com.shoppingapp.R;
 
@@ -38,8 +38,8 @@ public class DeliveryDialog extends Dialog {
             @Override
             public void onClick(View view) {
                 dismiss();
-                CheckoutFragment checkoutFragment = new CheckoutFragment();
-                FragmentsUtil.replaceFragment((FragmentActivity) context,R.id.container,checkoutFragment,false);
+                Intent intent = new Intent(view.getContext(),CheckoutActivity.class);
+                getContext().startActivity(intent);
             }
         });
 
