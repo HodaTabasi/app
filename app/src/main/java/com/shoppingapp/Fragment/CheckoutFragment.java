@@ -70,8 +70,9 @@ public class CheckoutFragment extends Fragment implements TokenCallback {
     public void payment(View view) {
         try {
             Card card = unbindCard();
+           int totalPrice= Integer.parseInt(total_price.getText().toString().trim());
 
-            start.createToken(getActivity(), card, this, 1 * 100, "USD");
+            start.createToken(getActivity(), card, this, totalPrice, "USD");
         } catch (CardVerificationException e) {
             setErrors(e.getErrorFields());
         }
