@@ -26,6 +26,7 @@
 
 
             <TextView
+                android:id="@+id/total_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -48,6 +49,7 @@
         android:textSize="14sp" />
 
     <EditText
+        android:id="@+id/cvcEditText"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginLeft="20dp"
@@ -69,6 +71,7 @@
         android:id="@+id/textView" />
 
     <EditText
+        android:id="@+id/numberEditText"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginEnd="25dp"
@@ -122,7 +125,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/month"
+            android:id="@+id/monthEditText"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginEnd="20dp"
@@ -131,7 +134,7 @@
             android:background="@drawable/edittext_shape" />
 
         <EditText
-            android:id="@+id/year"
+            android:id="@+id/yearEditText"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:layout_marginEnd="20dp"
@@ -159,13 +162,13 @@
         android:textSize="14sp" />
 
     <EditText
-        android:id="@+id/owner_name"
+        android:id="@+id/ownerEditText"
         android:layout_width="match_parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginRight="25dp"
         android:layout_height="40dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginStart="16dp"
         android:background="@drawable/edittext_shape" />
 
     <Button

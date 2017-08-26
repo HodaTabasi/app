@@ -33,4 +33,7 @@
     <string name="continue_order">Continue Order</string>
     <string name="cart">Shopping Cart</string>
     <string name="shoppingcart">Shopping Cart</string>
+
+    <string name="edit_text_invalid">Invalid field</string>
+    <string name="congrats">Your token is %s. You can send this token to your application server.</string>
 </resources>
