@@ -33,13 +33,11 @@
     <string name="continue_order">Continue Order</string>
     <string name="cart">Shopping Cart</string>
     <string name="shoppingcart">Shopping Cart</string>
-<<<<<<< HEAD
     <string name="item_detalis">Details</string>
     <string name="chechout">Checkout</string>
-=======
+
 
     <string name="edit_text_invalid">Invalid field</string>
     <string name="congrats">Your token is %s. You can send this token to your application server.</string>
     <string name="text_invalid">invalid</string>
-    >>>>>>> 04ebaf948e04f178db257b747a2740d857e6012b
 </resources>
