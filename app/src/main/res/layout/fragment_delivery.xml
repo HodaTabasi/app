@@ -31,7 +31,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-<<<<<<< HEAD
+
                 android:text="Address"
                 android:textSize="16sp"
                 android:ems="5"
@@ -51,16 +51,7 @@
             </android.support.design.widget.TextInputLayout>
 
 
-=======
-                android:layout_weight="1"
-                android:paddingBottom="5dp"
-                android:paddingEnd="10dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="10dp"
-                android:paddingStart="20dp"
-                android:paddingTop="10dp"
-                android:text="Address"
-                android:textSize="16sp" />
+
 
             <EditText
                 android:layout_width="0dp"
@@ -72,7 +63,6 @@
                 android:layout_weight="2"
                 android:background="@drawable/rect_shape"
                 android:hint="" />
->>>>>>> 04ebaf948e04f178db257b747a2740d857e6012b
 
         </LinearLayout>
 
@@ -86,7 +76,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-<<<<<<< HEAD
                 android:text="Phone"
                 android:textSize="16sp"
                 android:ems="5"
@@ -105,16 +94,6 @@
                     android:padding="5dp"
                     />
             </android.support.design.widget.TextInputLayout>
-=======
-                android:layout_weight="1"
-                android:paddingBottom="5dp"
-                android:paddingEnd="10dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="10dp"
-                android:paddingStart="20dp"
-                android:paddingTop="10dp"
-                android:text="Phone"
-                android:textSize="16sp" />
 
             <EditText
                 android:id="@+id/editText"
@@ -127,7 +106,7 @@
                 android:layout_weight="2"
                 android:background="@drawable/rect_shape"
                 android:hint="" />
->>>>>>> 04ebaf948e04f178db257b747a2740d857e6012b
+
 
         </LinearLayout>
 
@@ -140,7 +119,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-<<<<<<< HEAD
+
                 android:text="Price"
                 android:textSize="16sp"
                 android:ems="5"
@@ -167,15 +146,7 @@
 </LinearLayout>
 
 
-=======
-                android:layout_weight="1"
-                android:paddingBottom="5dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="10dp"
-                android:paddingStart="20dp"
-                android:paddingTop="10dp"
-                android:text="Price"
-                android:textSize="16sp" />
+
 
             <EditText
                 android:layout_width="0dp"
@@ -196,7 +167,6 @@
                 android:paddingTop="9dp"
                 android:text="+20"
                 android:textColor="#000" />
->>>>>>> 04ebaf948e04f178db257b747a2740d857e6012b
 
         </LinearLayout>
 
@@ -210,7 +180,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-<<<<<<< HEAD
+
                 android:text="Total price"
                 android:textSize="16sp"
                 android:ems="5"
@@ -223,14 +193,6 @@
                 android:text="120$"
                 android:textSize="16sp"
                 />
-=======
-                android:layout_weight="1"
-                android:paddingBottom="5dp"
-                android:paddingRight="10dp"
-                android:paddingStart="20dp"
-                android:paddingTop="10dp"
-                android:text="Total price"
-                android:textSize="16sp" />
 
             <EditText
                 android:layout_width="0dp"
@@ -242,17 +204,14 @@
                 android:layout_weight="2"
                 android:background="@drawable/rect_shape"
                 android:hint="" />
->>>>>>> 04ebaf948e04f178db257b747a2740d857e6012b
+
 
         </LinearLayout>
 
         <Button
-<<<<<<< HEAD
+
             android:layout_width="wrap_content"
-=======
             android:id="@+id/pay_item"
-            android:layout_width="150dp"
->>>>>>> 04ebaf948e04f178db257b747a2740d857e6012b
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginBottom="20dp"
@@ -260,13 +219,9 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/circle_border"
             android:backgroundTint="@color/colorPrimary"
-<<<<<<< HEAD
+
             android:ems="8"
             android:padding="10dp"
-            android:textSize="16sp"
-            android:text="pay now"
-=======
->>>>>>> 04ebaf948e04f178db257b747a2740d857e6012b
             android:gravity="center"
             android:paddingBottom="10dp"
             android:paddingEnd="20dp"
