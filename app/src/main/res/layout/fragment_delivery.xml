@@ -31,6 +31,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
                 android:text="Address"
                 android:textSize="16sp"
                 android:ems="5"
@@ -50,16 +51,7 @@
             </android.support.design.widget.TextInputLayout>
 
 
-<!--=======-->
-                <!--android:layout_weight="1"-->
-                <!--android:paddingBottom="5dp"-->
-                <!--android:paddingEnd="10dp"-->
-                <!--android:paddingLeft="20dp"-->
-                <!--android:paddingRight="10dp"-->
-                <!--android:paddingStart="20dp"-->
-                <!--android:paddingTop="10dp"-->
-                <!--android:text="Address"-->
-                <!--android:textSize="16sp" />-->
+
 
             <EditText
                 android:layout_width="0dp"
@@ -102,16 +94,6 @@
                     android:padding="5dp"
                     />
             </android.support.design.widget.TextInputLayout>
-<!--=======-->
-                <!--android:layout_weight="1"-->
-                <!--android:paddingBottom="5dp"-->
-                <!--android:paddingEnd="10dp"-->
-                <!--android:paddingLeft="20dp"-->
-                <!--android:paddingRight="10dp"-->
-                <!--android:paddingStart="20dp"-->
-                <!--android:paddingTop="10dp"-->
-                <!--android:text="Phone"-->
-                <!--android:textSize="16sp" />-->
 
             <EditText
                 android:id="@+id/editText"
@@ -125,6 +107,7 @@
                 android:background="@drawable/rect_shape"
                 android:hint="" />
 
+
         </LinearLayout>
 
         <LinearLayout
@@ -136,6 +119,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
                 android:text="Price"
                 android:textSize="16sp"
                 android:ems="5"
@@ -162,15 +146,7 @@
 </LinearLayout>
 
 
-<!--=======-->
-                <!--android:layout_weight="1"-->
-                <!--android:paddingBottom="5dp"-->
-                <!--android:paddingLeft="20dp"-->
-                <!--android:paddingRight="10dp"-->
-                <!--android:paddingStart="20dp"-->
-                <!--android:paddingTop="10dp"-->
-                <!--android:text="Price"-->
-                <!--android:textSize="16sp" />-->
+
 
             <EditText
                 android:layout_width="0dp"
@@ -192,7 +168,6 @@
                 android:text="+20"
                 android:textColor="#000" />
 
-
         </LinearLayout>
 
         <LinearLayout
@@ -205,6 +180,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+
                 android:text="Total price"
                 android:textSize="16sp"
                 android:ems="5"
@@ -217,14 +193,6 @@
                 android:text="120$"
                 android:textSize="16sp"
                 />
-<!--=======-->
-                <!--android:layout_weight="1"-->
-                <!--android:paddingBottom="5dp"-->
-                <!--android:paddingRight="10dp"-->
-                <!--android:paddingStart="20dp"-->
-                <!--android:paddingTop="10dp"-->
-                <!--android:text="Total price"-->
-                <!--android:textSize="16sp" />-->
 
             <EditText
                 android:layout_width="0dp"
@@ -237,9 +205,11 @@
                 android:background="@drawable/rect_shape"
                 android:hint="" />
 
+
         </LinearLayout>
 
         <Button
+
             android:layout_width="wrap_content"
             android:id="@+id/pay_item"
             android:layout_height="wrap_content"
@@ -249,10 +219,9 @@
             android:layout_marginTop="15dp"
             android:background="@drawable/circle_border"
             android:backgroundTint="@color/colorPrimary"
+
             android:ems="8"
             android:padding="10dp"
-            android:textSize="16sp"
-            android:text="pay now"
             android:gravity="center"
             android:paddingBottom="10dp"
             android:paddingEnd="20dp"
@@ -260,6 +229,9 @@
             android:paddingRight="20dp"
             android:paddingStart="20dp"
             android:paddingTop="10dp"
+            android:text="pay now"
+            android:textColor="#fff"
+            android:textSize="16sp" />
             android:textColor="#fff" />
 
     </LinearLayout>
