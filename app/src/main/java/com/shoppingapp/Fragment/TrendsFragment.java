@@ -91,6 +91,7 @@ public class TrendsFragment extends Fragment implements Observer {
                 JSONObject object = s.getJSONObject(i);
                 Item item = gson.fromJson(object.toString(),Item.class);
                 itemDetailsList.add(item);
+                itemAdapter.notifyDataSetChanged();
                 Log.e("id",itemDetailsList.get(i).getId()+" : "+itemDetailsList.size());
             }
         } catch (JSONException e) {
