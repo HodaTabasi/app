@@ -44,8 +44,7 @@ public class ItemAdapterr extends RecyclerView.Adapter<ItemAdapterr.RecyclerView
         holder.itemName.setText(itemDetailsList.get(position).getName());
         holder.itemPrice.setText(itemDetailsList.get(position).getPrice());
         //  holder.itemImg.setImageURI(itemDetailsList.get(position).getImage());
-        Log.e("itemDetailsListName",itemDetailsList.get(position).getName());
-        Log.e("itemDetailsListprice",itemDetailsList.get(position).getPrice());
+
     }
 
     @Override
