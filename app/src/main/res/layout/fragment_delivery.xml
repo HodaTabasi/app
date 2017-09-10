@@ -235,7 +235,6 @@
             android:text="pay now"
             android:textColor="#fff"
             android:textSize="16sp" />
-            android:textColor="#fff" />
 
     </LinearLayout>
 
