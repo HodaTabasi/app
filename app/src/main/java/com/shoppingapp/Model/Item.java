@@ -1,10 +1,10 @@
 package com.shoppingapp.Model;
 
 /**
- * Created by Yasmeen on 26/08/2017.
+ * Created by M.S.I on 8/30/2017.
  */
 
-public class item {
+public class Item {
 
 
     /**
@@ -14,7 +14,7 @@ public class item {
      * size : XL
      * favourite : 1
      * detials : made in japan
-     * image : item.jpeg
+     * image : Item.jpeg
      * category_id : 1
      * color_id : 1
      */
