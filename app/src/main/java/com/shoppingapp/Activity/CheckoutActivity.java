@@ -1,9 +1,12 @@
 package com.shoppingapp.Activity;
 
 import android.os.Bundle;
+import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,33 +20,46 @@ import com.payfort.start.TokenCallback;
 import com.payfort.start.error.CardVerificationException;
 import com.payfort.start.error.StartApiException;
 import com.shoppingapp.R;
+import com.shoppingapp.interfaces.Constant;
 
 import java.util.EnumSet;
 
 /**
- * Created by Yasmeen on 21/08/2017.
+ * Created by Yasmeen on 21/08/2017
  */
 
-public class CheckoutActivity extends AppCompatActivity implements TokenCallback {
+public class CheckoutActivity extends AppCompatActivity implements TokenCallback, View.OnClickListener {
 
-Toolbar d_toolbar;
-    private static final String API_OPEN_KEY = "test_open_k_f7b67d62f01ec766683e";
-    private static final String TAG = CheckoutActivity.class.getSimpleName();
+    Toolbar d_toolbar;
 
-    Button pay ;
-    Start start = new Start(API_OPEN_KEY);
+    Button pay;
+    Start start = new Start(Constant.API_OPEN_KEY);
     EditText numberEditText, monthEditText, yearEditText, cvcEditText, ownerEditText;
     TextView total_price;
 
     @Override
-    protected void onCreate( Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_checkout);
-        d_toolbar = (Toolbar) findViewById(R.id.d_toolbar);
+
+        initComponent();
+
+        setUpToolbar();
+
+        initAnimation();
+
+    }
+
+    private void setUpToolbar() {
         setSupportActionBar(d_toolbar);
         getSupportActionBar().setTitle(R.string.chechout);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+    }
+
+    private void initComponent() {
+        d_toolbar = (Toolbar) findViewById(R.id.d_toolbar);
         pay = (Button) findViewById(R.id.pay);
         numberEditText = (EditText) findViewById(R.id.numberEditText);
         monthEditText = (EditText) findViewById(R.id.monthEditText);
@@ -51,23 +67,19 @@ Toolbar d_toolbar;
         cvcEditText = (EditText) findViewById(R.id.cvcEditText);
         ownerEditText = (EditText) findViewById(R.id.ownerEditText);
         total_price = (TextView) findViewById(R.id.total_price);
-
-        pay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                DeliveryDialog deliveryDialog = new DeliveryDialog(getContext());
-//                deliveryDialog.show();
-                payment(view);
-            }
-        });
-
-
-
+        pay.setOnClickListener(this);
     }
-    public void payment(View view) {
+
+    private void initAnimation(){
+        Slide slide = new Slide(GravityCompat.getAbsoluteGravity(Gravity.END,getResources().getConfiguration().getLayoutDirection()));
+        slide.setDuration(getResources().getInteger(R.integer.MEDIUM_DURATION));
+        getWindow().setEnterTransition(slide);
+    }
+
+    public void payment() {
         try {
             Card card = unbindCard();
-            int totalPrice= Integer.parseInt(total_price.getText().toString().trim());
+            int totalPrice = Integer.parseInt(total_price.getText().toString().trim());
 
             start.createToken(this, card, this, totalPrice, "USD");
         } catch (CardVerificationException e) {
@@ -118,18 +130,27 @@ Toolbar d_toolbar;
 
     @Override
     public void onSuccess(Token token) {
-        Log.d(TAG, "Token is received: " + token);
+        Log.d(Constant.CHECK_OUT_TAG, "Token is received: " + token);
         Toast.makeText(this, getString(R.string.congrats, token.getId()), Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onError(StartApiException error) {
-        Log.e(TAG, "Error getting token", error);
+        Log.e(Constant.CHECK_OUT_TAG, "Error getting token", error);
 
     }
 
     @Override
     public void onCancel() {
-        Log.e(TAG, "Getting token is canceled by user");
+        Log.e(Constant.CHECK_OUT_TAG, "Getting token is canceled by user");
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.pay:
+                payment();
+            break;
+        }
     }
 }

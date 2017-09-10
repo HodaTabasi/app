@@ -8,10 +8,10 @@ public class ItemDetails {
     private String id ;
     private  String name ;
     private String price ;
-    private  int img ;
+    private  String img ;
 
 
-    public ItemDetails(String id, String name, String price, int img) {
+    public ItemDetails(String id, String name, String price, String img) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -42,11 +42,11 @@ public class ItemDetails {
         this.price = price;
     }
 
-    public int getImg() {
+    public String getImg() {
         return img;
     }
 
-    public void setImg(int img) {
+    public void setImg(String img) {
         this.img = img;
     }
 }

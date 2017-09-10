@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="MEDIUM_DURATION">500</integer>
+    <integer name="SLOW_DURATION">800</integer>
+    <integer name="FAST_DURATION">300</integer>
+</resources>

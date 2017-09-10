@@ -1,29 +1,20 @@
 package com.shoppingapp.PagerAdapter;
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.shoppingapp.Fragment.AccessoriesFragment;
-import com.shoppingapp.Fragment.BagsFragment;
-import com.shoppingapp.Fragment.ClothingFragment;
-import com.shoppingapp.Fragment.JeansFragment;
-import com.shoppingapp.Fragment.ShoesFragment;
-import com.shoppingapp.Fragment.TrendsFragment;
-import com.shoppingapp.Fragment.WatchesFragment;
+import com.shoppingapp.Fragment.ShowItemFragment;
+import com.shoppingapp.interfaces.Constant;
 
 /**
  * Created by Yasmeen on 11/08/2017.
  */
 
 public class ShopPagerAdapter extends FragmentStatePagerAdapter {
-    final  int FRAGMENT_ONE =0;
-    final  int FRAGMENT_TWO =1;
-    final  int FRAGMENT_THREE =2;
-    final  int FRAGMENT_FOUR =3;
-    final  int FRAGMENT_FIVE=4;
-    final  int FRAGMENT_SIX=5;
+
+
     final  int COUNT =6;
 
     public ShopPagerAdapter(FragmentManager fm) {
@@ -32,27 +23,29 @@ public class ShopPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public android.support.v4.app.Fragment getItem(int position) {
-        Fragment fragment = null;
+        Fragment fragment = new ShowItemFragment();
+        Bundle bundle = new Bundle();
         switch (position){
-            case FRAGMENT_ONE :
-                fragment=new ClothingFragment();
+            case Constant.FRAGMENT_ONE:
+                bundle.putString("url", Constant.url + "?action=item&category=1");
                 break;
-            case FRAGMENT_TWO :
-                fragment = new JeansFragment();
+            case Constant.FRAGMENT_TWO:
+                bundle.putString("url", Constant.url + "?action=item&category=1");
                 break;
-            case FRAGMENT_THREE :
-                fragment = new ShoesFragment();
+            case Constant.FRAGMENT_THREE :
+                bundle.putString("url", Constant.url + "?action=item&category=1");
                 break;
-            case FRAGMENT_FOUR :
-                fragment = new WatchesFragment();
+            case Constant.FRAGMENT_FOUR :
+                bundle.putString("url", Constant.url + "?action=item&category=1");
                 break;
-            case FRAGMENT_FIVE :
-                fragment = new BagsFragment();
+            case Constant.FRAGMENT_FIVE :
+                bundle.putString("url", Constant.url + "?action=item&category=1");
                 break;
-            case FRAGMENT_SIX :
-                fragment = new AccessoriesFragment();
+            case Constant.FRAGMENT_SIX :
+                bundle.putString("url", Constant.url + "?action=item&category=1");
                 break;
         }
+        fragment.setArguments(bundle);
         return fragment;
     }
 

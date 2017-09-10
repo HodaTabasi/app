@@ -10,7 +10,7 @@ import android.view.Window;
 import com.shoppingapp.R;
 
 /**
- * Created by M.S.I on 8/17/2017.
+ * Created by M.S.I on 8/17/2017
  */
 
 public class filterDialog extends Dialog {

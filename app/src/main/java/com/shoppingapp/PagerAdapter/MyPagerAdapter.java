@@ -1,24 +1,22 @@
 package com.shoppingapp.PagerAdapter;
 
 
-
-
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.shoppingapp.Fragment.FeedsFragment;
-import com.shoppingapp.Fragment.TrendsFragment;
+import com.shoppingapp.Fragment.ShowItemFragment;
+import com.shoppingapp.interfaces.Constant;
 
 /**
- * Created by Yasmeen on 08/08/2017.
+ * Created by Yasmeen on 08/08/2017
  */
 
 public class MyPagerAdapter extends FragmentStatePagerAdapter {
-  final  int FRAGMENT_ONE =0;
-   final  int FRAGMENT_TWO =1;
-   final  int COUNT =2;
+
+    final int COUNT = 2;
+    private String[] titles = {"Trends","Feeds"};
 
     public MyPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -26,15 +24,17 @@ public class MyPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public android.support.v4.app.Fragment getItem(int position) {
-        Fragment fragment = null;
-        switch (position){
-            case FRAGMENT_ONE :
-                fragment=new TrendsFragment();
+        Fragment fragment = new ShowItemFragment();
+        Bundle bundle = new Bundle();
+        switch (position) {
+            case Constant.FRAGMENT_ONE:
+                bundle.putString("url", Constant.url + "?action=item&category=1");
                 break;
-            case FRAGMENT_TWO :
-                fragment = new FeedsFragment();
+            case Constant.FRAGMENT_TWO:
+                bundle.putString("url", Constant.url + "?action=item&category=1");
                 break;
         }
+        fragment.setArguments(bundle);
         return fragment;
     }
 
@@ -45,15 +45,7 @@ public class MyPagerAdapter extends FragmentStatePagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        String title ="";
-        switch (position){
-            case 0 :
-                   return "Trends";
-                case 1 :
-                    return "Feeds";
 
-           }
-
-        return title;
+        return titles[position];
     }
 }

@@ -3,16 +3,14 @@ package com.shoppingapp.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
 import android.util.Log;
-import android.view.LayoutInflater;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -25,75 +23,51 @@ import com.facebook.accountkit.AccountKitLoginResult;
 import com.facebook.accountkit.ui.AccountKitActivity;
 import com.facebook.accountkit.ui.AccountKitConfiguration;
 import com.facebook.accountkit.ui.LoginType;
-import com.shoppingapp.Activity.MainActivity;
-import com.shoppingapp.Activity.SplashActivtiy;
-import com.shoppingapp.Adapter.ItemAdapter;
-import com.shoppingapp.FragmentsUtil;
-import com.shoppingapp.Model.ItemDetails;
-import com.shoppingapp.MyRecyclerItemClickListener;
 import com.shoppingapp.R;
+import com.shoppingapp.interfaces.Constant;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.facebook.accountkit.internal.AccountKitController.getApplicationContext;
 
 /**
- * Created by Yasmeen on 11/08/2017.
+ * Created by Yasmeen on 11/08/2017
  */
 
-public class ItemDetailsActivity extends AppCompatActivity {
-Button addCardBtn;
-    private  final int APP_REQUEST_CODE = 100;
-Toolbar d_toolbar;
+public class ItemDetailsActivity extends AppCompatActivity implements View.OnClickListener {
+    Button addCardBtn;
+    Toolbar d_toolbar;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_details);
-        d_toolbar = (Toolbar) findViewById(R.id.d_toolbar);
-        setSupportActionBar(d_toolbar);
 
-       getSupportActionBar().setTitle(R.string.item_detalis);
+        initComponent();
+
+        setUpToolbar();
+
+        initAnimation();
+
+
+    }
+
+    private void initComponent() {
+        d_toolbar = (Toolbar) findViewById(R.id.d_toolbar);
+        addCardBtn = (Button) findViewById(R.id.add_cart_btn);
+        addCardBtn.setOnClickListener(this);
+    }
+
+    private void setUpToolbar() {
+        setSupportActionBar(d_toolbar);
+        getSupportActionBar().setTitle(R.string.item_detalis);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-
-        addCardBtn = (Button) findViewById(R.id.add_cart_btn);
-        addCardBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(final View view) {
-//                CartFragment fragment = new CartFragment();
-//                FragmentsUtil.replaceFragment(getActivity(),R.id.container,fragment,true);
-
-
-                if (AccountKit.getCurrentAccessToken() != null) {
-                    AccountKit.getCurrentAccount(new AccountKitCallback<Account>() {
-                        @Override
-                        public void onSuccess(final Account account) {
-                            Log.e("Error", "User Info Successfully");
-
-                            Toast.makeText(view.getContext(), "Has been added to Cart", Toast.LENGTH_SHORT).show();
-
-
-                        }
-
-                        @Override
-                        public void onError(final AccountKitError error) {
-                            Toast.makeText(view.getContext(), "للاسف حدثت مشكلة في الخادم .. حاول مره اخري", Toast.LENGTH_SHORT).show();
-
-
-
-                        }
-                    });
-                } else {
-                    verifyMobileNumber();
-                }
-
-
-
-            }});
     }
 
+    private void initAnimation(){
+        Slide slide = new Slide(GravityCompat.getAbsoluteGravity(Gravity.END,getResources().getConfiguration().getLayoutDirection()));
+        slide.setDuration(getResources().getInteger(R.integer.MEDIUM_DURATION));
+        getWindow().setEnterTransition(slide);
+    }
 
     private void verifyMobileNumber() {
         final Intent intent = new Intent(ItemDetailsActivity.this, AccountKitActivity.class);
@@ -105,53 +79,81 @@ Toolbar d_toolbar;
         intent.putExtra(
                 AccountKitActivity.ACCOUNT_KIT_ACTIVITY_CONFIGURATION,
                 configuration);
-        startActivityForResult(intent, APP_REQUEST_CODE);
+        startActivityForResult(intent, Constant.APP_REQUEST_CODE);
     }
 
 
-@Override
+    @Override
     public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
-    super.onActivityResult(requestCode, resultCode, data);
-    if (requestCode == APP_REQUEST_CODE) { // confirm that this response matches your request
-        final AccountKitLoginResult loginResult = AccountKit.loginResultWithIntent(data);
-        if (loginResult == null || loginResult.wasCancelled()) {
-            Toast.makeText(getApplicationContext(), "Login Cancelled", Toast.LENGTH_SHORT).show();
-        } else if (loginResult.getError() != null) {
-            Toast.makeText(getApplicationContext(), loginResult.getError().getErrorType().getMessage(), Toast.LENGTH_SHORT).show();
-        } else {
-            final AccessToken accessToken = loginResult.getAccessToken();
-
-            if (accessToken != null) {
-                Log.e("Error", "Success:" + accessToken.getAccountId());
-                AccountKit.getCurrentAccount(new AccountKitCallback<Account>() {
-                    @Override
-                    public void onSuccess(final Account account) {
-                        Log.e("Error", "User Info Successfully");
-                        Toast.makeText(ItemDetailsActivity.this, "Has been added to Cart", Toast.LENGTH_SHORT).show();
-
-
-                    }
-
-                    @Override
-                    public void onError(final AccountKitError error) {
-//                            Log.e("Error", error.getUserFacingMessage());
-                        Toast.makeText(getApplicationContext(), error.getUserFacingMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == Constant.APP_REQUEST_CODE) { // confirm that this response matches your request
+            final AccountKitLoginResult loginResult = AccountKit.loginResultWithIntent(data);
+            if (loginResult == null || loginResult.wasCancelled()) {
+                Toast.makeText(getApplicationContext(), "Login Cancelled", Toast.LENGTH_SHORT).show();
+            } else if (loginResult.getError() != null) {
+                Toast.makeText(getApplicationContext(), loginResult.getError().getErrorType().getMessage(), Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getApplicationContext(), "Unknown response type", Toast.LENGTH_SHORT).show();
+                final AccessToken accessToken = loginResult.getAccessToken();
+
+                if (accessToken != null) {
+                    Log.e("Error", "Success:" + accessToken.getAccountId());
+                    AccountKit.getCurrentAccount(new AccountKitCallback<Account>() {
+                        @Override
+                        public void onSuccess(final Account account) {
+                            Log.e("Error", "User Info Successfully");
+                            Toast.makeText(ItemDetailsActivity.this, "Has been added to Cart", Toast.LENGTH_SHORT).show();
+
+
+                        }
+
+                        @Override
+                        public void onError(final AccountKitError error) {
+//                            Log.e("Error", error.getUserFacingMessage());
+                            Toast.makeText(getApplicationContext(), error.getUserFacingMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } else {
+                    Toast.makeText(getApplicationContext(), "Unknown response type", Toast.LENGTH_SHORT).show();
+                }
             }
         }
     }
-}
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == android.R.id.home){
+        if (id == android.R.id.home) {
 
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void addCart() {
+        if (AccountKit.getCurrentAccessToken() != null) {
+            AccountKit.getCurrentAccount(new AccountKitCallback<Account>() {
+                @Override
+                public void onSuccess(final Account account) {
+                    Log.e("Error", "User Info Successfully");
+                    Toast.makeText(ItemDetailsActivity.this, "Has been added to Cart", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onError(final AccountKitError error) {
+                    Toast.makeText(ItemDetailsActivity.this, "للاسف حدثت مشكلة في الخادم .. حاول مره اخري", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            verifyMobileNumber();
+        }
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.add_cart_btn:
+                addCart();
+                break;
+        }
     }
 }
 

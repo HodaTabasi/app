@@ -12,13 +12,10 @@ import android.view.ViewGroup;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.shoppingapp.Adapter.ItemAdapter;
-import com.shoppingapp.Adapter.ItemAdapterr;
 import com.shoppingapp.Model.Item;
-import com.shoppingapp.Model.ItemDetails;
 import com.shoppingapp.MyRecyclerItemClickListener;
 import com.shoppingapp.R;
 
@@ -35,7 +32,7 @@ import java.util.List;
 
 public class AccessoriesFragment extends Fragment {
     RecyclerView AccessoriesView ;
-    ItemAdapterr itemAdapter ;
+    ItemAdapter itemAdapter ;
     List<Item>   itemDetailsList = new ArrayList<>();;
 
 
@@ -51,7 +48,7 @@ public class AccessoriesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_recycler, container, false);
-        AccessoriesView = view.findViewById(R.id.trends_recycler);
+        AccessoriesView = view.findViewById(R.id.rv);
 
 //        itemDetailsList.add(new ItemDetails("1","Ray-Ban aviator sunglasses","100",R.drawable.access));
 //        itemDetailsList.add(new ItemDetails("1","Ray-Ban aviator sunglasses","100",R.drawable.access));
@@ -87,7 +84,7 @@ public class AccessoriesFragment extends Fragment {
                             item.setPrice(price);
                             item.setSize(size);
                             item.setFavourite(favourite);
-                            item.setDetials(detials);
+                            item.setDetails(detials);
                             item.setImage(image);
                             item.setCategory_id(category_id);
                             item.setColor_id(color_id);
@@ -114,7 +111,7 @@ public class AccessoriesFragment extends Fragment {
 
         GridLayoutManager linearLayoutManager = new GridLayoutManager(getContext(),2 );
         AccessoriesView.setLayoutManager(linearLayoutManager);
-        itemAdapter = new ItemAdapterr(getActivity(),itemDetailsList);
+        itemAdapter = new ItemAdapter(getContext(),itemDetailsList);
         AccessoriesView.setAdapter(itemAdapter);
         queue.add(jsonObjectRequest);
         AccessoriesView.addOnItemTouchListener(new MyRecyclerItemClickListener(getContext(), new MyRecyclerItemClickListener.OnItemClickListener() {
