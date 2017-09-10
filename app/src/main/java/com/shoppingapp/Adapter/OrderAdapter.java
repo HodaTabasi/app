@@ -53,7 +53,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderHolder>
                 status.setTextColor(ContextCompat.getColor(context ,R.color.pink));
             break;
             case "Order on fragment_delivery":
-                status.setTextColor(ContextCompat.getColor(context ,R.color.green));
+                status.setTextColor(ContextCompat.getColor(context ,R.color.blue));
             break;
             case "Processed":
                 status.setTextColor(ContextCompat.getColor(context ,R.color.black));

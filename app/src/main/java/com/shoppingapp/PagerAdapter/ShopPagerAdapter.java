@@ -1,10 +1,19 @@
 package com.shoppingapp.PagerAdapter;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.content.ContextCompat;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.DynamicDrawableSpan;
+import android.text.style.ImageSpan;
 
+import com.shoppingapp.R;
 import com.shoppingapp.Fragment.ShowItemFragment;
 import com.shoppingapp.interfaces.Constant;
 
@@ -14,11 +23,12 @@ import com.shoppingapp.interfaces.Constant;
 
 public class ShopPagerAdapter extends FragmentStatePagerAdapter {
 
-
+    Context context;
     final  int COUNT =6;
 
-    public ShopPagerAdapter(FragmentManager fm) {
+    public ShopPagerAdapter(Context context,FragmentManager fm) {
         super(fm);
+        this.context = context;
     }
 
     @Override
@@ -54,26 +64,5 @@ public class ShopPagerAdapter extends FragmentStatePagerAdapter {
         return COUNT;
     }
 
-    @Override
-    public CharSequence getPageTitle(int position) {
-        String title ="";
-        switch (position){
-            case 0 :
-                return "Clothing";
-            case 1 :
-                return "Jeans";
-            case 2 :
-                return "Shoes";
-            case 3 :
-                return "Watches";
-            case 4 :
-                return "Bags";
-            case 5 :
-                return "Accessories";
 
-
-        }
-
-        return title;
-    }
 }

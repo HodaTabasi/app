@@ -1,8 +1,10 @@
 package com.shoppingapp.Fragment;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,28 +34,56 @@ public class ShopeFragment extends Fragment {
 
       //  shopTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         shopTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-        ShopPagerAdapter adapter = new ShopPagerAdapter(getActivity().getSupportFragmentManager());
+        ShopPagerAdapter adapter = new ShopPagerAdapter(getContext(),getActivity().getSupportFragmentManager());
         shopViewPager.setAdapter(adapter);
         shopTabLayout.setupWithViewPager(shopViewPager);
-        //  viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
+        Drawable myDrawable = getContext().getResources().getDrawable(R.drawable.choth);
+        myDrawable.setBounds(0,0,60,60);
+        myDrawable.setTint(ContextCompat.getColor(getContext(),R.color.white));
+        shopTabLayout.getTabAt(0).setIcon(myDrawable);
+
+        Drawable myDrawable1 = getContext().getResources().getDrawable(R.drawable.jeans);
+        myDrawable1.setBounds(0,0,60,60);
+        myDrawable1.setTint(ContextCompat.getColor(getContext(),R.color.lighter_white));
+        shopTabLayout.getTabAt(1).setIcon(myDrawable1);
+
+        Drawable myDrawable2 = getContext().getResources().getDrawable(R.drawable.shoes);
+        myDrawable2.setBounds(0,0,60,60);
+        myDrawable2.setTint(ContextCompat.getColor(getContext(),R.color.lighter_white));
+        shopTabLayout.getTabAt(2).setIcon(myDrawable2);
+
+        Drawable myDrawable3 = getContext().getResources().getDrawable(R.drawable.watches);
+        myDrawable3.setBounds(0,0,60,60);
+        myDrawable3.setTint(ContextCompat.getColor(getContext(),R.color.lighter_white));
+        shopTabLayout.getTabAt(3).setIcon(myDrawable3);
+
+        Drawable myDrawable4 = getContext().getResources().getDrawable(R.drawable.bag);
+        myDrawable4.setBounds(0,0,60,60);
+        myDrawable4.setTint(ContextCompat.getColor(getContext(),R.color.lighter_white));
+        shopTabLayout.getTabAt(4).setIcon(myDrawable4);
+
+        Drawable myDrawable5 = getContext().getResources().getDrawable(R.drawable.accessories);
+        myDrawable5.setBounds(0,0,60,60);
+        myDrawable5.setTint(ContextCompat.getColor(getContext(),R.color.lighter_white));
+        shopTabLayout.getTabAt(5).setIcon(myDrawable5);
 
         shopTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
 
                 shopViewPager.setCurrentItem(tab.getPosition());
-
+                    tab.getIcon().setTint(ContextCompat.getColor(getContext(),R.color.white));
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-
+                tab.getIcon().setTint(ContextCompat.getColor(getContext(),R.color.lighter_white));
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
+                tab.getIcon().setTint(ContextCompat.getColor(getContext(),R.color.white));
             }
         });
 

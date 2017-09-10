@@ -6,10 +6,12 @@
     <color name="txtColor">#4e5259</color>
     <color name="white">#fff</color>
     <color name="black">#27313c</color>
-    <color name="gray">#70767d</color>
+    <color name="gray">#9e9e9e</color>
     <color name="black_light">#51575e</color>
     <color name="blue">#049dc1</color>
     <color name="pink">#ef1271</color>
     <color name="gray_blue">#7b91af</color>
     <color name="lighter_gray">#ededed</color>
+    <color name="lighter_white">#78ffffff</color>
+
 </resources>
