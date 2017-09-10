@@ -15,11 +15,21 @@ import org.json.JSONObject;
 import java.util.Observable;
 
 /**
- * Created by M.S.I on 9/9/2017.
+ * Created by M.S.I on 9/9/2017
  */
 
 public class MyRequests extends Observable implements Response.Listener<JSONObject>{
 
+    private static MyRequests myRequests;
+    private MyRequests(){}
+
+    public static MyRequests getInstance(){
+        if(myRequests == null){
+            myRequests = new MyRequests();
+        }
+        return myRequests;
+
+    }
     public void getItem(String url){
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,url,null, this, new Response.ErrorListener() {
@@ -28,11 +38,6 @@ public class MyRequests extends Observable implements Response.Listener<JSONObje
             }
         });
         UIApplication.getInstance().addRequestQueue(jsonObjectRequest);
-
-
-
-
-
     }
 
     @Override

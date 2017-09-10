@@ -16,7 +16,7 @@ import com.shoppingapp.FragmentsUtil;
 import com.shoppingapp.R;
 
 /**
- * Created by M.S.I on 8/23/2017.
+ * Created by M.S.I on 8/23/2017
  */
 
 public class DeliveryDialog extends Dialog {

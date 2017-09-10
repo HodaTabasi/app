@@ -13,7 +13,7 @@ public class Item {
      * price : 57
      * size : XL
      * favourite : 1
-     * detials : made in japan
+     * details : made in japan
      * image : Item.jpeg
      * category_id : 1
      * color_id : 1
@@ -24,7 +24,7 @@ public class Item {
     private String price;
     private String size;
     private String favourite;
-    private String detials;
+    private String details;
     private String image;
     private String category_id;
     private String color_id;
@@ -69,12 +69,12 @@ public class Item {
         this.favourite = favourite;
     }
 
-    public String getDetials() {
-        return detials;
+    public String getDetails() {
+        return details;
     }
 
-    public void setDetials(String detials) {
-        this.detials = detials;
+    public void setDetails(String details) {
+        this.details = details;
     }
 
     public String getImage() {

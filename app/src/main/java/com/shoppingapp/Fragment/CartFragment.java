@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.facebook.accountkit.AccessToken;
@@ -23,11 +22,8 @@ import com.facebook.accountkit.AccountKitLoginResult;
 import com.facebook.accountkit.ui.AccountKitActivity;
 import com.facebook.accountkit.ui.AccountKitConfiguration;
 import com.facebook.accountkit.ui.LoginType;
-import com.shoppingapp.Activity.MainActivity;
-import com.shoppingapp.Activity.SplashActivtiy;
 import com.shoppingapp.Adapter.ItemCartAdapter;
 import com.shoppingapp.Dialog.DeliveryDialog;
-import com.shoppingapp.FragmentsUtil;
 import com.shoppingapp.Model.ItemCart;
 import com.shoppingapp.R;
 
@@ -85,7 +81,7 @@ public class CartFragment extends Fragment {
         itemCartList.add(new ItemCart("1","dress","200","1",R.drawable.dress));
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false);
         cartView.setLayoutManager(manager);
-        itemCartAdapter = new ItemCartAdapter(getActivity(),itemCartList);
+        itemCartAdapter = new ItemCartAdapter(itemCartList);
         cartView.setAdapter(itemCartAdapter);
 
         checkout.setOnClickListener(new View.OnClickListener() {
