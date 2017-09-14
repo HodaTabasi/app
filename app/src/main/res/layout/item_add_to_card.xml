@@ -80,6 +80,7 @@
                   android:src="@drawable/ic_negative"
                   android:layout_weight="1"
                   android:id="@+id/count_down"
+                  android:tint="#fff"
                  />
               <TextView
                   android:layout_width="0dp"
@@ -98,6 +99,7 @@
                   android:src="@drawable/ic_add_plus"
                   android:layout_weight="0.92"
                   android:id="@+id/count_up"
+                  android:tint="#fff"
                   />
 
           </LinearLayout>
