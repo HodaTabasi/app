@@ -47,20 +47,42 @@ public class MyRequests extends Observable implements Response.Listener<JSONObje
         UIApplication.getInstance().addRequestQueue(jsonObjectRequest);
     }
 
-    public void addFavorite(String url,  Map data){
+    public void addFavorite(String url, final Map data) throws JSONException {
 
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(data), new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    Log.e("Observer2", "ffff"+response.toString());
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Log.e("error",error.getMessage());
-                }
-            });
-            UIApplication.getInstance().addRequestQueue(jsonObjectRequest);
+        StringRequest strRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response)
+                    {
+                        try {
+                            JSONObject object = new JSONObject(response);
+                            JSONObject object1  = object.getJSONObject("favorite");
+                            Toast.makeText(getApplicationContext(), "Order Status : Is Add To Favorite "+ object1.getString("status") , Toast.LENGTH_SHORT).show();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                })
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                return data;
+            }
+        };
+        UIApplication.getInstance().addRequestQueue(strRequest);
+
 
     }
 

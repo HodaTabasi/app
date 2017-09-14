@@ -3,6 +3,7 @@ package com.shoppingapp.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -186,7 +187,7 @@ public class ItemDetailsActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
-    private void addToFavorite() {
+    private void addToFavorite(final View view) {
         if (AccountKit.getCurrentAccessToken() != null) {
             AccountKit.getCurrentAccount(new AccountKitCallback<Account>() {
                 @Override
@@ -199,7 +200,12 @@ public class ItemDetailsActivity extends AppCompatActivity implements View.OnCli
                         params.put("user_id", "1");
                         params.put("cat_id", item.getCategory_id());
 
-                    MyRequests.getInstance().addFavorite(Constant.ADD_FAVORITE_URL, params);
+                    try {
+                       MyRequests.getInstance().addFavorite(Constant.ADD_FAVORITE_URL, params);
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
 
                     String accountKitId = account.getId();
@@ -225,7 +231,7 @@ public class ItemDetailsActivity extends AppCompatActivity implements View.OnCli
                 addCart();
                 break;
             case R.id.add_whishlist_btn:
-                addToFavorite();
+                addToFavorite(view);
                 break;
         }
     }
