@@ -14,7 +14,7 @@ import com.shoppingapp.R;
 import com.shoppingapp.PagerAdapter.ShopPagerAdapter;
 
 /**
- * Created by Yasmeen on 11/08/2017.
+ * Created by Yasmeen on 11/08/2017
  */
 
 public class ShopeFragment extends Fragment {
@@ -34,7 +34,7 @@ public class ShopeFragment extends Fragment {
 
       //  shopTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         shopTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-        ShopPagerAdapter adapter = new ShopPagerAdapter(getContext(),getActivity().getSupportFragmentManager());
+        ShopPagerAdapter adapter = new ShopPagerAdapter(getActivity().getSupportFragmentManager());
         shopViewPager.setAdapter(adapter);
         shopTabLayout.setupWithViewPager(shopViewPager);
 

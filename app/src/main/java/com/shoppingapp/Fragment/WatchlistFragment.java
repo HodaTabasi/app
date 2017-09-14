@@ -35,7 +35,7 @@ public class WatchlistFragment extends Fragment {
 
        // whishlistTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         watchlistTabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
-        ShopPagerAdapter adapter = new ShopPagerAdapter(getContext(),getActivity().getSupportFragmentManager());
+        ShopPagerAdapter adapter = new ShopPagerAdapter(getActivity().getSupportFragmentManager());
         watchlistViewPager.setAdapter(adapter);
         watchlistTabLayout.setupWithViewPager(watchlistViewPager);
         //  viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
