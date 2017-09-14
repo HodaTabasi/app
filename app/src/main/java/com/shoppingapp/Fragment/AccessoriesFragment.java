@@ -39,7 +39,7 @@ public class AccessoriesFragment extends Fragment {
 
 
     public AccessoriesFragment() {
-        // Required empty public constructor
+        // Required empty public constructo
     }
 
 
@@ -67,32 +67,32 @@ public class AccessoriesFragment extends Fragment {
                 try {
                     if(response!=null) {
                         JSONArray jsonArray = response.getJSONArray("item");
-                        for(int i = 0; i < jsonArray.length(); i++){
-                            JSONObject obj = jsonArray.getJSONObject(i);
-                            Item item = new Item();
-                            id =obj.getString("id");
-                            name = obj.getString("name");
-                            price = obj.getString("price");
-                            size = obj.getString("size");
-                            favourite = obj.getString("favourite");
-                            detials = obj.getString("detials");
-                            image = obj.getString("image");
-                            category_id = obj.getString("category_id");
-                            color_id = obj.getString("color_id");
-                            item.setId(id);
-                            item.setName(name);
-                            item.setPrice(price);
-                            item.setSize(size);
-                            item.setFavourite(favourite);
-                            item.setDetails(detials);
-                            item.setImage(image);
-                            item.setCategory_id(category_id);
-                            item.setColor_id(color_id);
-                            itemDetailsList.add(item);
-                            Log.e("iddddddddd",id);
-                            Log.e("categoryyyyyyyyyyyyyyy",category_id);
+//                        for(int i = 0; i < jsonArray.length(); i++){
+//                            JSONObject obj = jsonArray.getJSONObject(i);
+//                            Item item = new Item();
+//                            id =obj.getString("id");
+//                            name = obj.getString("name");
+//                            price = obj.getString("price");
+//                            size = obj.getString("size");
+//                            favourite = obj.getString("favourite");
+//                            detials = obj.getString("detials");
+//                            image = obj.getString("image");
+//                            category_id = obj.getString("category_id");
+//                            color_id = obj.getString("color_id");
+//                            item.setId(id);
+//                            item.setName(name);
+//                            item.setPrice(price);
+//                            item.setSize(size);
+//                            item.setFavourite(favourite);
+//                            item.setDetails(detials);
+//                            item.setImage(image);
+//                            item.setCategory_id(category_id);
+//                            item.setColor_id(color_id);
+//                            itemDetailsList.add(item);
+//                            Log.e("iddddddddd",id);
+//                            Log.e("categoryyyyyyyyyyyyyyy",category_id);
 
-                        }
+//                        }
 
                     }
                     }

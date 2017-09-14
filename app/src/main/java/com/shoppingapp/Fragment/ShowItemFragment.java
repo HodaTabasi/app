@@ -37,7 +37,8 @@ import java.util.Observer;
  * Created by DevAmar on 9/9/17
  */
 
-public class ShowItemFragment extends Fragment implements MyRecyclerItemClickListener.OnItemClickListener,Observer{
+public class ShowItemFragment extends Fragment implements Observer{
+//    MyRecyclerItemClickListener.OnItemClickListener,
 
     private View mView;
     private RecyclerView mRecyclerView;
@@ -75,15 +76,15 @@ public class ShowItemFragment extends Fragment implements MyRecyclerItemClickLis
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mItemAdapter = new ItemAdapter(getContext(),mItemDetailsList);
         mRecyclerView.setAdapter(mItemAdapter);
-        mRecyclerView.addOnItemTouchListener(new MyRecyclerItemClickListener(getContext(), this));
+//        mRecyclerView.addOnItemTouchListener(new MyRecyclerItemClickListener(getContext(), this));
     }
 
-    @Override
-    public void onItemClick(View view, int position) {
-        Intent intent = new Intent(getActivity(),ItemDetailsActivity.class);
-        ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(getActivity());
-        startActivity(intent , activityOptions.toBundle());
-    }
+//    @Override
+//    public void onItemClick(View view, int position) {
+//        Intent intent = new Intent(getActivity(),ItemDetailsActivity.class);
+//        ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation(getActivity());
+//        startActivity(intent , activityOptions.toBundle());
+//    }
 
     @Override
     public void update(Observable observable, Object o) {

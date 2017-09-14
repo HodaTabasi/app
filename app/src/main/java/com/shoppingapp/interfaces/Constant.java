@@ -12,6 +12,7 @@ public interface Constant {
     int APP_REQUEST_CODE = 100;
     String url = "http://evlope.com/rawnaq/api.php";
     String IMG_PATH = "http://evlope.com/rawnaq/img/";
+    String ADD_FAVORITE_URL ="http://evlope.com/rawnaq/add_to_fav.php";
     int FRAGMENT_ONE = 0;
     int FRAGMENT_TWO = 1;
     int FRAGMENT_THREE = 2;

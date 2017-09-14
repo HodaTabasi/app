@@ -1,4 +1,4 @@
-package com.shoppingapp;
+package com.shoppingapp.interfaces;
 
 import org.json.JSONObject;
 

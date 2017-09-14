@@ -1,10 +1,13 @@
 package com.shoppingapp.Model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by M.S.I on 8/30/2017.
  */
 
-public class Item {
+public class Item implements Parcelable {
 
 
     /**
@@ -28,6 +31,32 @@ public class Item {
     private String image;
     private String category_id;
     private String color_id;
+
+
+
+    protected Item(Parcel in) {
+        id = in.readString();
+        name = in.readString();
+        price = in.readString();
+        size = in.readString();
+        favourite = in.readString();
+        details = in.readString();
+        image = in.readString();
+        category_id = in.readString();
+        color_id = in.readString();
+    }
+
+    public static final Creator<Item> CREATOR = new Creator<Item>() {
+        @Override
+        public Item createFromParcel(Parcel in) {
+            return new Item(in);
+        }
+
+        @Override
+        public Item[] newArray(int size) {
+            return new Item[size];
+        }
+    };
 
     public String getId() {
         return id;
@@ -99,5 +128,23 @@ public class Item {
 
     public void setColor_id(String color_id) {
         this.color_id = color_id;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(id);
+        parcel.writeString(name);
+        parcel.writeString(price);
+        parcel.writeString(size);
+        parcel.writeString(favourite);
+        parcel.writeString(details);
+        parcel.writeString(image);
+        parcel.writeString(category_id);
+        parcel.writeString(color_id);
     }
 }

@@ -1,6 +1,9 @@
 package com.shoppingapp.Adapter;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.shoppingapp.Activity.ItemDetailsActivity;
 import com.shoppingapp.Model.Item;
 import com.shoppingapp.R;
 import com.shoppingapp.interfaces.Constant;
@@ -41,11 +45,21 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.RecyclerViewHo
     }
 
     @Override
-    public void onBindViewHolder(RecyclerViewHolders holder, int position) {
+    public void onBindViewHolder(RecyclerViewHolders holder, final int position) {
         holder.itemName.setText(itemDetailsList.get(position).getName());
         holder.itemPrice.setText(itemDetailsList.get(position).getPrice());
         System.out.println("image is "+Constant.IMG_PATH +""+ itemDetailsList.get(position).getImage());
         Picasso.with(context).load(Constant.IMG_PATH + itemDetailsList.get(position).getImage()).into(holder.itemImg);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,ItemDetailsActivity.class);
+                intent.putExtra("Item",itemDetailsList.get(position));
+                ActivityOptions activityOptions = ActivityOptions.makeSceneTransitionAnimation((Activity) context);
+                context.startActivity(intent , activityOptions.toBundle());
+            }
+        });
+
     }
 
     @Override

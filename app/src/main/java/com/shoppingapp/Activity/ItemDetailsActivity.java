@@ -12,6 +12,8 @@ import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.accountkit.AccessToken;
@@ -23,17 +25,34 @@ import com.facebook.accountkit.AccountKitLoginResult;
 import com.facebook.accountkit.ui.AccountKitActivity;
 import com.facebook.accountkit.ui.AccountKitConfiguration;
 import com.facebook.accountkit.ui.LoginType;
+import com.google.gson.JsonObject;
+import com.google.gson.internal.Streams;
+import com.shoppingapp.Model.Item;
+import com.shoppingapp.MyRequests;
 import com.shoppingapp.R;
 import com.shoppingapp.interfaces.Constant;
+import com.squareup.picasso.Picasso;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
 
 
 /**
  * Created by Yasmeen on 11/08/2017
  */
 
-public class ItemDetailsActivity extends AppCompatActivity implements View.OnClickListener {
+public class ItemDetailsActivity extends AppCompatActivity implements View.OnClickListener, Observer {
     Button addCardBtn;
     Toolbar d_toolbar;
+    ImageView add_whishlist_btn, item_image;
+    TextView item_name_m, item_size, item_prices;
+    Bundle data;
+    Item item;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,15 +63,28 @@ public class ItemDetailsActivity extends AppCompatActivity implements View.OnCli
 
         setUpToolbar();
 
+        componentContent();
+
         initAnimation();
+
+        MyRequests.getInstance().addObserver(this);
 
 
     }
 
+
     private void initComponent() {
+        data = getIntent().getExtras();
+        item = (Item) data.getParcelable("Item");
         d_toolbar = (Toolbar) findViewById(R.id.d_toolbar);
+        item_image = (ImageView) findViewById(R.id.item_image);
+        item_name_m = (TextView) findViewById(R.id.item_name_m);
+        item_size = (TextView) findViewById(R.id.item_size);
+        item_prices = (TextView) findViewById(R.id.item_prices);
         addCardBtn = (Button) findViewById(R.id.add_cart_btn);
         addCardBtn.setOnClickListener(this);
+        add_whishlist_btn = (ImageView) findViewById(R.id.add_whishlist_btn);
+        add_whishlist_btn.setOnClickListener(this);
     }
 
     private void setUpToolbar() {
@@ -63,8 +95,15 @@ public class ItemDetailsActivity extends AppCompatActivity implements View.OnCli
 
     }
 
-    private void initAnimation(){
-        Slide slide = new Slide(GravityCompat.getAbsoluteGravity(Gravity.END,getResources().getConfiguration().getLayoutDirection()));
+    private void componentContent() {
+        Picasso.with(this).load(Constant.IMG_PATH + item.getImage()).into(item_image);
+        item_name_m.setText(item.getName());
+        item_size.setText(item.getSize());
+        item_prices.setText(item.getPrice());
+    }
+
+    private void initAnimation() {
+        Slide slide = new Slide(GravityCompat.getAbsoluteGravity(Gravity.END, getResources().getConfiguration().getLayoutDirection()));
         slide.setDuration(getResources().getInteger(R.integer.MEDIUM_DURATION));
         getWindow().setEnterTransition(slide);
     }
@@ -134,7 +173,7 @@ public class ItemDetailsActivity extends AppCompatActivity implements View.OnCli
                 @Override
                 public void onSuccess(final Account account) {
                     Log.e("Error", "User Info Successfully");
-                    Toast.makeText(ItemDetailsActivity.this, "Has been added to Cart", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(ItemDetailsActivity.this, "Has been added to Cart", Toast.LENGTH_SHORT).show();
                 }
 
                 @Override
@@ -147,13 +186,54 @@ public class ItemDetailsActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
+    private void addToFavorite() {
+        if (AccountKit.getCurrentAccessToken() != null) {
+            AccountKit.getCurrentAccount(new AccountKitCallback<Account>() {
+                @Override
+                public void onSuccess(final Account account) {
+                    Log.e("Error", "User Info Successfully");
+                    Map<String,String> params = new HashMap<String, String>();
+
+
+                        params.put("item_id", item.getId());
+                        params.put("user_id", "1");
+                        params.put("cat_id", item.getCategory_id());
+
+                    MyRequests.getInstance().addFavorite(Constant.ADD_FAVORITE_URL, params);
+
+
+                    String accountKitId = account.getId();
+                    Log.e("data", accountKitId + " " + item.getId() + " " + item.getCategory_id());
+
+                }
+
+                @Override
+                public void onError(final AccountKitError error) {
+                    Toast.makeText(ItemDetailsActivity.this, "للاسف حدثت مشكلة في الخادم .. حاول مره اخري", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            verifyMobileNumber();
+        }
+
+    }
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.add_cart_btn:
                 addCart();
                 break;
+            case R.id.add_whishlist_btn:
+                addToFavorite();
+                break;
         }
+    }
+
+    @Override
+    public void update(Observable observable, Object o) {
+        JSONObject jsonObject = (JSONObject) o;
+        Log.e("Observer1", "ffff" + jsonObject.toString());
     }
 }
 
