@@ -10,6 +10,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.JsonObject;
+import com.shoppingapp.interfaces.VolleyCallback;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,7 +48,7 @@ public class MyRequests extends Observable implements Response.Listener<JSONObje
         UIApplication.getInstance().addRequestQueue(jsonObjectRequest);
     }
 
-    public void addFavorite(String url, final Map data) throws JSONException {
+    public void addFavorite(String url, final Map data,final VolleyCallback callback) throws JSONException {
 
         StringRequest strRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>()
@@ -56,14 +57,10 @@ public class MyRequests extends Observable implements Response.Listener<JSONObje
                     public void onResponse(String response)
                     {
                         try {
-                            JSONObject object = new JSONObject(response);
-                            JSONObject object1  = object.getJSONObject("favorite");
-                            Toast.makeText(getApplicationContext(), "Order Status : Is Add To Favorite "+ object1.getString("status") , Toast.LENGTH_SHORT).show();
-
+                            callback.onSuccessResponse(response);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                     }
                 },
                 new Response.ErrorListener()

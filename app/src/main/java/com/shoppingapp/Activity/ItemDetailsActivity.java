@@ -32,6 +32,7 @@ import com.shoppingapp.Model.Item;
 import com.shoppingapp.MyRequests;
 import com.shoppingapp.R;
 import com.shoppingapp.interfaces.Constant;
+import com.shoppingapp.interfaces.VolleyCallback;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -187,27 +188,34 @@ public class ItemDetailsActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
-    private void addToFavorite(final View view) {
+    private void addToFavorite() {
         if (AccountKit.getCurrentAccessToken() != null) {
             AccountKit.getCurrentAccount(new AccountKitCallback<Account>() {
                 @Override
                 public void onSuccess(final Account account) {
                     Log.e("Error", "User Info Successfully");
-                    Map<String,String> params = new HashMap<String, String>();
-
-
-                        params.put("item_id", item.getId());
-                        params.put("user_id", "1");
-                        params.put("cat_id", item.getCategory_id());
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("item_id", item.getId());
+                    params.put("user_id", "1");
+                    params.put("cat_id", item.getCategory_id());
 
                     try {
-                       MyRequests.getInstance().addFavorite(Constant.ADD_FAVORITE_URL, params);
+                        MyRequests.getInstance().addFavorite(Constant.ADD_FAVORITE_URL, params, new VolleyCallback() {
+                            @Override
+                            public void onSuccessResponse(String result) throws JSONException {
+                                JSONObject object = new JSONObject(result);
+                                JSONObject object1 = object.getJSONObject("favorite");
+                                Toast.makeText(getApplicationContext(), "Order Status Is : Add To Favorite " + object1.getString("status"), Toast.LENGTH_SHORT).show();
+//                                if(object1.getString("status").equals("success")){
+//                                    Toast.makeText(getApplicationContext(), "Order Status Is : Add To Favorite " + object1.getString("status"), Toast.LENGTH_SHORT).show();
+//                                    add_whishlist_btn.setImageResource(R.drawable.ic_like);
+//                                }
+                            }
+                        });
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-
-
                     String accountKitId = account.getId();
                     Log.e("data", accountKitId + " " + item.getId() + " " + item.getCategory_id());
 
@@ -231,7 +239,7 @@ public class ItemDetailsActivity extends AppCompatActivity implements View.OnCli
                 addCart();
                 break;
             case R.id.add_whishlist_btn:
-                addToFavorite(view);
+                addToFavorite();
                 break;
         }
     }
