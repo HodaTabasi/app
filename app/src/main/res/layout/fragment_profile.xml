@@ -124,17 +124,18 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/phone_number"
+                    android:id="@+id/textView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="059222222"
-                    android:textStyle="bold"
-                    android:textSize="18sp"/>
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/phone_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mpbile"/>
+                    android:text="Mobile"/>
 
             </LinearLayout>
 
@@ -163,7 +164,6 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Gaza"
@@ -171,6 +171,7 @@
                     android:textSize="18sp"/>
 
                 <TextView
+                    android:id="@+id/address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Address"/>
