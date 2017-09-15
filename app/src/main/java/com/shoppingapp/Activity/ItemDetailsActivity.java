@@ -23,6 +23,7 @@ import com.facebook.accountkit.AccountKit;
 import com.facebook.accountkit.AccountKitCallback;
 import com.facebook.accountkit.AccountKitError;
 import com.facebook.accountkit.AccountKitLoginResult;
+import com.facebook.accountkit.PhoneNumber;
 import com.facebook.accountkit.ui.AccountKitActivity;
 import com.facebook.accountkit.ui.AccountKitConfiguration;
 import com.facebook.accountkit.ui.LoginType;
@@ -142,7 +143,29 @@ public class ItemDetailsActivity extends AppCompatActivity implements View.OnCli
                         @Override
                         public void onSuccess(final Account account) {
                             Log.e("Error", "User Info Successfully");
-                            Toast.makeText(ItemDetailsActivity.this, "Has been added to Cart", Toast.LENGTH_SHORT).show();
+                            AccessToken accessToken = AccountKit.getCurrentAccessToken();
+                            PhoneNumber phoneNumber = account.getPhoneNumber();
+                            String phoneNumberString = phoneNumber.toString();
+                            String accessTokenString = accessToken.toString();
+
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put("user_id", accessTokenString);
+                            params.put("mobile", phoneNumberString);
+
+                            try {
+                                MyRequests.getInstance().addToDataBase(Constant.ADD_USER_URL, params, new VolleyCallback() {
+                                    @Override
+                                    public void onSuccessResponse(String result) throws JSONException {
+                                        Toast.makeText(getApplicationContext(),result, Toast.LENGTH_SHORT).show();
+                                        Log.e("add_user",result);
+                                    }
+                                });
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+
 
 
                         }
