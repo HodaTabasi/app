@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity
     private CharSequence mTitle = "HOME";
     ImageView filter;
     TextView actionTitle;
+    DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         filter = toolbar.findViewById(R.id.filter);
         actionTitle = (TextView) findViewById(R.id.title);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         filter.setOnClickListener(this);
     }
 
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity
         getWindow().setEnterTransition(slide);
     }
     private void setUpDrawer(){
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -94,6 +96,8 @@ public class MainActivity extends AppCompatActivity
                 filter.setVisibility(View.GONE);
                 transaction.replace(R.id.container, new EditProfileFragment());
                 transaction.commit();
+
+                drawer.closeDrawer(GravityCompat.START);
             }
         });
     }
@@ -173,7 +177,6 @@ public class MainActivity extends AppCompatActivity
 
         actionTitle.setText(mTitle);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
