@@ -40,6 +40,9 @@ public class ActiveOrdersFragment  extends Fragment {
         activeOrdersRecycler =  mView.findViewById(R.id.recycler);
         activeOrders = new ArrayList<>();
 
+        String url = "http://evlope.com/rawnaq/add_order.php";
+
+
         activeOrders.add(new Order(1234 , "123457","11.4.2017",getString(R.string.processed),"11.3.2019"));
         activeOrders.add(new Order(1234 , "123457","11.4.2017",getString(R.string.order_delivered),"11.3.2019"));
         activeOrders.add(new Order(1234 , "123457","11.4.2017",getString(R.string.order_on_delivery),"11.3.2019"));

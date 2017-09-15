@@ -40,4 +40,5 @@
     <string name="edit_text_invalid">Invalid field</string>
     <string name="congrats">Your token is %s. You can send this token to your application server.</string>
     <string name="text_invalid">invalid</string>
+    <string name="add_to_favorite_stauts">Order Status Is :  Add To Favorite </string>
 </resources>

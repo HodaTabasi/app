@@ -1,6 +1,7 @@
 package com.shoppingapp.Activity;
 
 
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 
 import com.shoppingapp.Dialog.filterDialog;
 import com.shoppingapp.Fragment.CartFragment;
+import com.shoppingapp.Fragment.EditProfileFragment;
 import com.shoppingapp.Fragment.ExploreFragment;
 import com.shoppingapp.Fragment.OrdersFragment;
 import com.shoppingapp.Fragment.ShopeFragment;
@@ -72,7 +75,27 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View headerView = getLayoutInflater().inflate(R.layout.nav_header_main, navigationView, false);
+        navigationView.addHeaderView(headerView);
         navigationView.setNavigationItemSelectedListener(this);
+
+        addHeaderAction(headerView);
+
+    }
+
+    private void addHeaderAction(View headerView) {
+        ImageView imageView = headerView.findViewById(R.id.user_profile_img);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager manager = getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                mTitle = getString(R.string.orders);
+                filter.setVisibility(View.GONE);
+                transaction.replace(R.id.container, new EditProfileFragment());
+                transaction.commit();
+            }
+        });
     }
 
     @Override

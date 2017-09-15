@@ -3,6 +3,7 @@ package com.shoppingapp.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -31,6 +32,7 @@ import com.shoppingapp.Model.Item;
 import com.shoppingapp.MyRequests;
 import com.shoppingapp.R;
 import com.shoppingapp.interfaces.Constant;
+import com.shoppingapp.interfaces.VolleyCallback;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
@@ -173,7 +175,24 @@ public class ItemDetailsActivity extends AppCompatActivity implements View.OnCli
                 @Override
                 public void onSuccess(final Account account) {
                     Log.e("Error", "User Info Successfully");
-//                    Toast.makeText(ItemDetailsActivity.this, "Has been added to Cart", Toast.LENGTH_SHORT).show();
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("user_id", "1");
+                    params.put("item_id", item.getId());
+                    params.put("quantity", "1");
+                    params.put("price", item.getPrice());
+
+                    try {
+                        MyRequests.getInstance().addToDataBase(Constant.ADD_TO_CART_URL, params, new VolleyCallback() {
+                            @Override
+                            public void onSuccessResponse(String result) throws JSONException {
+                                Toast.makeText(getApplicationContext(),result, Toast.LENGTH_SHORT).show();
+                                Log.e("dfd",result);
+                            }
+                        });
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 @Override
@@ -192,16 +211,28 @@ public class ItemDetailsActivity extends AppCompatActivity implements View.OnCli
                 @Override
                 public void onSuccess(final Account account) {
                     Log.e("Error", "User Info Successfully");
-                    Map<String,String> params = new HashMap<String, String>();
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("item_id", item.getId());
+                    params.put("user_id", "1");
+                    params.put("cat_id", item.getCategory_id());
 
+                    try {
+                        MyRequests.getInstance().addToDataBase(Constant.ADD_FAVORITE_URL, params, new VolleyCallback() {
+                            @Override
+                            public void onSuccessResponse(String result) throws JSONException {
+                                JSONObject object = new JSONObject(result);
+                                JSONObject object1 = object.getJSONObject("favorite");
+                                Toast.makeText(getApplicationContext(), getString(R.string.add_to_favorite_stauts)+" " + object1.getString("status"), Toast.LENGTH_SHORT).show();
+//                                if(object1.getString("status").equals("success")){
+//                                    Toast.makeText(getApplicationContext(), "Order Status Is : Add To Favorite " + object1.getString("status"), Toast.LENGTH_SHORT).show();
+//                                    add_whishlist_btn.setImageResource(R.drawable.ic_like);
+//                                }
+                            }
+                        });
 
-                        params.put("item_id", item.getId());
-                        params.put("user_id", "1");
-                        params.put("cat_id", item.getCategory_id());
-
-                    MyRequests.getInstance().addFavorite(Constant.ADD_FAVORITE_URL, params);
-
-
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                     String accountKitId = account.getId();
                     Log.e("data", accountKitId + " " + item.getId() + " " + item.getCategory_id());
 

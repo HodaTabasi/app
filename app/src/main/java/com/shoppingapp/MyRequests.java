@@ -3,7 +3,6 @@ package com.shoppingapp;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -11,6 +10,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.JsonObject;
+import com.shoppingapp.interfaces.VolleyCallback;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,33 +48,111 @@ public class MyRequests extends Observable implements Response.Listener<JSONObje
         UIApplication.getInstance().addRequestQueue(jsonObjectRequest);
     }
 
-    public void addFavorite(String url, final Map<String , String> params){
+    public void addToDataBase(String url, final Map data,final VolleyCallback callback) throws JSONException {
 
-            StringRequest jsonObjectRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-                @Override
-                public void onResponse(String response) {
-                    try {
-                        JSONObject jsonObject= new JSONObject(response.toString());
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+        StringRequest strRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response)
+                    {
+                        try {
+                            callback.onSuccessResponse(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                     }
-
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-
-                }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                })
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                return data;
             }
-            ){
-                @Override
-                protected Map<String, String> getParams() throws AuthFailureError {
-                    return params;
-                }
-            };
-            UIApplication.getInstance().addRequestQueue(jsonObjectRequest);
+        };
+        UIApplication.getInstance().addRequestQueue(strRequest);
+    }
+
+    public void getUserInfo(String url, final Map data, final VolleyCallback volleyCallback){
+        StringRequest strRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response)
+                    {
+                        try {
+                            volleyCallback.onSuccessResponse(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                })
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                return data;
+            }
+        };
+        UIApplication.getInstance().addRequestQueue(strRequest);
 
     }
+
+    public void addOrder(String url, final Map data) throws JSONException {
+
+        StringRequest strRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response)
+                    {
+                        try {
+                            JSONObject object = new JSONObject(response);
+                            JSONObject object1  = object.getJSONObject("add_order");
+                            Toast.makeText(getApplicationContext(), "Order Status : "+ object1.getString("status") , Toast.LENGTH_SHORT).show();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                })
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                return data;
+            }
+        };
+        UIApplication.getInstance().addRequestQueue(strRequest);
+
+
+    }
+
 
 
 
