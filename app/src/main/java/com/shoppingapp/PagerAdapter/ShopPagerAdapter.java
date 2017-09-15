@@ -1,58 +1,80 @@
 package com.shoppingapp.PagerAdapter;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.content.ContextCompat;
-import android.text.SpannableString;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.style.DynamicDrawableSpan;
-import android.text.style.ImageSpan;
 
-import com.shoppingapp.R;
 import com.shoppingapp.Fragment.ShowItemFragment;
 import com.shoppingapp.interfaces.Constant;
 
 /**
- * Created by Yasmeen on 11/08/2017.
+ * Created by Yasmeen on 11/08/2017
  */
 
 public class ShopPagerAdapter extends FragmentStatePagerAdapter {
 
-    Context context;
-    final  int COUNT =6;
+    final int COUNT = 6;
+    private boolean favorite;
 
-    public ShopPagerAdapter(Context context,FragmentManager fm) {
+    public ShopPagerAdapter(FragmentManager fm, boolean favorite) {
         super(fm);
-        this.context = context;
+        this.favorite = favorite;
     }
 
     @Override
     public android.support.v4.app.Fragment getItem(int position) {
         Fragment fragment = new ShowItemFragment();
         Bundle bundle = new Bundle();
-        switch (position){
+        switch (position) {
             case Constant.FRAGMENT_ONE:
-                bundle.putString("url", Constant.url + "?action=item&category=1");
+                if (!favorite) {
+                    bundle.putString("url", Constant.url + "?action=item&category=1");
+                } else {
+                    bundle.putString("url", Constant.GET_FAVORITE_URL);
+                    bundle.putInt("type", 1);
+                }
                 break;
             case Constant.FRAGMENT_TWO:
-                bundle.putString("url", Constant.url + "?action=item&category=1");
+                if (!favorite) {
+                    bundle.putString("url", Constant.url + "?action=item&category=2");
+                } else {
+                    bundle.putString("url", Constant.GET_FAVORITE_URL);
+                    bundle.putInt("type", 2);
+                }
                 break;
-            case Constant.FRAGMENT_THREE :
-                bundle.putString("url", Constant.url + "?action=item&category=1");
+            case Constant.FRAGMENT_THREE:
+                if (!favorite) {
+                    bundle.putString("url", Constant.url + "?action=item&category=3");
+                } else {
+                    bundle.putString("url", Constant.GET_FAVORITE_URL);
+                    bundle.putInt("type", 3);
+                }
                 break;
-            case Constant.FRAGMENT_FOUR :
-                bundle.putString("url", Constant.url + "?action=item&category=1");
+            case Constant.FRAGMENT_FOUR:
+                if (!favorite) {
+                    bundle.putString("url", Constant.url + "?action=item&category=4");
+                } else {
+                    bundle.putString("url", Constant.GET_FAVORITE_URL);
+                    bundle.putInt("type", 4);
+                }
                 break;
-            case Constant.FRAGMENT_FIVE :
-                bundle.putString("url", Constant.url + "?action=item&category=1");
+            case Constant.FRAGMENT_FIVE:
+                if (!favorite) {
+                    bundle.putString("url", Constant.url + "?action=item&category=5");
+                } else {
+                    bundle.putString("url", Constant.GET_FAVORITE_URL);
+                    bundle.putInt("type", 5);
+                }
                 break;
-            case Constant.FRAGMENT_SIX :
-                bundle.putString("url", Constant.url + "?action=item&category=1");
+            case Constant.FRAGMENT_SIX:
+                if (!favorite) {
+                    bundle.putString("url", Constant.url + "?action=item&category=6");
+                } else {
+                    bundle.putString("url", Constant.GET_FAVORITE_URL);
+                    bundle.putInt("type", 6);
+                }
                 break;
         }
         fragment.setArguments(bundle);

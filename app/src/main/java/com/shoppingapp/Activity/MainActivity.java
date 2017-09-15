@@ -1,7 +1,6 @@
 package com.shoppingapp.Activity;
 
 
-import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
@@ -12,7 +11,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,8 +22,7 @@ import com.shoppingapp.Fragment.CartFragment;
 import com.shoppingapp.Fragment.EditProfileFragment;
 import com.shoppingapp.Fragment.ExploreFragment;
 import com.shoppingapp.Fragment.OrdersFragment;
-import com.shoppingapp.Fragment.ShopeFragment;
-import com.shoppingapp.Fragment.ShowItemFragment;
+import com.shoppingapp.Fragment.ShopFragment;
 import com.shoppingapp.Fragment.WatchlistFragment;
 import com.shoppingapp.FragmentsUtil;
 import com.shoppingapp.R;
@@ -148,7 +145,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_shop) {
             mTitle = getString(R.string.shop);
             filter.setVisibility(View.VISIBLE);
-            transaction.replace(R.id.container, new ShopeFragment());
+            transaction.replace(R.id.container, new ShopFragment());
             transaction.commit();
 
         } else if (id == R.id.nav_order) {
