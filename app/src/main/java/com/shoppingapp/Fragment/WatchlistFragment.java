@@ -40,27 +40,27 @@ public class WatchlistFragment extends Fragment {
         watchlistTabLayout.setupWithViewPager(watchlistViewPager);
         //  viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
-        Drawable myDrawable = getContext().getResources().getDrawable(R.drawable.choth);
+        Drawable myDrawable = ContextCompat.getDrawable(getContext(),R.drawable.choth);
         myDrawable.setBounds(0,0,60,60);
         myDrawable.setTint(ContextCompat.getColor(getContext(),R.color.white));
         watchlistTabLayout.getTabAt(0).setIcon(myDrawable);
 
-        Drawable myDrawable1 = getContext().getResources().getDrawable(R.drawable.jeans);
+        Drawable myDrawable1 = ContextCompat.getDrawable(getContext(),R.drawable.jeans);
         myDrawable1.setBounds(0,0,60,60);
         myDrawable1.setTint(ContextCompat.getColor(getContext(),R.color.lighter_white));
         watchlistTabLayout.getTabAt(1).setIcon(myDrawable1);
 
-        Drawable myDrawable2 = getContext().getResources().getDrawable(R.drawable.shoes);
+        Drawable myDrawable2 = ContextCompat.getDrawable(getContext(),R.drawable.shoes);
         myDrawable2.setBounds(0,0,60,60);
         myDrawable2.setTint(ContextCompat.getColor(getContext(),R.color.lighter_white));
         watchlistTabLayout.getTabAt(2).setIcon(myDrawable2);
 
-        Drawable myDrawable3 = getContext().getResources().getDrawable(R.drawable.watches);
+        Drawable myDrawable3 = ContextCompat.getDrawable(getContext(),R.drawable.watches);
         myDrawable3.setBounds(0,0,60,60);
         myDrawable3.setTint(ContextCompat.getColor(getContext(),R.color.lighter_white));
         watchlistTabLayout.getTabAt(3).setIcon(myDrawable3);
 
-        Drawable myDrawable4 = getContext().getResources().getDrawable(R.drawable.bag);
+        Drawable myDrawable4 = ContextCompat.getDrawable(getContext(),R.drawable.bag);
         myDrawable4.setBounds(0,0,60,60);
         myDrawable4.setTint(ContextCompat.getColor(getContext(),R.color.lighter_white));
         watchlistTabLayout.getTabAt(4).setIcon(myDrawable4);

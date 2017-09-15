@@ -46,6 +46,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/user_names"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Lauran Lambert"
@@ -84,6 +85,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Lauran Lambert@gmail.com"
@@ -122,6 +124,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/phone_number"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="059222222"
@@ -160,6 +163,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Gaza"

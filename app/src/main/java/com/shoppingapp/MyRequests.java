@@ -79,7 +79,38 @@ public class MyRequests extends Observable implements Response.Listener<JSONObje
             }
         };
         UIApplication.getInstance().addRequestQueue(strRequest);
+    }
 
+    public void getUserInfo(String url, final Map data, final VolleyCallback volleyCallback){
+        StringRequest strRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response)
+                    {
+                        try {
+                            volleyCallback.onSuccessResponse(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error)
+                    {
+                        Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                })
+        {
+            @Override
+            protected Map<String, String> getParams()
+            {
+                return data;
+            }
+        };
+        UIApplication.getInstance().addRequestQueue(strRequest);
 
     }
 

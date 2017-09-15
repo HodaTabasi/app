@@ -205,7 +205,7 @@ public class ItemDetailsActivity extends AppCompatActivity implements View.OnCli
                             public void onSuccessResponse(String result) throws JSONException {
                                 JSONObject object = new JSONObject(result);
                                 JSONObject object1 = object.getJSONObject("favorite");
-                                Toast.makeText(getApplicationContext(), "Order Status Is : Add To Favorite " + object1.getString("status"), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), getString(R.string.add_to_favorite_stauts)+" " + object1.getString("status"), Toast.LENGTH_SHORT).show();
 //                                if(object1.getString("status").equals("success")){
 //                                    Toast.makeText(getApplicationContext(), "Order Status Is : Add To Favorite " + object1.getString("status"), Toast.LENGTH_SHORT).show();
 //                                    add_whishlist_btn.setImageResource(R.drawable.ic_like);
