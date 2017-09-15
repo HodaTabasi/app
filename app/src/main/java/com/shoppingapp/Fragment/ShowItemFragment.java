@@ -46,6 +46,7 @@ public class ShowItemFragment extends Fragment implements Observer{
     private ItemAdapter mItemAdapter ;
     private List<Item> mItemDetailsList = new ArrayList<>();
     private String url;
+    private int type;
 
 
     @Nullable
@@ -56,9 +57,13 @@ public class ShowItemFragment extends Fragment implements Observer{
         initView();
 
         setUpRecyclerView();
-
         MyRequests.getInstance().addObserver(this);
-        MyRequests.getInstance().getItem(url);
+
+        if(type == 0) {
+            MyRequests.getInstance().getItem(url);
+        }else {
+            MyRequests.getInstance().getFav(url,type);
+        }
 
         return mView;
     }
@@ -68,6 +73,7 @@ public class ShowItemFragment extends Fragment implements Observer{
     private void initView() {
         mRecyclerView = mView.findViewById(R.id.rv);
         url = getArguments().getString("url");
+        type = getArguments().getInt("type");
         mProgressBar = mView.findViewById(R.id.loader);
     }
 
@@ -95,14 +101,16 @@ public class ShowItemFragment extends Fragment implements Observer{
         try {
             mItemDetailsList.clear();
             mProgressBar.setVisibility(View.INVISIBLE);
-            JSONArray s = jsonObject.getJSONArray("'item'");
-            Log.e("fff",s+" ");
-            for (int i = 0 ; i<s.length() ;i++ ){
-                JSONObject object = s.getJSONObject(i);
-                Item item = gson.fromJson(object.toString(),Item.class);
-                mItemDetailsList.add(item);
-                mItemAdapter.notifyDataSetChanged();
-            }
+                JSONArray s = jsonObject.getJSONArray("'item'");
+                Log.e("fff", s + " ");
+                for (int i = 0; i < s.length(); i++) {
+                    JSONObject object = s.getJSONObject(i);
+                    Item item = gson.fromJson(object.toString(), Item.class);
+                    mItemDetailsList.add(item);
+                    mItemAdapter.notifyDataSetChanged();
+                }
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

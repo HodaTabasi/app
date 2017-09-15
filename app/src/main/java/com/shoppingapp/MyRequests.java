@@ -1,18 +1,15 @@
 package com.shoppingapp;
 
-import android.util.Log;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
-import com.google.gson.JsonObject;
+import com.facebook.accountkit.AccountKit;
 import com.shoppingapp.interfaces.VolleyCallback;
-
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -45,6 +42,36 @@ public class MyRequests extends Observable implements Response.Listener<JSONObje
             public void onErrorResponse(VolleyError error) {
             }
         });
+        UIApplication.getInstance().addRequestQueue(jsonObjectRequest);
+    }
+    public void getFav(String url, final int type){
+
+        StringRequest jsonObjectRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    setChanged();
+                    notifyObservers(jsonObject);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("user_id", AccountKit.getCurrentAccessToken().getAccountId());
+                params.put("cat_id", String.valueOf(type));
+                return params;
+            }
+        };
         UIApplication.getInstance().addRequestQueue(jsonObjectRequest);
     }
 
@@ -88,6 +115,7 @@ public class MyRequests extends Observable implements Response.Listener<JSONObje
                     @Override
                     public void onResponse(String response)
                     {
+                        System.out.println("response is"+response);
                         try {
                             volleyCallback.onSuccessResponse(response);
                         } catch (JSONException e) {
@@ -152,9 +180,6 @@ public class MyRequests extends Observable implements Response.Listener<JSONObje
 
 
     }
-
-
-
 
     @Override
     public void onResponse(JSONObject response) {
