@@ -143,14 +143,19 @@ public class ItemDetailsActivity extends AppCompatActivity implements View.OnCli
                         @Override
                         public void onSuccess(final Account account) {
                             Log.e("Error", "User Info Successfully");
-                            AccessToken accessToken = AccountKit.getCurrentAccessToken();
+
                             PhoneNumber phoneNumber = account.getPhoneNumber();
+
                             String phoneNumberString = phoneNumber.toString();
-                            String accessTokenString = accessToken.toString();
+                            String accountKitId = account.getId();
+
 
                             Map<String, String> params = new HashMap<String, String>();
-                            params.put("user_id", accessTokenString);
                             params.put("mobile", phoneNumberString);
+                            params.put("access_token", accountKitId);
+
+                            Log.e("access_token", accountKitId);
+                            Log.e("mobile", phoneNumberString);
 
                             try {
                                 MyRequests.getInstance().addToDataBase(Constant.ADD_USER_URL, params, new VolleyCallback() {
@@ -198,8 +203,10 @@ public class ItemDetailsActivity extends AppCompatActivity implements View.OnCli
                 @Override
                 public void onSuccess(final Account account) {
                     Log.e("Error", "User Info Successfully");
+                    String accountKitId = account.getId();
+
                     Map<String, String> params = new HashMap<String, String>();
-                    params.put("user_id", "1");
+                    params.put("user_id", accountKitId);
                     params.put("item_id", item.getId());
                     params.put("quantity", "1");
                     params.put("price", item.getPrice());
@@ -234,9 +241,11 @@ public class ItemDetailsActivity extends AppCompatActivity implements View.OnCli
                 @Override
                 public void onSuccess(final Account account) {
                     Log.e("Error", "User Info Successfully");
+
+                    String accountKitId = account.getId();
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("item_id", item.getId());
-                    params.put("user_id", "1");
+                    params.put("user_id", accountKitId);
                     params.put("cat_id", item.getCategory_id());
 
                     try {
@@ -246,17 +255,13 @@ public class ItemDetailsActivity extends AppCompatActivity implements View.OnCli
                                 JSONObject object = new JSONObject(result);
                                 JSONObject object1 = object.getJSONObject("favorite");
                                 Toast.makeText(getApplicationContext(), getString(R.string.add_to_favorite_stauts)+" " + object1.getString("status"), Toast.LENGTH_SHORT).show();
-//                                if(object1.getString("status").equals("success")){
-//                                    Toast.makeText(getApplicationContext(), "Order Status Is : Add To Favorite " + object1.getString("status"), Toast.LENGTH_SHORT).show();
-//                                    add_whishlist_btn.setImageResource(R.drawable.ic_like);
-//                                }
                             }
                         });
 
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    String accountKitId = account.getId();
+
                     Log.e("data", accountKitId + " " + item.getId() + " " + item.getCategory_id());
 
                 }

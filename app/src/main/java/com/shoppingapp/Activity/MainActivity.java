@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.shoppingapp.Dialog.EditProfileDialog;
 import com.shoppingapp.Dialog.filterDialog;
 import com.shoppingapp.Fragment.CartFragment;
 import com.shoppingapp.Fragment.EditProfileFragment;
@@ -84,17 +85,26 @@ public class MainActivity extends AppCompatActivity
 
     private void addHeaderAction(View headerView) {
         ImageView imageView = headerView.findViewById(R.id.user_profile_img);
+        TextView user_edit_prof = headerView.findViewById(R.id.user_edit_prof);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager manager = getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                mTitle = getString(R.string.orders);
+                mTitle = "Profile";
                 filter.setVisibility(View.GONE);
                 transaction.replace(R.id.container, new EditProfileFragment());
                 transaction.commit();
 
                 drawer.closeDrawer(GravityCompat.START);
+            }
+        });
+
+        user_edit_prof.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditProfileDialog editProfileDialog = new EditProfileDialog(MainActivity.this);
+                editProfileDialog.show();
             }
         });
     }

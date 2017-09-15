@@ -44,6 +44,8 @@ public class MyRequests extends Observable implements Response.Listener<JSONObje
         });
         UIApplication.getInstance().addRequestQueue(jsonObjectRequest);
     }
+
+
     public void getFav(String url, final int type){
 
         StringRequest jsonObjectRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -74,6 +76,7 @@ public class MyRequests extends Observable implements Response.Listener<JSONObje
         };
         UIApplication.getInstance().addRequestQueue(jsonObjectRequest);
     }
+
 
     public void addToDataBase(String url, final Map data,final VolleyCallback callback) throws JSONException {
 
@@ -108,6 +111,7 @@ public class MyRequests extends Observable implements Response.Listener<JSONObje
         UIApplication.getInstance().addRequestQueue(strRequest);
     }
 
+
     public void getUserInfo(String url, final Map data, final VolleyCallback volleyCallback){
         StringRequest strRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>()
@@ -141,6 +145,7 @@ public class MyRequests extends Observable implements Response.Listener<JSONObje
         UIApplication.getInstance().addRequestQueue(strRequest);
 
     }
+
 
     public void addOrder(String url, final Map data) throws JSONException {
 
@@ -180,6 +185,8 @@ public class MyRequests extends Observable implements Response.Listener<JSONObje
 
 
     }
+
+
 
     @Override
     public void onResponse(JSONObject response) {

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ import com.facebook.accountkit.AccountKitCallback;
 import com.facebook.accountkit.AccountKitError;
 import com.facebook.accountkit.PhoneNumber;
 import com.shoppingapp.Activity.ItemDetailsActivity;
+import com.shoppingapp.Dialog.EditProfileDialog;
 import com.shoppingapp.MyRequests;
 import com.shoppingapp.R;
 import com.shoppingapp.interfaces.Constant;
@@ -37,10 +39,11 @@ import java.util.Observer;
  * Created by Yasmeen on 23/08/2017.
  */
 
-public class EditProfileFragment extends Fragment implements Observer {
+public class EditProfileFragment extends Fragment implements View.OnClickListener, Observer {
     private View mView;
     private ProgressBar mProgressBar;
     TextView phone_number, user_names, address, email;
+    FloatingActionButton editprofile;
     private String url;
 
 
@@ -54,16 +57,7 @@ public class EditProfileFragment extends Fragment implements Observer {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mView = inflater.inflate(R.layout.fragment_profile, container, false);
-//        FloatingActionButton editProfile = mView.findViewById(R.id.editprofile);
-//        editProfile.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Dialog dialog = new Dialog(getContext());
-//                dialog.setContentView(R.layout.edit_profile_dialog);
-//                dialog.setTitle(Window.FEATURE_NO_TITLE);
-//                dialog.show();
-//            }
-//        });
+
         initView();
 
         componentContent();
@@ -78,6 +72,8 @@ public class EditProfileFragment extends Fragment implements Observer {
         user_names = mView.findViewById(R.id.user_names);
         address = mView.findViewById(R.id.address);
         email = mView.findViewById(R.id.email);
+        editprofile = mView.findViewById(R.id.editprofile);
+        editprofile.setOnClickListener(this);
     }
 
     private void componentContent() {
@@ -122,6 +118,18 @@ public class EditProfileFragment extends Fragment implements Observer {
 
     @Override
     public void update(Observable observable, Object o) {
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.editprofile:
+                EditProfileDialog editProfileDialog = new EditProfileDialog(getContext());
+                editProfileDialog.show();
+                break;
+
+        }
 
     }
 }
