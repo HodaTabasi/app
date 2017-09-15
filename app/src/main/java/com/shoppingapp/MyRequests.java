@@ -48,7 +48,7 @@ public class MyRequests extends Observable implements Response.Listener<JSONObje
         UIApplication.getInstance().addRequestQueue(jsonObjectRequest);
     }
 
-    public void addFavorite(String url, final Map data,final VolleyCallback callback) throws JSONException {
+    public void addToDataBase(String url, final Map data,final VolleyCallback callback) throws JSONException {
 
         StringRequest strRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>()

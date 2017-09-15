@@ -175,7 +175,24 @@ public class ItemDetailsActivity extends AppCompatActivity implements View.OnCli
                 @Override
                 public void onSuccess(final Account account) {
                     Log.e("Error", "User Info Successfully");
-//                    Toast.makeText(ItemDetailsActivity.this, "Has been added to Cart", Toast.LENGTH_SHORT).show();
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("user_id", "1");
+                    params.put("item_id", item.getId());
+                    params.put("quantity", "1");
+                    params.put("price", item.getPrice());
+
+                    try {
+                        MyRequests.getInstance().addToDataBase(Constant.ADD_TO_CART_URL, params, new VolleyCallback() {
+                            @Override
+                            public void onSuccessResponse(String result) throws JSONException {
+                                Toast.makeText(getApplicationContext(),result, Toast.LENGTH_SHORT).show();
+                                Log.e("dfd",result);
+                            }
+                        });
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 @Override
@@ -200,7 +217,7 @@ public class ItemDetailsActivity extends AppCompatActivity implements View.OnCli
                     params.put("cat_id", item.getCategory_id());
 
                     try {
-                        MyRequests.getInstance().addFavorite(Constant.ADD_FAVORITE_URL, params, new VolleyCallback() {
+                        MyRequests.getInstance().addToDataBase(Constant.ADD_FAVORITE_URL, params, new VolleyCallback() {
                             @Override
                             public void onSuccessResponse(String result) throws JSONException {
                                 JSONObject object = new JSONObject(result);

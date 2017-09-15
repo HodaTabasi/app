@@ -13,6 +13,7 @@ public interface Constant {
     String url = "http://evlope.com/rawnaq/api.php";
     String IMG_PATH = "http://evlope.com/rawnaq/img/";
     String ADD_FAVORITE_URL = "http://evlope.com/rawnaq/add_to_fav.php";
+    String ADD_TO_CART_URL = "http://evlope.com/rawnaq/add_to_fav.php";
     String GET_FAVORITE_URL = "http://evlope.com/rawnaq/get_fav.php";
     String GET_USER_INFO_URL = "http://evlope.com/rawnaq/user.php";
     int FRAGMENT_ONE = 0;
