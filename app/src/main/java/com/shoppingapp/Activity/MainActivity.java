@@ -94,6 +94,9 @@ public class MainActivity extends AppCompatActivity
                 filter.setVisibility(View.GONE);
                 transaction.replace(R.id.container, new EditProfileFragment());
                 transaction.commit();
+
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
             }
         });
     }
