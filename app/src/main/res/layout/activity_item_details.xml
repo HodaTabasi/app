@@ -140,6 +140,8 @@
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:padding="7dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
         android:layout_marginBottom="30dp">
         <Button
             android:layout_width="wrap_content"
@@ -150,21 +152,25 @@
             android:gravity="center"
             android:textSize="18sp"
             android:padding="10dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
             android:id="@+id/add_cart_btn"
             android:ems="14"
             />
         <ImageView
-            android:layout_width="match_parent"
+            android:layout_width="50dp"
             android:layout_height="match_parent"
             android:background="@drawable/shape_rounded_rectangle"
-            android:textColor="@color/white"
+            android:textColor="@color/pink"
             android:gravity="center"
             android:textSize="18sp"
             android:padding="10dp"
+            android:scaleType="fitXY"
+            android:tint="@color/colorPrimary"
             android:layout_gravity="center"
             android:src="@drawable/ic_unlike"
             android:id="@+id/add_whishlist_btn"
-            android:backgroundTint="@color/gray"
+            android:backgroundTint="@color/white"
             />
     </LinearLayout>
 
