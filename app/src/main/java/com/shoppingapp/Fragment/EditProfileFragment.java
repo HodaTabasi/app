@@ -77,7 +77,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
     }
 
     private void initView() {
-        phone_number = mView.findViewById(R.id.textView4);
+        phone_number = mView.findViewById(R.id.phone);
         user_names = mView.findViewById(R.id.user_names);
         address = mView.findViewById(R.id.address);
         email = mView.findViewById(R.id.email);
