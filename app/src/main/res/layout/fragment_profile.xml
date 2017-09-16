@@ -1,15 +1,77 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#fff">
-
-        <ImageView
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@color/colorPrimary"/>
+    
+    <com.mikhaellopez.circularimageview.CircularImageView
+        android:id="@+id/img_profile"
+        android:layout_width="120dp"
+        android:layout_height="120dp" 
+        android:src="@drawable/access"
+        android:tint="@color/colorPrimary"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="90dp"/>
+    
+    <LinearLayout
+        android:layout_below="@id/img_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical">
+        
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:src="@drawable/study"
-            android:contentDescription=""
-            android:scaleType="fitXY"/>
+            android:layout_height="wrap_content" 
+            android:text="Tasneem Kurraz"
+            android:textSize="30dp"
+            android:textColor="#000"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:layout_centerHorizontal="true"/>
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="t@hotmail.com"
+            android:drawableStart="@drawable/ic_email"
+            android:drawablePadding="15dp"
+            android:textSize="20dp"
+            android:textColor="#000"
+            android:layout_marginTop="10dp"
+            android:drawableTint="@color/colorPrimary"
+            android:layout_marginStart="20dp"
+            android:padding="15dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="526598952"
+            android:drawableStart="@drawable/ic_phone"
+            android:drawablePadding="15dp"
+            android:textSize="20dp"
+            android:textColor="#000"
+            android:drawableTint="@color/colorPrimary"
+            android:layout_marginStart="20dp"
+            android:padding="15dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Palestine Gaza"
+            android:drawableStart="@drawable/ic_location"
+            android:drawablePadding="15dp"
+            android:textSize="20dp"
+            android:textColor="#000"
+            android:drawableTint="@color/colorPrimary"
+            android:layout_marginStart="20dp"
+            android:padding="15dp"/>
+    
+    </LinearLayout>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/editprofile"
@@ -18,167 +80,9 @@
             android:src="@drawable/user1"
             android:tint="#fff"
             android:backgroundTint="@color/colorPrimary"
-            android:layout_gravity="end"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="-30dp"
-            android:layout_marginEnd="10dp"/>
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="30dp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_account_box_black_24dp"
-                android:tint="@color/colorPrimary"
-                android:contentDescription=""
-                android:layout_margin="10dp"/>
-
-            <LinearLayout
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/user_names"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lauran Lambert"
-                    android:textStyle="bold"
-                    android:textSize="18sp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Username"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_email"
-                android:contentDescription=""
-                android:tint="@color/colorPrimary"
-                android:layout_margin="10dp"/>
-
-            <LinearLayout
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lauran Lambert@gmail.com"
-                    android:textStyle="bold"
-                    android:textSize="18sp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Email"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_phone"
-                android:contentDescription=""
-                android:tint="@color/colorPrimary"
-                android:layout_margin="10dp"/>
-
-            <LinearLayout
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="059222222"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/phone_number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Mobile"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="5dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginStart="10dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_location"
-                android:tint="@color/colorPrimary"
-                android:contentDescription=""
-                android:layout_margin="10dp"/>
-
-            <LinearLayout
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/address"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Gaza"
-                    android:textStyle="bold"
-                    android:textSize="18sp"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Address"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-
-</LinearLayout>
+      
+</RelativeLayout>
