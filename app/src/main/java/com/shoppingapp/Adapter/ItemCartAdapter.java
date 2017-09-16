@@ -67,32 +67,32 @@ public class ItemCartAdapter extends RecyclerView.Adapter<ItemCartAdapter.Recycl
         holder.itemQuantity.setText(itemCartList.get(position).getQuantity());
         Picasso.with(context).load(Constant.IMG_PATH + itemCartList.get(position).getImage()).into(holder.itemImg);
         myInterFace.onItemSelected(itemCartList.get(position).getPrice().toString());
-        holder.count_up.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Map<String,String> params = new HashMap<String, String>();
-                params.put("cart_id",itemCartList.get(position).getId());
-                params.put("quantity",itemCartList.get(position).getQuantity());
-               editQuantity(params);
 
-
-                holder.itemPrice.setText(Integer.parseInt(itemCartList.get(position).getQuantity().toString())*Integer.parseInt(itemCartList.get(position).getPrice().toString())+" ");
-                myInterFace.onItemSelected(Integer.parseInt(itemCartList.get(position).getQuantity().toString())*Integer.parseInt(itemCartList.get(position).getPrice().toString())+" ");
-            }
-        });
-
-        holder.count_down.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                count--;
-                if(count <= 1)
-                    count = 1;
-                holder.itemQuantity.setText(count+"");
-                holder.itemPrice.setText(count*Integer.parseInt(itemCartList.get(position).getPrice().toString())+" ");
-                myInterFace.onItemSelected(count*Integer.parseInt(itemCartList.get(position).getPrice().toString())+" ");
-
-            }
-        });
+//        holder.count_up.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Map<String,String> params = new HashMap<String, String>();
+//                params.put("cart_id",itemCartList.get(position).getId());
+//                params.put("quantity",itemCartList.get(position).getQuantity());
+//               editQuantity(params);
+//
+//                holder.itemPrice.setText(Integer.parseInt(itemCartList.get(position).getQuantity().toString())*Integer.parseInt(itemCartList.get(position).getPrice().toString())+" ");
+//                myInterFace.onItemSelected(Integer.parseInt(itemCartList.get(position).getQuantity().toString())*Integer.parseInt(itemCartList.get(position).getPrice().toString())+" ");
+//            }
+//        });
+//
+//        holder.count_down.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                count--;
+//                if(count <= 1)
+//                    count = 1;
+//                holder.itemQuantity.setText(count+"");
+//                holder.itemPrice.setText(count*Integer.parseInt(itemCartList.get(position).getPrice().toString())+" ");
+//                myInterFace.onItemSelected(count*Integer.parseInt(itemCartList.get(position).getPrice().toString())+" ");
+//
+//            }
+//        });
 
         holder.delete_cart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,6 +100,7 @@ public class ItemCartAdapter extends RecyclerView.Adapter<ItemCartAdapter.Recycl
 
                 Map<String,String> params = new HashMap<String, String>();
                 params.put("cart_id",itemCartList.get(position).getId());
+                Log.e("cart_id",itemCartList.get(position).getId());
 
                 deleteCart(params);
             }
@@ -132,7 +133,7 @@ public class ItemCartAdapter extends RecyclerView.Adapter<ItemCartAdapter.Recycl
 
 
     private void deleteCart(final Map<String, String> params) {
-
+        Log.e("cart_id",params.get("cart_id"));
         AccountKit.getCurrentAccount(new AccountKitCallback<Account>() {
             @Override
             public void onSuccess(final Account account) {
