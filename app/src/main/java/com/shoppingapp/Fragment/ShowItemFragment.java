@@ -95,7 +95,7 @@ public class ShowItemFragment extends Fragment implements Observer{
     @Override
     public void update(Observable observable, Object o) {
         JSONObject jsonObject = (JSONObject) o;
-        Log.e("Observer", jsonObject.toString());
+//        Log.e("Observer", jsonObject.toString());
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
         try {

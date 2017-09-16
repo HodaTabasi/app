@@ -1,5 +1,6 @@
 package com.shoppingapp.Activity;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -8,8 +9,10 @@ import android.transition.Slide;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,14 +31,15 @@ import java.util.EnumSet;
  * Created by Yasmeen on 21/08/2017
  */
 
-public class CheckoutActivity extends AppCompatActivity implements TokenCallback, View.OnClickListener {
+public class CheckoutActivity extends AppCompatActivity implements TokenCallback{
 
     Toolbar d_toolbar;
 
     Button pay;
     Start start = new Start(Constant.API_OPEN_KEY);
     EditText numberEditText, monthEditText, yearEditText, cvcEditText, ownerEditText;
-    TextView total_price;
+    TextView total_price, errorTextView;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +71,14 @@ public class CheckoutActivity extends AppCompatActivity implements TokenCallback
         cvcEditText = (EditText) findViewById(R.id.cvcEditText);
         ownerEditText = (EditText) findViewById(R.id.ownerEditText);
         total_price = (TextView) findViewById(R.id.total_price);
-        pay.setOnClickListener(this);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        errorTextView = (TextView) findViewById(R.id.errorTextView);
+        pay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                payment();
+            }
+        });
     }
 
     private void initAnimation(){
@@ -77,26 +88,45 @@ public class CheckoutActivity extends AppCompatActivity implements TokenCallback
     }
 
     public void payment() {
-        try {
-            Card card = unbindCard();
-            int totalPrice = Integer.parseInt(total_price.getText().toString().trim());
+            try {
+                Card card = unbindCard();
 
-            start.createToken(this, card, this, totalPrice, "USD");
-        } catch (CardVerificationException e) {
-            setErrors(e.getErrorFields());
-        }
+                errorTextView.setText(null);
+                hideKeyboard();
+                showProgress(true);
+
+                start.createToken(this, card, this, 1 * 100, "USD");
+            } catch (CardVerificationException e) {
+                setErrors(e.getErrorFields());
+            }
+
     }
 
 
     private Card unbindCard() throws CardVerificationException {
-        clearErrors();
-        String number = numberEditText.getText().toString().trim();
-        int year = Integer.parseInt(yearEditText.getText().toString().trim());
-        int month = Integer.parseInt(monthEditText.getText().toString().trim());
-        String cvc = cvcEditText.getText().toString().trim();
-        String owner = ownerEditText.getText().toString().trim();
-        return new Card(number, cvc, month, year, owner);
+            clearErrors();
+            String number = unbindString(numberEditText);
+            int year = unbindInteger(yearEditText);
+            int month = unbindInteger(monthEditText);
+            String cvc = unbindString(cvcEditText);
+            String owner = unbindString(ownerEditText);
+            return new Card(number, cvc, month, year, owner);
+
     }
+
+    private String unbindString(EditText editText) {
+        return editText.getText().toString().trim();
+    }
+
+    private int unbindInteger(EditText editText) {
+        try {
+            String text = unbindString(editText);
+            return Integer.parseInt(text);
+        } catch (NumberFormatException e) {
+            return -1;
+        }
+    }
+
 
     private void clearErrors() {
         numberEditText.setError(null);
@@ -128,29 +158,51 @@ public class CheckoutActivity extends AppCompatActivity implements TokenCallback
     }
 
 
+    private void hideKeyboard() {
+        InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        View view = getCurrentFocus();
+        if (view != null) {
+            inputManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
+
+    private void showProgress(boolean progressVisible) {
+        pay.setEnabled(!progressVisible);
+        progressBar.setVisibility(progressVisible ? View.VISIBLE : View.GONE);
+    }
+
+
     @Override
     public void onSuccess(Token token) {
         Log.d(Constant.CHECK_OUT_TAG, "Token is received: " + token);
         Toast.makeText(this, getString(R.string.congrats, token.getId()), Toast.LENGTH_LONG).show();
+        showProgress(false);
     }
 
     @Override
     public void onError(StartApiException error) {
         Log.e(Constant.CHECK_OUT_TAG, "Error getting token", error);
+        showProgress(false);
 
     }
 
     @Override
     public void onCancel() {
         Log.e(Constant.CHECK_OUT_TAG, "Getting token is canceled by user");
+        showProgress(false);
     }
 
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()){
-            case R.id.pay:
-                payment();
-            break;
-        }
-    }
+
+//    @Override
+//    public void onClick(View view) {
+//        switch (view.getId()){
+//            case R.id.pay:
+//                if(!(numberEditText.equals(" ") && monthEditText.equals(" ")&& yearEditText.equals(" ")&& cvcEditText.equals(" ") && ownerEditText.equals(" ")))
+//                         payment();
+//                else
+//                    Toast.makeText(this, "Please Complete Your Data", Toast.LENGTH_SHORT).show();
+//                Log.e("dfd","Please Complete Your Data");
+//            break;
+//        }
+//    }
 }
