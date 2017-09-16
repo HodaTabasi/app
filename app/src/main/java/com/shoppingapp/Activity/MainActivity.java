@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity
 
         setSupportActionBar(toolbar);
 
-        FragmentsUtil.addFragment(this, R.id.container, new ExploreFragment(), false);
+        FragmentsUtil.addFragment(this, R.id.container, new ExploreFragment(), true);
 
         setUpDrawer();
 
@@ -89,13 +89,9 @@ public class MainActivity extends AppCompatActivity
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager manager = getSupportFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
                 mTitle = "Profile";
                 filter.setVisibility(View.GONE);
-                transaction.replace(R.id.container, new EditProfileFragment());
-                transaction.commit();
-
+                FragmentsUtil.replaceFragment(MainActivity.this,R.id.container, new EditProfileFragment(),true);
                 drawer.closeDrawer(GravityCompat.START);
             }
         });
@@ -103,13 +99,9 @@ public class MainActivity extends AppCompatActivity
         user_edit_prof.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager manager = getSupportFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
                 mTitle = "Profile";
                 filter.setVisibility(View.GONE);
-                transaction.replace(R.id.container, new EditProfileFragment());
-                transaction.commit();
-
+                FragmentsUtil.replaceFragment(MainActivity.this,R.id.container, new EditProfileFragment(),true);
                 drawer.closeDrawer(GravityCompat.START);
             }
         });
@@ -139,31 +131,28 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_shop) {
             mTitle = getString(R.string.shop);
             filter.setVisibility(View.VISIBLE);
-            transaction.replace(R.id.container, new ShopFragment());
-            transaction.commit();
+            FragmentsUtil.replaceFragment(this,R.id.container, new ShopFragment(),true);
 
         } else if (id == R.id.nav_order) {
             mTitle = getString(R.string.orders);
             filter.setVisibility(View.GONE);
-            transaction.replace(R.id.container, new OrdersFragment());
-            transaction.commit();
+            FragmentsUtil.replaceFragment(this,R.id.container, new OrdersFragment(),true);
 
         } else if (id == R.id.nav_whishlist) {
             mTitle = getString(R.string.whishList);
             filter.setVisibility(View.GONE);
-            transaction.replace(R.id.container, new WatchlistFragment());
-            transaction.commit();
+            FragmentsUtil.replaceFragment(this,R.id.container, new WatchlistFragment(),true);
 
         } else if (id == R.id.nav_explore) {
             mTitle = getString(R.string.explor);
             filter.setVisibility(View.GONE);
-            transaction.replace(R.id.container, new ExploreFragment());
-            transaction.commit();
+            FragmentsUtil.replaceFragment(this,R.id.container, new ExploreFragment(),true);
+
         } else if (id == R.id.nav_shopping_cart) {
             mTitle = getString(R.string.shoppingcart);
             filter.setVisibility(View.GONE);
-            transaction.replace(R.id.container, new CartFragment());
-            transaction.commit();
+            FragmentsUtil.replaceFragment(this,R.id.container, new CartFragment(),true);
+
         }
 
         actionTitle.setText(mTitle);

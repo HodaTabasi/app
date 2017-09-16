@@ -48,7 +48,6 @@ public class ItemCartAdapter extends RecyclerView.Adapter<ItemCartAdapter.Recycl
     public void onBindViewHolder(final RecyclerViewHolders holder, final int position) {
         holder.itemName.setText(itemCartList.get(position).getName());
         holder.itemPrice.setText(itemCartList.get(position).getPrice());
-        //   holder.itemColor.setBackgroundColor(itemCartList.get(position).getColor());
         holder.itemQuantity.setText(itemCartList.get(position).getQuantity());
         Picasso.with(context).load(Constant.IMG_PATH + itemCartList.get(position).getImage()).into(holder.itemImg);
         myInterFace.onItemSelected(itemCartList.get(position).getPrice().toString());
