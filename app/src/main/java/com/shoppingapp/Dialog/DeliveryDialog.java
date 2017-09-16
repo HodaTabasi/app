@@ -43,6 +43,7 @@ public class DeliveryDialog extends Dialog {
     String total = " ";
     TextView prices, price_plus, note;
     EditText dphone, daddress;
+     int t;
 
     public DeliveryDialog(@NonNull Context context) {
         super(context);
@@ -55,14 +56,19 @@ public class DeliveryDialog extends Dialog {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.fragment_delivery);
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
+
         note = findViewById(R.id.note);
         daddress = findViewById(R.id.daddress);
         dphone = findViewById(R.id.dphone);
         prices = findViewById(R.id.prices);
+
+        userData();
+
         prices.setText(total);
         price_plus = findViewById(R.id.price_plus);
-        final int t = Integer.parseInt(total)+20;
-        price_plus.setText(t+"");
+        t = Integer.parseInt(total);
+        t+=20;
+        price_plus.setText(String.valueOf(t));
         pay = findViewById(R.id.pay_item);
         pay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,6 +79,7 @@ public class DeliveryDialog extends Dialog {
                 getContext().startActivity(intent);
             }
         });
+
 
     }
 
@@ -94,7 +101,7 @@ public class DeliveryDialog extends Dialog {
                         Log.e("result_epf",result);
                         JSONObject object = new JSONObject(result);
                         JSONObject object1 = object.getJSONObject("user");
-                        if(object1.getString("address").equals(" ")){
+                        if(object1.getString("address").equals("")){
                             note.setVisibility(View.VISIBLE);
                         }else {
                             daddress.setText(object1.getString("address"));

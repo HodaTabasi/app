@@ -25,6 +25,8 @@ public interface Constant {
     String GET_USER_INFO_URL = "http://evlope.com/rawnaq/user.php";   //POST : user_id
     String GET_CART_URL = "http://evlope.com/rawnaq/get_carts.php";   //POST : uesr_id
     String GET_ORDER_URL = "http://evlope.com/rawnaq/get_orders.php"; //POST : uesr_id
+    String UPDATE_QUANTITY_URL = "http://evlope.com/rawnaq/edit_quantity.php";  // POST : cart_id , quantity
+    String DELETE_CART_URL = "http://evlope.com/rawnaq/delete_cart.php";  // POST : cart_id
     int FRAGMENT_ONE = 0;
     int FRAGMENT_TWO = 1;
     int FRAGMENT_THREE = 2;

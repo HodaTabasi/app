@@ -29,7 +29,7 @@
     <string name="order_delivered">Order delivered</string>
     <string name="order_on_delivery">Order on delivery</string>
     <string name="processed">Processed</string>
-    <string name="sub_total">SUBTOTAL</string>
+    <string name="sub_total">SUBTOTAL :</string>
     <string name="continue_order">Continue Order</string>
     <string name="cart">Shopping Cart</string>
     <string name="shoppingcart">Shopping Cart</string>
