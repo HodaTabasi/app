@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.shoppingapp.Activity.CheckoutActivity;
 import com.shoppingapp.FragmentsUtil;
@@ -25,6 +26,7 @@ public class DeliveryDialog extends Dialog {
     Context context;
     Button pay;
     String total = " ";
+    TextView prices, price_plus;
 
     public DeliveryDialog(@NonNull Context context) {
         super(context);
@@ -37,13 +39,18 @@ public class DeliveryDialog extends Dialog {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.fragment_delivery);
         getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT);
+        prices = findViewById(R.id.prices);
+        prices.setText(total);
+        price_plus = findViewById(R.id.price_plus);
+        final int t = Integer.parseInt(total)+20;
+        price_plus.setText(t+"");
         pay = findViewById(R.id.pay_item);
         pay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dismiss();
                 Intent intent = new Intent(view.getContext(),CheckoutActivity.class);
-                intent.putExtra("subtotal",total);
+                intent.putExtra("subtotal",t+"");
                 getContext().startActivity(intent);
             }
         });

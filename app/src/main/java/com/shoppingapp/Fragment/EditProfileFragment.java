@@ -48,7 +48,7 @@ import static com.facebook.accountkit.internal.AccountKitController.getApplicati
  * Created by Yasmeen on 23/08/2017.
  */
 
-public class EditProfileFragment extends Fragment implements View.OnClickListener, Observer {
+public class EditProfileFragment extends Fragment implements View.OnClickListener{
     private View mView;
     private ProgressBar mProgressBar;
     TextView phone_number, user_names, address, email;
@@ -71,8 +71,6 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
 
         componentContent();
 
-        MyRequests.getInstance().addObserver(this);
-        MyRequests.getInstance().getItem(url);
         return mView;
     }
 
@@ -95,20 +93,25 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
                     String accountKitId = account.getId();
                     Map<String, String> params = new HashMap<String, String>();
                     params.put("user_id",accountKitId);
+                    Log.e("user_id",accountKitId);
 
 
                     MyRequests.getInstance().getData(Constant.GET_USER_INFO_URL, params, new VolleyCallback() {
                         @Override
                         public void onSuccessResponse(String result) throws JSONException {
                             Log.e("result_epf",result);
+                            JSONObject object = new JSONObject(result);
+                            JSONObject object1 = object.getJSONObject("user");
+                            user_names.setText(object1.getString("name"));
+                            email.setText(object1.getString("email"));
+                            address.setText(object1.getString("address"));
+
                         }
                     });
                     // Get phone number
                     PhoneNumber phoneNumber = account.getPhoneNumber();
                     String phoneNumberString = phoneNumber.toString();
                     phone_number.setText(phoneNumberString);
-
-
                 }
 
                 @Override
@@ -211,11 +214,6 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
     }
 
 
-
-    @Override
-    public void update(Observable observable, Object o) {
-
-    }
 
     @Override
     public void onClick(View view) {
