@@ -31,7 +31,7 @@ import java.util.EnumSet;
  * Created by Yasmeen on 21/08/2017
  */
 
-public class CheckoutActivity extends AppCompatActivity implements TokenCallback{
+public class CheckoutActivity extends AppCompatActivity implements TokenCallback,View.OnClickListener{
 
     Toolbar d_toolbar;
 
@@ -73,12 +73,9 @@ public class CheckoutActivity extends AppCompatActivity implements TokenCallback
         total_price = (TextView) findViewById(R.id.total_price);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         errorTextView = (TextView) findViewById(R.id.errorTextView);
-        pay.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                payment();
-            }
-        });
+
+        total_price.setText(getIntent().getStringExtra("subtotal"));
+        pay.setOnClickListener(this);
     }
 
     private void initAnimation(){
@@ -95,7 +92,9 @@ public class CheckoutActivity extends AppCompatActivity implements TokenCallback
                 hideKeyboard();
                 showProgress(true);
 
-                start.createToken(this, card, this, 1 * 100, "USD");
+                int price = Integer.parseInt(total_price.getText().toString().trim());
+                Log.e("ff",price+" ");
+                start.createToken(this, card, this, price, "USD");
             } catch (CardVerificationException e) {
                 setErrors(e.getErrorFields());
             }
@@ -193,16 +192,12 @@ public class CheckoutActivity extends AppCompatActivity implements TokenCallback
     }
 
 
-//    @Override
-//    public void onClick(View view) {
-//        switch (view.getId()){
-//            case R.id.pay:
-//                if(!(numberEditText.equals(" ") && monthEditText.equals(" ")&& yearEditText.equals(" ")&& cvcEditText.equals(" ") && ownerEditText.equals(" ")))
-//                         payment();
-//                else
-//                    Toast.makeText(this, "Please Complete Your Data", Toast.LENGTH_SHORT).show();
-//                Log.e("dfd","Please Complete Your Data");
-//            break;
-//        }
-//    }
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.pay:
+               payment();
+            break;
+        }
+    }
 }

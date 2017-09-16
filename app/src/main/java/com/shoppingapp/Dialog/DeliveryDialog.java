@@ -24,6 +24,7 @@ import com.shoppingapp.interfaces.MyInterFace;
 public class DeliveryDialog extends Dialog {
     Context context;
     Button pay;
+    String total = " ";
 
     public DeliveryDialog(@NonNull Context context) {
         super(context);
@@ -42,6 +43,7 @@ public class DeliveryDialog extends Dialog {
             public void onClick(View view) {
                 dismiss();
                 Intent intent = new Intent(view.getContext(),CheckoutActivity.class);
+                intent.putExtra("subtotal",total);
                 getContext().startActivity(intent);
             }
         });
@@ -58,6 +60,7 @@ public class DeliveryDialog extends Dialog {
         @Override
         public void onItemSelected(String Value) {
             Log.e("valuess",Value);
+            total = Value;
         }
     };
 

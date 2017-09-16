@@ -74,7 +74,7 @@ public class CartFragment extends Fragment{
 
         checkout = view.findViewById(R.id.chechout);
         cartView = view.findViewById(R.id.cart_recycler);
-        total = view.findViewById(R.id.total);
+        total = view.findViewById(R.id.total_val);
         itemCartList = new ArrayList<>();
 //        itemCartList.add(new ItemCart("1","dress","200","1",R.drawable.dress));
 
@@ -105,8 +105,8 @@ public class CartFragment extends Fragment{
                                 JSONObject object1 = s.getJSONObject(i);
                                 ItemCart item = gson.fromJson(object1.toString(), ItemCart.class);
                                 itemCartList.add(item);
-                                itemCartAdapter.notifyDataSetChanged();
                             }
+                            itemCartAdapter.notifyDataSetChanged();
                         }
                     });
 
