@@ -102,7 +102,7 @@ public class ShowItemFragment extends Fragment implements Observer{
             mItemDetailsList.clear();
             mProgressBar.setVisibility(View.INVISIBLE);
                 JSONArray s = jsonObject.getJSONArray("'item'");
-                Log.e("fff", s + " ");
+//                Log.e("fff", s + " ");
                 for (int i = 0; i < s.length(); i++) {
                     JSONObject object = s.getJSONObject(i);
                     Item item = gson.fromJson(object.toString(), Item.class);

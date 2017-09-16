@@ -47,11 +47,6 @@ public class UIApplication extends Application {
         getRequestQueue().cancelAll(tag);
     }
 
-    public ImageLoader getImageLoader(){
-        if(imageLoader == null)
-            return imageLoader = new ImageLoader(getRequestQueue(),new MyLruCache());
-        return imageLoader;
-    }
 
 
 }

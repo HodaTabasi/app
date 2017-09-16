@@ -28,10 +28,10 @@ public class MyPagerAdapter extends FragmentStatePagerAdapter {
         Bundle bundle = new Bundle();
         switch (position) {
             case Constant.FRAGMENT_ONE:
-                bundle.putString("url", Constant.url + "?action=item&category=1");
+                bundle.putString("url", Constant.url + "?action=item");
                 break;
             case Constant.FRAGMENT_TWO:
-                bundle.putString("url", Constant.url + "?action=item&category=1");
+                bundle.putString("url", Constant.url + "?action=item");
                 break;
         }
         fragment.setArguments(bundle);
