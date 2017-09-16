@@ -41,11 +41,22 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:id="@+id/daddress"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rect_shape"
                     android:hint=""
                     android:padding="5dp" />
+
+                <TextView
+                    android:id="@+id/note"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="add address,update your profile data later"
+                    android:textColor="#f00a0a"
+                    android:layout_marginTop="3dp"
+                    android:visibility="gone"/>
+
             </android.support.design.widget.TextInputLayout>
 
 
@@ -81,6 +92,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
+                    android:id="@+id/dphone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/rect_shape"

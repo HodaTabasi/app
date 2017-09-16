@@ -95,16 +95,16 @@ public class CartFragment extends Fragment{
                         @Override
                         public void onSuccessResponse(String result) throws JSONException {
                             Log.e("result_gcu",result);
-                            JSONObject object = new JSONObject(result);
-                            JSONArray s = object.getJSONArray("cart");
+                            JSONArray array = new JSONArray(result);
 
                             GsonBuilder builder = new GsonBuilder();
                             Gson gson = builder.create();
 
-                            for (int i = 0; i < s.length(); i++) {
-                                JSONObject object1 = s.getJSONObject(i);
+                            for (int i = 0; i < array.length(); i++) {
+                                JSONObject object1 = array.getJSONObject(i);
                                 ItemCart item = gson.fromJson(object1.toString(), ItemCart.class);
                                 itemCartList.add(item);
+                                Log.e("ssss",itemCartList.size()+"");
                             }
                             itemCartAdapter.notifyDataSetChanged();
                         }
