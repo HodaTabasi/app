@@ -1,5 +1,7 @@
 package com.shoppingapp.Adapter;
 
+import android.content.Context;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,9 @@ import android.widget.TextView;
 
 import com.shoppingapp.Model.ItemCart;
 import com.shoppingapp.R;
+import com.shoppingapp.interfaces.Constant;
+import com.shoppingapp.interfaces.MyInterFace;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -18,9 +23,14 @@ import java.util.List;
 public class ItemCartAdapter extends RecyclerView.Adapter<ItemCartAdapter.RecyclerViewHolders> {
 
     private List<ItemCart> itemCartList;
+    int count = 1,total = 0;
+    Context context;
+    MyInterFace myInterFace;
 
-    public ItemCartAdapter( List<ItemCart> itemDetailsList) {
+    public ItemCartAdapter( Context context, List<ItemCart> itemDetailsList,MyInterFace myInterFace) {
+        this.context = context;
         this.itemCartList = itemDetailsList;
+        this.myInterFace = myInterFace;
     }
 
     @Override
@@ -35,12 +45,37 @@ public class ItemCartAdapter extends RecyclerView.Adapter<ItemCartAdapter.Recycl
     }
 
     @Override
-    public void onBindViewHolder(RecyclerViewHolders holder, int position) {
+    public void onBindViewHolder(final RecyclerViewHolders holder, final int position) {
         holder.itemName.setText(itemCartList.get(position).getName());
         holder.itemPrice.setText(itemCartList.get(position).getPrice());
         //   holder.itemColor.setBackgroundColor(itemCartList.get(position).getColor());
         holder.itemQuantity.setText(itemCartList.get(position).getQuantity());
-        holder.itemImg.setImageResource(itemCartList.get(position).getImag());
+        Picasso.with(context).load(Constant.IMG_PATH + itemCartList.get(position).getImage()).into(holder.itemImg);
+        myInterFace.onItemSelected(itemCartList.get(position).getPrice().toString());
+        holder.count_up.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                count++;
+                holder.itemQuantity.setText(count+"");
+                holder.itemPrice.setText(count*Integer.parseInt(itemCartList.get(position).getPrice().toString())+" ");
+                myInterFace.onItemSelected(count*Integer.parseInt(itemCartList.get(position).getPrice().toString())+" ");
+
+
+            }
+        });
+
+        holder.count_down.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                count--;
+                if(count <= 1)
+                    count = 1;
+                holder.itemQuantity.setText(count+"");
+                holder.itemPrice.setText(count*Integer.parseInt(itemCartList.get(position).getPrice().toString())+" ");
+                myInterFace.onItemSelected(count*Integer.parseInt(itemCartList.get(position).getPrice().toString())+" ");
+
+            }
+        });
     }
 
     @Override
@@ -51,7 +86,7 @@ public class ItemCartAdapter extends RecyclerView.Adapter<ItemCartAdapter.Recycl
      class RecyclerViewHolders extends RecyclerView.ViewHolder {
         TextView itemName, itemPrice, itemQuantity;
         View itemColor;
-        ImageView itemImg;
+        ImageView itemImg , count_up, count_down;
         RecyclerViewHolders(View itemView) {
             super(itemView);
             itemName = itemView.findViewById(R.id.add_card_item_name);
@@ -59,6 +94,8 @@ public class ItemCartAdapter extends RecyclerView.Adapter<ItemCartAdapter.Recycl
             itemImg = itemView.findViewById(R.id.add_card_item_img);
             itemColor = itemView.findViewById(R.id.add_cart_item_color);
             itemQuantity = itemView.findViewById(R.id.item_count);
+            count_up = itemView.findViewById(R.id.count_up);
+            count_down = itemView.findViewById(R.id.count_down);
         }
     }
 }

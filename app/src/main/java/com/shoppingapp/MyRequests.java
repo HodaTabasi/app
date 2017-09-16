@@ -112,14 +112,13 @@ public class MyRequests extends Observable implements Response.Listener<JSONObje
     }
 
 
-    public void getUserInfo(String url, final Map data, final VolleyCallback volleyCallback){
+    public void getData(String url, final Map data, final VolleyCallback volleyCallback){
         StringRequest strRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>()
                 {
                     @Override
                     public void onResponse(String response)
                     {
-                        System.out.println("response is"+response);
                         try {
                             volleyCallback.onSuccessResponse(response);
                         } catch (JSONException e) {

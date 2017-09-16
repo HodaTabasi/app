@@ -33,6 +33,7 @@ import com.shoppingapp.Model.Item;
 import com.shoppingapp.MyRequests;
 import com.shoppingapp.R;
 import com.shoppingapp.interfaces.Constant;
+import com.shoppingapp.interfaces.MyInterFace;
 import com.shoppingapp.interfaces.VolleyCallback;
 import com.squareup.picasso.Picasso;
 
@@ -56,6 +57,7 @@ public class ItemDetailsActivity extends AppCompatActivity implements View.OnCli
     TextView item_name_m, item_size, item_prices;
     Bundle data;
     Item item;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -144,25 +146,41 @@ public class ItemDetailsActivity extends AppCompatActivity implements View.OnCli
                         public void onSuccess(final Account account) {
                             Log.e("Error", "User Info Successfully");
 
+                            final String accountKitId = account.getId();
+                            Map<String, String> paramid = new HashMap<String, String>();
+                            paramid.put("user_id", accountKitId);
                             PhoneNumber phoneNumber = account.getPhoneNumber();
-
-                            String phoneNumberString = phoneNumber.toString();
-                            String accountKitId = account.getId();
-
-
-                            Map<String, String> params = new HashMap<String, String>();
-                            params.put("mobile", phoneNumberString);
-                            params.put("access_token", accountKitId);
-
-                            Log.e("access_token", accountKitId);
-                            Log.e("mobile", phoneNumberString);
+                            final String phoneNumberString = phoneNumber.toString();
 
                             try {
-                                MyRequests.getInstance().addToDataBase(Constant.ADD_USER_URL, params, new VolleyCallback() {
+                                MyRequests.getInstance().addToDataBase(Constant.GET_USER_INFO_URL, paramid, new VolleyCallback() {
                                     @Override
                                     public void onSuccessResponse(String result) throws JSONException {
-                                        Toast.makeText(getApplicationContext(),result, Toast.LENGTH_SHORT).show();
-                                        Log.e("add_user",result);
+                                        JSONObject object = new JSONObject(result);
+                                        JSONObject object1 = object.getJSONObject("user");
+                                        String s = object1.getString("access_token");
+
+                                        if (!s.equals(account.getId())) {
+
+                                            Map<String, String> params = new HashMap<String, String>();
+
+                                            params.put("mobile", phoneNumberString);
+                                            params.put("access_token", accountKitId);
+
+                                            try {
+                                                MyRequests.getInstance().addToDataBase(Constant.ADD_USER_URL, params, new VolleyCallback() {
+                                                    @Override
+                                                    public void onSuccessResponse(String result) throws JSONException {
+                                                        Toast.makeText(getApplicationContext(), result, Toast.LENGTH_SHORT).show();
+                                                        Log.e("add_user", result);
+                                                    }
+                                                });
+
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+
                                     }
                                 });
 
@@ -171,13 +189,10 @@ public class ItemDetailsActivity extends AppCompatActivity implements View.OnCli
                             }
 
 
-
-
                         }
 
                         @Override
                         public void onError(final AccountKitError error) {
-//                            Log.e("Error", error.getUserFacingMessage());
                             Toast.makeText(getApplicationContext(), error.getUserFacingMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -203,6 +218,7 @@ public class ItemDetailsActivity extends AppCompatActivity implements View.OnCli
                 @Override
                 public void onSuccess(final Account account) {
                     Log.e("Error", "User Info Successfully");
+
                     String accountKitId = account.getId();
 
                     Map<String, String> params = new HashMap<String, String>();

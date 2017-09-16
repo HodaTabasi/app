@@ -15,8 +15,14 @@ public interface Constant {
     String ADD_FAVORITE_URL = "http://evlope.com/rawnaq/add_to_fav.php";
     String ADD_TO_CART_URL = "http://evlope.com/rawnaq/add_cart.php";
     String ADD_USER_URL = "http://evlope.com/rawnaq/add_user.php";    //POST : mobile , acess_token
+    String ADD_ORDER_URL = "http://evlope.com/rawnaq/add_order.php";
+    /*Action : post
+     Parameter :
+     user_id, item_id, quantity,
+     order_date : yyyy-mm-dd
+     delevired_date : yyyy-mm-dd*/
     String GET_FAVORITE_URL = "http://evlope.com/rawnaq/get_fav.php";
-    String GET_USER_INFO_URL = "http://evlope.com/rawnaq/user.php";
+    String GET_USER_INFO_URL = "http://evlope.com/rawnaq/user.php";   //POST : user_id
     String GET_CART_URL = "http://evlope.com/rawnaq/get_carts.php";   //POST : uesr_id
     String GET_ORDER_URL = "http://evlope.com/rawnaq/get_orders.php"; //POST : uesr_id
     int FRAGMENT_ONE = 0;

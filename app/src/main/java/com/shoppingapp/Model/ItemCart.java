@@ -8,19 +8,12 @@ public class ItemCart {
     String id ;
     String name;
     String price ;
-    int color;
+    String size;
+    String favourite;
+    String detials;
+    String image;
+    String category_id;
     String quantity;
-    int imag;
-
-
-    public ItemCart(String id, String name, String price, String quantity, int imag) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-        this.color = color;
-        this.quantity = quantity;
-        this.imag = imag;
-    }
 
     public String getId() {
         return id;
@@ -46,12 +39,44 @@ public class ItemCart {
         this.price = price;
     }
 
-    public int getColor() {
-        return color;
+    public String getSize() {
+        return size;
     }
 
-    public void setColor(int color) {
-        this.color = color;
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public String getFavourite() {
+        return favourite;
+    }
+
+    public void setFavourite(String favourite) {
+        this.favourite = favourite;
+    }
+
+    public String getDetials() {
+        return detials;
+    }
+
+    public void setDetials(String detials) {
+        this.detials = detials;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(String category_id) {
+        this.category_id = category_id;
     }
 
     public String getQuantity() {
@@ -60,13 +85,5 @@ public class ItemCart {
 
     public void setQuantity(String quantity) {
         this.quantity = quantity;
-    }
-
-    public int getImag() {
-        return imag;
-    }
-
-    public void setImag(int imag) {
-        this.imag = imag;
     }
 }
