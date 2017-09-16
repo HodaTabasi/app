@@ -58,6 +58,7 @@ public class CartFragment extends Fragment{
     List<ItemCart> itemCartList;
     TextView total;
     private  final int APP_REQUEST_CODE = 100;
+    MyInterFace getMyInterFace;
     String b = "0";
 
     public CartFragment() {
@@ -132,8 +133,9 @@ public class CartFragment extends Fragment{
         checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 DeliveryDialog deliveryDialog = new DeliveryDialog(getActivity());
+                getMyInterFace = deliveryDialog.getDataDialog();
+                getMyInterFace.onItemSelected(total.getText().toString());
                deliveryDialog.show();
 
             }
@@ -149,6 +151,7 @@ public class CartFragment extends Fragment{
         public void onItemSelected(String Value) {
              Log.e("value",Value);
             total.setText(Value);
+
         }
     };
 
