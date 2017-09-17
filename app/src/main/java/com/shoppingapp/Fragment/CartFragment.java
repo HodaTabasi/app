@@ -81,8 +81,6 @@ public class CartFragment extends Fragment{
         cartView = view.findViewById(R.id.cart_recycler);
         total = view.findViewById(R.id.total_val);
         itemCartList = new ArrayList<>();
-//        itemCartList.add(new ItemCart("1","dress","200","1",R.drawable.dress));
-
 
 
         if (AccountKit.getCurrentAccessToken() != null) {

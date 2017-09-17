@@ -16,16 +16,35 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.accountkit.Account;
+import com.facebook.accountkit.AccountKit;
+import com.facebook.accountkit.AccountKitCallback;
+import com.facebook.accountkit.AccountKitError;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.payfort.start.Card;
 import com.payfort.start.Start;
 import com.payfort.start.Token;
 import com.payfort.start.TokenCallback;
 import com.payfort.start.error.CardVerificationException;
 import com.payfort.start.error.StartApiException;
+import com.shoppingapp.Model.ItemCart;
+import com.shoppingapp.MyRequests;
 import com.shoppingapp.R;
 import com.shoppingapp.interfaces.Constant;
+import com.shoppingapp.interfaces.VolleyCallback;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Yasmeen on 21/08/2017
@@ -197,7 +216,61 @@ public class CheckoutActivity extends AppCompatActivity implements TokenCallback
         switch (view.getId()){
             case R.id.pay:
                payment();
+               addNewOrder();
             break;
         }
+    }
+
+    private void addNewOrder() {
+            AccountKit.getCurrentAccount(new AccountKitCallback<Account>() {
+                @Override
+                public void onSuccess(final Account account) {
+                    Log.e("Error", "User Info Successfully");
+
+                    String accountKitId = account.getId();
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("user_id",accountKitId);
+                    params.put("item_id","1");
+                    params.put("quantity","1");
+                    Calendar calendar = Calendar.getInstance();
+                    params.put("order_date",calendar.getTime()+" ");
+
+
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy:MM:dd:HH:mm");
+                    String currentDateandTime = sdf.format(new Date());
+                    Date date = null;
+                    try {
+                        date = sdf.parse(currentDateandTime);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    calendar.setTime(date);
+                    calendar.add(Calendar.HOUR, 24);
+                    params.put("delevired_date",calendar.getTime()+" ");
+
+                    try {
+                        MyRequests.getInstance().addToDataBase(Constant.ADD_ORDER_URL, params, new VolleyCallback() {
+                            @Override
+                            public void onSuccessResponse(String result) throws JSONException {
+                                Log.e("result_cou",result);
+                                JSONObject object = new JSONObject(result);
+                                JSONObject object1 = object.getJSONObject("add_order");
+                                Toast.makeText(CheckoutActivity.this, object1.getString("status"), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
+                @Override
+                public void onError(final AccountKitError error) {
+                    Toast.makeText(CheckoutActivity.this, "للاسف حدثت مشكلة في الخادم .. حاول مره اخري", Toast.LENGTH_SHORT).show();
+
+
+
+                }
+            });
     }
 }
