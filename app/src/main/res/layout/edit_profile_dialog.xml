@@ -24,6 +24,7 @@
         android:padding="10dp">
 
         <EditText
+            android:id="@+id/edit_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
@@ -40,6 +41,7 @@
         android:padding="10dp">
 
         <EditText
+            android:id="@+id/edit_email"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
@@ -56,10 +58,12 @@
         android:padding="10dp">
 
         <EditText
+            android:id="@+id/edit_mobile"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
-            android:textColorHint="@color/colorPrimary" />
+            android:textColorHint="@color/colorPrimary"
+            android:enabled="false"/>
 
     </android.support.design.widget.TextInputLayout>
 
@@ -72,6 +76,7 @@
         android:padding="10dp">
 
         <EditText
+            android:id="@+id/edit_address"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"

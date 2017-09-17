@@ -29,8 +29,7 @@
         <TextView
             android:id="@+id/user_names"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" 
-            android:text="Tasneem Kurraz"
+            android:layout_height="wrap_content"
             android:textSize="30dp"
             android:textColor="#000"
             android:gravity="center_horizontal"
@@ -47,7 +46,6 @@
             android:drawableStart="@drawable/ic_email"
             android:drawableTint="@color/colorPrimary"
             android:padding="15dp"
-            android:text="t@hotmail.com"
             android:textColor="#000"
             android:textSize="20dp" />
 
@@ -55,7 +53,6 @@
             android:id="@+id/phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="526598952"
             android:drawableStart="@drawable/ic_phone"
             android:drawablePadding="15dp"
             android:textSize="20dp"
@@ -68,7 +65,6 @@
             android:id="@+id/address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Palestine Gaza"
             android:drawableStart="@drawable/ic_location"
             android:drawablePadding="15dp"
             android:textSize="20dp"

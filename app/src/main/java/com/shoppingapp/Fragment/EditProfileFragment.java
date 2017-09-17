@@ -32,6 +32,7 @@ import com.shoppingapp.Dialog.EditProfileDialog;
 import com.shoppingapp.MyRequests;
 import com.shoppingapp.R;
 import com.shoppingapp.interfaces.Constant;
+import com.shoppingapp.interfaces.ProfileDate;
 import com.shoppingapp.interfaces.VolleyCallback;
 
 import org.json.JSONException;
@@ -53,7 +54,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
     private ProgressBar mProgressBar;
     TextView phone_number, user_names, address, email;
     FloatingActionButton editprofile;
-    private String url;
+    ProfileDate profileDate;
 
 
     public EditProfileFragment() {
@@ -74,7 +75,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         return mView;
     }
 
-    private void initView() {
+    public void initView() {
         phone_number = mView.findViewById(R.id.phone);
         user_names = mView.findViewById(R.id.user_names);
         address = mView.findViewById(R.id.address);
@@ -83,7 +84,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         editprofile.setOnClickListener(this);
     }
 
-    private void componentContent() {
+    public void componentContent() {
         if (AccountKit.getCurrentAccessToken() != null) {
             AccountKit.getCurrentAccount(new AccountKitCallback<Account>() {
                 @Override
@@ -220,6 +221,13 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
         switch (view.getId()) {
             case R.id.editprofile:
                 EditProfileDialog editProfileDialog = new EditProfileDialog(getContext());
+                Map<String,String> data = new HashMap<>();
+                data.put("name",user_names.getText().toString());
+                data.put("phone",phone_number.getText().toString());
+                data.put("address",address.getText().toString());
+                data.put("email",email.getText().toString());
+                profileDate = editProfileDialog.getDataDialog();
+                profileDate.getData(data);
                 editProfileDialog.show();
                 break;
 
