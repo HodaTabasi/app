@@ -38,15 +38,19 @@ import java.util.Map;
 public class ItemCartAdapter extends RecyclerView.Adapter<ItemCartAdapter.RecyclerViewHolders> {
 
     private List<ItemCart> itemCartList;
-    int count = 1,total = 0;
+
+    int count = 0;
     Context context;
     MyInterFace myInterFace;
+    int subtotal = 0;
 
     public ItemCartAdapter( Context context, List<ItemCart> itemDetailsList,MyInterFace myInterFace) {
         this.context = context;
         this.itemCartList = itemDetailsList;
         this.myInterFace = myInterFace;
+
     }
+
 
     @Override
     public RecyclerViewHolders onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -55,54 +59,55 @@ public class ItemCartAdapter extends RecyclerView.Adapter<ItemCartAdapter.Recycl
         RecyclerViewHolders rcv = new RecyclerViewHolders(layoutView);
         RecyclerView.LayoutParams lp = new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutView.setLayoutParams(lp);
-        //return new rcv(layoutView);
+        if(count == 0)
+          calculatePrice();
+
         return rcv;
     }
 
     @Override
     public void onBindViewHolder(final RecyclerViewHolders holder, final int position) {
         holder.itemName.setText(itemCartList.get(position).getName());
-       int qprice= Integer.parseInt(itemCartList.get(position).getPrice())*Integer.parseInt(itemCartList.get(position).getQuantity());
-        holder.itemPrice.setText(qprice+" ");
+       int qprice= parse(itemCartList.get(position).getPrice())*parse(itemCartList.get(position).getQuantity());
+        holder.itemPrice.setText(itemCartList.get(position).getPrice());
         holder.itemQuantity.setText(itemCartList.get(position).getQuantity());
         Picasso.with(context).load(Constant.IMG_PATH + itemCartList.get(position).getImage()).into(holder.itemImg);
-        myInterFace.onItemSelected(itemCartList.get(position).getPrice().toString());
+//        subtotal+=qprice;
 
-//        holder.count_up.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Map<String,String> params = new HashMap<String, String>();
-//                params.put("cart_id",itemCartList.get(position).getId());
-//                params.put("quantity",itemCartList.get(position).getQuantity());
-//               editQuantity(params);
-//
-//                holder.itemPrice.setText(Integer.parseInt(itemCartList.get(position).getQuantity().toString())*Integer.parseInt(itemCartList.get(position).getPrice().toString())+" ");
-//                myInterFace.onItemSelected(Integer.parseInt(itemCartList.get(position).getQuantity().toString())*Integer.parseInt(itemCartList.get(position).getPrice().toString())+" ");
-//            }
-//        });
-//
-//        holder.count_down.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                count--;
-//                if(count <= 1)
-//                    count = 1;
-//                holder.itemQuantity.setText(count+"");
-//                holder.itemPrice.setText(count*Integer.parseInt(itemCartList.get(position).getPrice().toString())+" ");
-//                myInterFace.onItemSelected(count*Integer.parseInt(itemCartList.get(position).getPrice().toString())+" ");
-//
-//            }
-//        });
+        holder.count_up.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("cart_id",itemCartList.get(position).getCart_id());
+                params.put("quantity",(parse(itemCartList.get(position).getQuantity())+1)+"");
+
+                editQuantity(params,itemCartList.get(position),true);
+                holder.itemQuantity.setText(itemCartList.get(position).getQuantity());
+            }
+        });
+
+        holder.count_down.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("cart_id",itemCartList.get(position).getCart_id());
+                params.put("quantity",(parse(itemCartList.get(position).getQuantity())-1)+"");
+
+                editQuantity(params,itemCartList.get(position),false);
+                holder.itemQuantity.setText(itemCartList.get(position).getQuantity());
+
+            }
+        });
 
         holder.delete_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 Map<String,String> params = new HashMap<String, String>();
-                params.put("cart_id",itemCartList.get(position).getId());
+                params.put("cart_id",itemCartList.get(position).getCart_id());
                 Log.e("cart_id",itemCartList.get(position).getId());
 
-                deleteCart(params);
+                deleteCart(params,position);
             }
         });
     }
@@ -132,7 +137,7 @@ public class ItemCartAdapter extends RecyclerView.Adapter<ItemCartAdapter.Recycl
     }
 
 
-    private void deleteCart(final Map<String, String> params) {
+    private void deleteCart(final Map<String, String> params, final int i) {
         Log.e("cart_id",params.get("cart_id"));
         AccountKit.getCurrentAccount(new AccountKitCallback<Account>() {
             @Override
@@ -146,8 +151,10 @@ public class ItemCartAdapter extends RecyclerView.Adapter<ItemCartAdapter.Recycl
                         JSONObject object =new JSONObject(result);
                         JSONObject object1 = object.getJSONObject("delete_cart");
                         String s = object1.getString("status");
-                        if(s.equals("success"))
+                        if(s.equals("success")){
+                            itemCartList.remove(i);
                             notifyDataSetChanged();
+                        }
 
                     }
                 });
@@ -161,7 +168,7 @@ public class ItemCartAdapter extends RecyclerView.Adapter<ItemCartAdapter.Recycl
     }
 
 
-    private void editQuantity(final Map<String,String> params){
+    private void editQuantity(final Map<String,String> params, final ItemCart item, final Boolean aBoolean){
 
         AccountKit.getCurrentAccount(new AccountKitCallback<Account>() {
             @Override
@@ -175,6 +182,16 @@ public class ItemCartAdapter extends RecyclerView.Adapter<ItemCartAdapter.Recycl
                         JSONObject object =new JSONObject(result);
                         JSONObject object1 = object.getJSONObject("update_cart");
                         String s = object1.getString("status");
+                        String s1 = object1.getString("quantity");
+                        item.setQuantity(s1);
+                        if(aBoolean) {
+                            subtotal += parse(item.getPrice());
+                        }else {
+                            subtotal -= parse(item.getPrice());
+                        }
+
+                        myInterFace.onItemSelected(subtotal+"");
+                        notifyDataSetChanged();
 
                     }
                 });
@@ -187,6 +204,20 @@ public class ItemCartAdapter extends RecyclerView.Adapter<ItemCartAdapter.Recycl
         });
 
     }
+
+    private int parse(String s){
+       return Integer.parseInt(s);
+    }
+
+    private void calculatePrice() {
+        for(ItemCart cart :itemCartList){
+            subtotal+=(parse(cart.getPrice())*parse(cart.getQuantity()));
+            Log.e("dffb",cart.getPrice());
+        }
+         count++;
+         myInterFace.onItemSelected(subtotal+"");
+    }
+
 }
 
 
