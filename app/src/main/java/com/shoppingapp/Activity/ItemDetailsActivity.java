@@ -271,6 +271,7 @@ public class ItemDetailsActivity extends AppCompatActivity implements View.OnCli
                                 JSONObject object = new JSONObject(result);
                                 JSONObject object1 = object.getJSONObject("favorite");
                                 Toast.makeText(getApplicationContext(), getString(R.string.add_to_favorite_stauts)+" " + object1.getString("status"), Toast.LENGTH_SHORT).show();
+
                             }
                         });
 

@@ -6,59 +6,75 @@ package com.shoppingapp.Model;
 
 public class Order {
 
-    private int orderNumber;
-    private String track;
-    private String orderDate;
-    private String Status;
-    private String deliveredDate;
+    private String id;
+    private String status;
+    private String user_id;
+    private String order_date;
+    private String delivered_date;
+    private String item_id;
+    private String quantity;
 
-    public Order(int orderNumber, String track, String orderDate, String status, String deliveredDate) {
-        this.orderNumber = orderNumber;
-        this.track = track;
-        this.orderDate = orderDate;
-        Status = status;
-        this.deliveredDate = deliveredDate;
+    public Order(String id, String status, String user_id, String order_date, String delivered_date) {
+        this.id = id;
+        this.status = status;
+        this.user_id = user_id;
+        this.order_date = order_date;
+        this.delivered_date = delivered_date;
     }
 
-    public Order(){}
-
-    public int getOrderNumber() {
-        return orderNumber;
+    public String getId() {
+        return id;
     }
 
-    public void setOrderNumber(int orderNumber) {
-        this.orderNumber = orderNumber;
-    }
-
-    public String getTrack() {
-        return track;
-    }
-
-    public void setTrack(String track) {
-        this.track = track;
-    }
-
-    public String getOrderDate() {
-        return orderDate;
-    }
-
-    public void setOrderDate(String orderDate) {
-        this.orderDate = orderDate;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getStatus() {
-        return Status;
+        return status;
     }
 
     public void setStatus(String status) {
-        Status = status;
+        this.status = status;
     }
 
-    public String getDeliveredDate() {
-        return deliveredDate;
+    public String getUser_id() {
+        return user_id;
     }
 
-    public void setDeliveredDate(String deliveredDate) {
-        this.deliveredDate = deliveredDate;
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getOrder_date() {
+        return order_date;
+    }
+
+    public void setOrder_date(String order_date) {
+        this.order_date = order_date;
+    }
+
+    public String getDelivered_date() {
+        return delivered_date;
+    }
+
+    public void setDelivered_date(String delivered_date) {
+        this.delivered_date = delivered_date;
+    }
+
+    public String getItem_id() {
+        return item_id;
+    }
+
+    public void setItem_id(String item_id) {
+        this.item_id = item_id;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(String quantity) {
+        this.quantity = quantity;
     }
 }

@@ -3,6 +3,7 @@ package com.shoppingapp.Adapter;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,13 +39,12 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderHolder>
 
     @Override
     public void onBindViewHolder(OrderHolder holder, int position) {
-        holder.orderNumber.setText(orders.get(position).getOrderNumber()+"");
-        holder.track.setText(orders.get(position).getTrack());
-        holder.deliveredDate.setText(orders.get(position).getDeliveredDate());
+        holder.orderNumber.setText(orders.get(position).getId());
+        Log.e("idd",orders.get(position).getId()+"");
+        holder.track.setText(orders.get(position).getUser_id());
+        holder.deliveredDate.setText(orders.get(position).getDelivered_date());
         holder.status.setText(orders.get(position).getStatus());
-//        Log.e("Status",orders.get(position).getStatus()+" ");
-        holder.date.setText(orders.get(position).getOrderDate());
-
+        holder.date.setText(orders.get(position).getOrder_date());
     }
 
     private void setStatusColor(String statusVal, TextView status){

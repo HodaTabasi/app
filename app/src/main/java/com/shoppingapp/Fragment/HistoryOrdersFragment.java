@@ -41,10 +41,9 @@ public class HistoryOrdersFragment extends Fragment {
         mView = inflater.inflate(R.layout.fragment_order_recycler, container, false);
         historyOrdersRecycler =  mView.findViewById(R.id.recycler);
         historyOrders = new ArrayList<>();
-        historyOrders.add(new Order(123 , "123457","11.4.2017",getString(R.string.processed),"11.3.2019"));
-        historyOrders.add(new Order(123 , "123457","11.4.2017",getString(R.string.order_delivered),"11.3.2019"));
-        historyOrders.add(new Order(123 , "123457","11.4.2017",getString(R.string.order_on_delivery),"11.3.2019"));
-                Log.e(TAG,"status "+historyOrders.get(0).getStatus());
+        historyOrders.add(new Order("1","delivered","11","2017-08-09","2017-08-10"));
+
+
         LinearLayoutManager linearLayoutManger = new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false);
         historyOrdersRecycler.setLayoutManager(linearLayoutManger);
         orderAdapter = new OrderAdapter(  getActivity(),historyOrders);

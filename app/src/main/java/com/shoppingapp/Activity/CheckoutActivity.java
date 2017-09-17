@@ -255,7 +255,7 @@ public class CheckoutActivity extends AppCompatActivity implements TokenCallback
                                 Log.e("result_cou",result);
                                 JSONObject object = new JSONObject(result);
                                 JSONObject object1 = object.getJSONObject("add_order");
-                                Toast.makeText(CheckoutActivity.this, object1.getString("status"), Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(CheckoutActivity.this, object1.getString("status"), Toast.LENGTH_SHORT).show();
                             }
                         });
                     } catch (JSONException e) {
