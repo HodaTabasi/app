@@ -2,8 +2,10 @@ package com.shoppingapp.Fragment;
 
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,7 +62,7 @@ public class CartFragment extends Fragment{
     TextView total;
     private  final int APP_REQUEST_CODE = 100;
     MyInterFace getMyInterFace;
-    String b = "0";
+    ProgressBar pbc ;
 
     public CartFragment() {
         // Required empty public constructor
@@ -72,6 +75,8 @@ public class CartFragment extends Fragment{
         // Inflate the layout for this fragment
          View view = inflater.inflate(R.layout.fragment_cart, container, false);
 
+        pbc = view.findViewById(R.id.pbc);
+        pbc.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(getContext(),R.color.colorPrimary), PorterDuff.Mode.MULTIPLY);
         checkout = view.findViewById(R.id.chechout);
         cartView = view.findViewById(R.id.cart_recycler);
         total = view.findViewById(R.id.total_val);
@@ -107,6 +112,7 @@ public class CartFragment extends Fragment{
                                 Log.e("ssss",itemCartList.size()+"");
                             }
                             itemCartAdapter.notifyDataSetChanged();
+                            pbc.setVisibility(View.INVISIBLE);
                         }
                     });
 

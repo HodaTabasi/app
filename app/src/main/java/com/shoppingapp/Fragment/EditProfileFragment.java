@@ -2,9 +2,12 @@ package com.shoppingapp.Fragment;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +16,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,6 +59,7 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
     TextView phone_number, user_names, address, email;
     FloatingActionButton editprofile;
     ProfileDate profileDate;
+    RelativeLayout rlo;
 
 
     public EditProfileFragment() {
@@ -76,6 +81,9 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
     }
 
     public void initView() {
+        mProgressBar = mView.findViewById(R.id.pb);
+        mProgressBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(getContext(),R.color.colorPrimary), PorterDuff.Mode.MULTIPLY);
+        rlo = mView.findViewById(R.id.rlo);
         phone_number = mView.findViewById(R.id.phone);
         user_names = mView.findViewById(R.id.user_names);
         address = mView.findViewById(R.id.address);
@@ -106,6 +114,9 @@ public class EditProfileFragment extends Fragment implements View.OnClickListene
                             user_names.setText(object1.getString("name"));
                             email.setText(object1.getString("email"));
                             address.setText(object1.getString("address"));
+                            mProgressBar.setVisibility(View.INVISIBLE);
+                            rlo.setVisibility(View.VISIBLE);
+
 
                         }
                     });

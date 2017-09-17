@@ -2,9 +2,11 @@ package com.shoppingapp.Fragment;
 
 import android.app.ActivityOptions;
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -75,6 +77,7 @@ public class ShowItemFragment extends Fragment implements Observer{
         url = getArguments().getString("url");
         type = getArguments().getInt("type");
         mProgressBar = mView.findViewById(R.id.loader);
+        mProgressBar.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(getContext(),R.color.colorPrimary), PorterDuff.Mode.MULTIPLY);
     }
 
     private void setUpRecyclerView() {
